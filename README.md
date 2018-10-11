@@ -2,6 +2,6 @@
 
 Developpeurs:
 
-* BEL
+* BELLANGER Clément
 * LANUEL Charlotte
 * SCHWAB Lucas
