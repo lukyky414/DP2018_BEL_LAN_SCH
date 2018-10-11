@@ -1,1 +1,7 @@
-# DP2018_BEL_LAN_SCH
+# Projet Master
+
+Developpeurs:
+
+* BEL
+* LANUEL Charlotte
+* SCHWAB Lucas
