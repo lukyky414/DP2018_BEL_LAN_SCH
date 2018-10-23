@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2050</x>
-      <y>180</y>
-      <w>270</w>
-      <h>110</h>
+      <x>210</x>
+      <y>28</y>
+      <w>189</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Epoque
 --
 --
-/getTexture(Bateau) : String/
+/getTexture(Bateau) : Texture/
 
-/genererFlotte() : List&lt;bateau&gt;/</panel_attributes>
+/genererFlotte() : List&lt;bateau&gt;/
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1820</x>
-      <y>410</y>
-      <w>190</w>
-      <h>250</h>
+      <x>1190</x>
+      <y>182</y>
+      <w>133</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>Bateau
 --
@@ -41,215 +42,229 @@ _DROITE : int_
 --
 get/set
 estMort() : boolean
-peutTirer() : boolean</panel_attributes>
+peutTirer() : boolean
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2050</x>
-      <y>370</y>
-      <w>320</w>
-      <h>150</h>
+      <x>49</x>
+      <y>161</y>
+      <w>224</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>Medieval
 --
-Textures : Map&lt;class , String&gt;
+Textures : List&lt;Texture&gt;
 --
-getTexture(Bateau b) : String 
+getTexture(Bateau b) : Texture 
 
-genererFlotte() : List&lt;bateau&gt;</panel_attributes>
+genererFlotte() : List&lt;bateau&gt;
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2180</x>
-      <y>280</y>
-      <w>30</w>
-      <h>110</h>
+      <x>140</x>
+      <y>98</y>
+      <w>182</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>240.0;10.0;240.0;40.0;10.0;40.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>600</y>
-      <w>260</w>
-      <h>90</h>
+      <x>672</x>
+      <y>553</y>
+      <w>182</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Champ_Tir
 --
 champ : boolean [10][10]
 --
 estValide(Point pos) : boolean
-tirer(Point pos) : void</panel_attributes>
+tirer(Point pos) : void
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>600</y>
-      <w>230</w>
-      <h>90</h>
+      <x>889</x>
+      <y>553</y>
+      <w>161</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Disposition
 --
 champ : Bateau [10][10]
 --
 get(Point pos) : Bateau
-placer(Bateau b) : void</panel_attributes>
+placer(Bateau b) : void
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
-      <y>440</y>
-      <w>220</w>
-      <h>90</h>
+      <x>791</x>
+      <y>441</y>
+      <w>154</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Terrain
 --
+bateaux : List&lt;Bateau&gt;
 --
-tirer(Coup coup) : void</panel_attributes>
+tirer(Coup) : void
+placerBateaux() : void
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>520</y>
-      <w>110</w>
-      <h>100</h>
+      <x>903</x>
+      <y>497</y>
+      <w>77</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-1</panel_attributes>
+m1=1</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0;90.0;40.0;90.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>520</y>
-      <w>110</w>
-      <h>100</h>
+      <x>763</x>
+      <y>497</y>
+      <w>84</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-1</panel_attributes>
+m1=1</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;40.0;10.0;40.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>420</y>
-      <w>250</w>
-      <h>140</h>
+      <x>1057</x>
+      <y>427</y>
+      <w>175</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>Jeu
 --
 enCour : boolean
 --
-
-aPerdu(int joueur) : boolean</panel_attributes>
+aPerdu(int joueur) : boolean
+maj() : void
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>430</y>
-      <w>190</w>
-      <h>40</h>
+      <x>938</x>
+      <y>441</y>
+      <w>133</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-2</panel_attributes>
-    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+m1=2</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>730</x>
-      <y>190</y>
-      <w>150</w>
-      <h>70</h>
+      <x>903</x>
+      <y>105</y>
+      <w>189</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Joueur
 --
 --
-/play(Jeu) : Coup/
-</panel_attributes>
+/play() : Coup/
+/tir(pos) : void/
+/chargement(Jeu) : void/
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
-      <y>190</y>
-      <w>150</w>
-      <h>70</h>
+      <x>1197</x>
+      <y>77</y>
+      <w>105</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>Coup
 --
 +pos : Point
 +bateau : Bateau
 --
-</panel_attributes>
+
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>310</y>
-      <w>150</w>
-      <h>60</h>
+      <x>1029</x>
+      <y>245</y>
+      <w>84</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>IA
 --
 --
-play(Jeu) : Coup
-</panel_attributes>
+play() : Coup
+
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>310</y>
-      <w>150</w>
-      <h>60</h>
+      <x>896</x>
+      <y>245</y>
+      <w>126</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Humain
 --
 --
-play(Jeu) : Coup
-</panel_attributes>
+play() : Coup
+sauvegarder() : void
+quitter() : void
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>250</y>
-      <w>110</w>
-      <h>80</h>
+      <x>987</x>
+      <y>196</y>
+      <w>105</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;30.0;90.0;30.0;90.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;130.0;40.0;130.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>270</y>
-      <w>110</w>
-      <h>60</h>
+      <x>931</x>
+      <y>217</y>
+      <w>77</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;40.0;10.0;10.0;90.0;10.0</additional_attributes>
@@ -257,24 +272,25 @@ play(Jeu) : Coup
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1220</x>
-      <y>510</y>
-      <w>330</w>
-      <h>70</h>
+      <x>1239</x>
+      <y>455</y>
+      <w>231</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>aPerdu
 Verifie si tous les bateaux sont mort
 Ou si aucun bateau n'a de munitions
-bg=yellow</panel_attributes>
+bg=yellow
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>190</x>
-      <y>610</y>
-      <w>200</w>
-      <h>90</h>
+      <x>518</x>
+      <y>560</y>
+      <w>140</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>estValide
 Simple test du booleen
@@ -287,16 +303,268 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>450</y>
-      <w>570</w>
-      <h>70</h>
+      <x>385</x>
+      <y>392</y>
+      <w>399</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>tirer
 Si la case est valide, on fait perdre des pv au bateau,
 Si le bateau est mort, on tire sur toute les autres cases du champ
+Chaque tir invalide (munition ou pos invalide) est ignore
 
+
+placer
+Ici on valide la position du bateau,
+il faut donc deduire les cases avec la pos et la dir
 bg=yellow</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>875</x>
+      <y>70</y>
+      <w>245</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>378</x>
+      <y>364</y>
+      <w>1106</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Modele
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>35</x>
+      <y>7</y>
+      <w>504</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>Factory
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>161</y>
+      <w>224</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Contemporain
+--
+Textures : List&lt;Texture&gt;
+--
+getTexture(Bateau b) : Texture 
+
+genererFlotte() : List&lt;bateau&gt;
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>112</y>
+      <w>119</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;150.0;20.0;150.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>42</x>
+      <y>35</y>
+      <w>126</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Texture Factory
+
+Bateau Factory
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>637</x>
+      <y>70</y>
+      <w>217</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Vue
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>749</x>
+      <y>252</y>
+      <w>70</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>VueJoueur
+--
+--
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>273</y>
+      <w>98</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>959</x>
+      <y>301</y>
+      <w>133</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0;170.0;150.0;170.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>973</x>
+      <y>301</y>
+      <w>140</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>170.0;180.0;170.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1071</x>
+      <y>301</y>
+      <w>140</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>170.0;180.0;170.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>987</x>
+      <y>651</y>
+      <w>308</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>DAO
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>784</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>XmlDAO
+--
+--
+save(Jeu) : void
+load(Jeu) : void
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1071</x>
+      <y>679</y>
+      <w>112</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+DAO
+--
+--
+/save(Jeu) : void/
+/load(Jeu) : void/
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1162</x>
+      <y>784</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>BinaryDAO
+--
+--
+save(Jeu) : void
+load(Jeu) : void
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1043</x>
+      <y>756</y>
+      <w>98</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;40.0;10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>735</y>
+      <w>105</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;130.0;40.0;130.0;70.0</additional_attributes>
   </element>
 </diagram>
