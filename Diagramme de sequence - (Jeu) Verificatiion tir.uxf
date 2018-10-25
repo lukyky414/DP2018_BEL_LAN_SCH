@@ -153,13 +153,12 @@ getZoneSup()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>490</x>
-      <y>290</y>
+      <y>240</y>
       <w>200</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-estMort()
-group=1</panel_attributes>
+estMort()</panel_attributes>
     <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -171,57 +170,53 @@ group=1</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-estTouche(b.getPos)
-group=1</panel_attributes>
+estTouche(b.getPos())</panel_attributes>
     <additional_attributes>560.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>540</y>
-      <w>220</w>
+      <x>210</x>
+      <y>500</y>
+      <w>310</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-Return false
-group=1</panel_attributes>
-    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+Return true</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>640</y>
-      <w>220</w>
+      <x>230</x>
+      <y>890</y>
+      <w>290</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-Return false
-group=1</panel_attributes>
-    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+Return false</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
       <x>340</x>
-      <y>250</y>
+      <y>280</y>
       <w>850</w>
       <h>520</h>
     </coordinates>
     <panel_attributes>loop
 --
-[for each Point]
-group=1</panel_attributes>
+[for each Point]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>410</x>
-      <y>340</y>
-      <w>730</w>
-      <h>410</h>
+      <x>260</x>
+      <y>230</y>
+      <w>1010</w>
+      <h>650</h>
     </coordinates>
     <panel_attributes>alt
 --
@@ -241,9 +236,7 @@ group=1</panel_attributes>
 
 
 -.
-
-[estMort() = true]
-group=1</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -260,20 +253,19 @@ group=1</panel_attributes>
 
 
 -.
-[estTouche() = true]
-group=1</panel_attributes>
+[estTouche() = true]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
+      <x>220</x>
       <y>830</y>
-      <w>220</w>
+      <w>300</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-Return true</panel_attributes>
-    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+Return false</panel_attributes>
+    <additional_attributes>10.0;20.0;280.0;20.0</additional_attributes>
   </element>
 </diagram>
