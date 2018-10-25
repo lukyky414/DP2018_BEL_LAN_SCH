@@ -28,7 +28,7 @@ group=1</panel_attributes>
       <x>909</x>
       <y>630</y>
       <w>171</w>
-      <h>333</h>
+      <h>351</h>
     </coordinates>
     <panel_attributes>Bateau
 --
@@ -49,6 +49,7 @@ _DROITE : int_
 get/set
 setMunitions(int)
 diminuerMunitions()
+diminuerVie()
 estMort() : boolean
 peutTirer() : boolean
 getTexture
@@ -128,9 +129,9 @@ group=2</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1413</x>
-      <y>693</y>
+      <y>675</y>
       <w>198</w>
-      <h>81</h>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Terrain
 --
@@ -138,6 +139,7 @@ bateaux : List&lt;Bateau&gt;
 --
 tirer(Coup) : void
 placerBateaux() : void
+destroyShip(Bateau) :void
 bg=white
 group=2</panel_attributes>
     <additional_attributes/>
@@ -190,6 +192,7 @@ enCour : boolean
 verificationTir(Coup) : boolean
 tirHumain(Coup) : void
 tirIA(Coup) : void
+checkerConditionVictoireDefaite()
 bg=white</panel_attributes>
     <additional_attributes/>
   </element>
@@ -248,7 +251,7 @@ bg=yellow</panel_attributes>
       <x>882</x>
       <y>594</y>
       <w>1728</w>
-      <h>378</h>
+      <h>396</h>
     </coordinates>
     <panel_attributes>Modele
 --
@@ -471,11 +474,11 @@ bg=white</panel_attributes>
       <x>1368</x>
       <y>495</y>
       <w>117</w>
-      <h>216</h>
+      <h>198</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0;110.0;220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;200.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -483,11 +486,11 @@ m1=1</panel_attributes>
       <x>1368</x>
       <y>387</y>
       <w>135</w>
-      <h>324</h>
+      <h>306</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;10.0;130.0;340.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;320.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>

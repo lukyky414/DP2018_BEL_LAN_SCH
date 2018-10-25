@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>0</x>
-      <y>80</y>
-      <w>370</w>
-      <h>40</h>
+      <y>144</y>
+      <w>333</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>tirer(c)
 lt=&lt;-</panel_attributes>
@@ -16,54 +16,58 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>306</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=6</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>270</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>243</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_t:Terrain_</panel_attributes>
+    <panel_attributes>_t:Terrain_
+group=6</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>470</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>423</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_c:Coup_</panel_attributes>
+    <panel_attributes>_c:Coup_
+group=5</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>486</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=5</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>300</x>
-      <y>280</y>
-      <w>1340</w>
-      <h>620</h>
+      <x>234</x>
+      <y>315</y>
+      <w>1377</w>
+      <h>558</h>
     </coordinates>
     <panel_attributes>loop</panel_attributes>
     <additional_attributes/>
@@ -71,10 +75,10 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>120</y>
-      <w>230</w>
-      <h>40</h>
+      <x>306</x>
+      <y>180</y>
+      <w>207</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>getBateau()
 lt=&lt;-</panel_attributes>
@@ -83,10 +87,10 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>150</y>
-      <w>230</w>
-      <h>40</h>
+      <x>306</x>
+      <y>207</y>
+      <w>207</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>b
 lt=-&gt;</panel_attributes>
@@ -95,32 +99,34 @@ lt=-&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>690</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>621</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_b:Bateau_</panel_attributes>
+    <panel_attributes>_b:Bateau_
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>684</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=4</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>190</y>
-      <w>450</w>
-      <h>40</h>
+      <x>306</x>
+      <y>243</y>
+      <w>405</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>getZoneSup()
 lt=&lt;-</panel_attributes>
@@ -129,10 +135,10 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>230</y>
-      <w>450</w>
-      <h>40</h>
+      <x>306</x>
+      <y>279</y>
+      <w>405</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>{Point(0,1),Point(0,-1),Point(1,0),Point(-1,0)}
 lt=-&gt;</panel_attributes>
@@ -141,21 +147,22 @@ lt=-&gt;</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>792</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_p:Point_</panel_attributes>
+    <panel_attributes>_p:Point_
+group=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Text</type>
     <coordinates>
-      <x>360</x>
-      <y>290</y>
-      <w>220</w>
-      <h>30</h>
+      <x>324</x>
+      <y>333</y>
+      <w>198</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>[ for each Point p in List&lt;Point&gt; ]</panel_attributes>
     <additional_attributes/>
@@ -163,66 +170,174 @@ lt=-&gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>846</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=1</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1110</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>999</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_ct:Champ_Tir_</panel_attributes>
+    <panel_attributes>_ct:Champ_Tir_
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>1062</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1330</x>
-      <y>20</y>
-      <w>160</w>
-      <h>30</h>
+      <x>1197</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>_d:Disposition_</panel_attributes>
+    <panel_attributes>_d:Disposition_
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>360</y>
-      <w>870</w>
-      <h>40</h>
+      <x>306</x>
+      <y>396</y>
+      <w>783</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>estToucher()
 lt=&lt;-</panel_attributes>
     <additional_attributes>850.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
+    <type>com.baselet.element.old.element.Text</type>
+    <coordinates>
+      <x>315</x>
+      <y>423</y>
+      <w>198</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[ true ]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Text</type>
+    <coordinates>
+      <x>315</x>
+      <y>468</y>
+      <w>198</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[ false ]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1260</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
+    </coordinates>
+    <panel_attributes>lt=.
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>486</y>
+      <w>783</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>toucher(p)
+lt=&lt;-</panel_attributes>
+    <additional_attributes>850.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>522</y>
+      <w>981</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>get(p)
+lt=&lt;-</panel_attributes>
+    <additional_attributes>1070.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>549</y>
+      <w>981</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>bi
+lt=-&gt;</panel_attributes>
+    <additional_attributes>1070.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1368</x>
+      <y>90</y>
+      <w>144</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_bi:Bateau_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1431</x>
+      <y>108</y>
+      <w>27</w>
+      <h>801</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>576</y>
+      <w>1152</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>diminuerVie()
+lt=&lt;-</panel_attributes>
+    <additional_attributes>1260.0;20.0;10.0;21.0</additional_attributes>
+  </element>
+  <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>320</x>
-      <y>350</y>
-      <w>1290</w>
-      <h>370</h>
+      <x>261</x>
+      <y>387</y>
+      <w>1287</w>
+      <h>468</h>
     </coordinates>
     <panel_attributes>alt
 --
@@ -233,12 +348,29 @@ lt=&lt;-</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>279</x>
+      <y>612</y>
+      <w>1233</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>alt
+--
+
+
+
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <type>com.baselet.element.old.element.Text</type>
     <coordinates>
-      <x>350</x>
-      <y>390</y>
-      <w>220</w>
-      <h>30</h>
+      <x>315</x>
+      <y>630</y>
+      <w>198</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>[ true ]</panel_attributes>
     <additional_attributes/>
@@ -246,10 +378,10 @@ lt=&lt;-</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Text</type>
     <coordinates>
-      <x>350</x>
-      <y>440</y>
-      <w>220</w>
-      <h>30</h>
+      <x>315</x>
+      <y>711</y>
+      <w>198</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>[ false ]</panel_attributes>
     <additional_attributes/>
@@ -257,24 +389,37 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1400</x>
-      <y>40</y>
-      <w>30</w>
-      <h>890</h>
+      <x>306</x>
+      <y>612</y>
+      <w>1152</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+    <panel_attributes>estMort()
+lt=&lt;-</panel_attributes>
+    <additional_attributes>1260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>460</y>
-      <w>870</w>
-      <h>40</h>
+      <x>306</x>
+      <y>648</y>
+      <w>234</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>estToucher()
+    <panel_attributes>destroyShip(bi)
 lt=&lt;-</panel_attributes>
-    <additional_attributes>850.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;40.0;150.0;40.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>792</y>
+      <w>306</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>checkerConditionVictoireDefaite()
+lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;110.0;40.0;110.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
