@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
+<diagram program="umlet" version="14.3.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>100</x>
-      <y>70</y>
+      <x>180</x>
+      <y>0</y>
       <w>60</w>
-      <h>100</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Joueur</panel_attributes>
     <additional_attributes/>
@@ -15,30 +15,30 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>150</y>
-      <w>40</w>
+      <x>400</x>
+      <y>80</y>
+      <w>30</w>
       <h>850</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;830.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;830.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>140</y>
-      <w>40</w>
-      <h>860</h>
+      <x>200</x>
+      <y>90</y>
+      <w>30</w>
+      <h>840</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;840.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;820.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>250</y>
+      <x>200</x>
+      <y>180</y>
       <w>230</w>
       <h>40</h>
     </coordinates>
@@ -49,8 +49,8 @@ Sélectionne une position</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>300</y>
+      <x>200</x>
+      <y>230</y>
       <w>420</w>
       <h>40</h>
     </coordinates>
@@ -61,8 +61,8 @@ Appuie sur le bouton tirer</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>450</x>
-      <y>130</y>
+      <x>530</x>
+      <y>60</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -72,8 +72,8 @@ Appuie sur le bouton tirer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>150</y>
+      <x>590</x>
+      <y>80</y>
       <w>30</w>
       <h>850</h>
     </coordinates>
@@ -83,8 +83,8 @@ Appuie sur le bouton tirer</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>260</x>
-      <y>130</y>
+      <x>340</x>
+      <y>60</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -94,8 +94,8 @@ Appuie sur le bouton tirer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>220</y>
+      <x>200</x>
+      <y>150</y>
       <w>230</w>
       <h>40</h>
     </coordinates>
@@ -106,8 +106,8 @@ Sélectionne un bateau</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>730</x>
-      <y>320</y>
+      <x>810</x>
+      <y>250</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -117,8 +117,8 @@ Sélectionne un bateau</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>320</y>
+      <x>590</x>
+      <y>250</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -129,19 +129,19 @@ Sélectionne un bateau</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>340</y>
-      <w>40</w>
-      <h>660</h>
+      <x>850</x>
+      <y>270</y>
+      <w>30</w>
+      <h>670</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;640.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>390</y>
+      <x>590</x>
+      <y>320</y>
       <w>500</w>
       <h>40</h>
     </coordinates>
@@ -152,8 +152,8 @@ verificationTir(c)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>940</x>
-      <y>130</y>
+      <x>1020</x>
+      <y>60</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -163,8 +163,8 @@ verificationTir(c)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>150</y>
+      <x>1060</x>
+      <y>80</y>
       <w>30</w>
       <h>870</h>
     </coordinates>
@@ -174,8 +174,8 @@ verificationTir(c)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>420</y>
+      <x>590</x>
+      <y>350</y>
       <w>500</w>
       <h>40</h>
     </coordinates>
@@ -186,8 +186,8 @@ true (Le tir est possible)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>460</y>
+      <x>590</x>
+      <y>390</y>
       <w>500</w>
       <h>40</h>
     </coordinates>
@@ -198,66 +198,8 @@ tirHumain(c)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1070</x>
-      <y>130</y>
-      <w>160</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_b:Bateau_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1140</x>
-      <y>150</y>
-      <w>30</w>
-      <h>880</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;860.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>770</x>
-      <y>500</y>
-      <w>240</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-getBateau()</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>770</x>
-      <y>530</y>
-      <w>240</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-b</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>980</x>
-      <y>560</y>
-      <w>190</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>diminuerMunitions()
-lt=&lt;-</panel_attributes>
-    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1250</x>
-      <y>130</y>
+      <x>1190</x>
+      <y>60</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -267,24 +209,24 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1320</x>
-      <y>150</y>
+      <x>1260</x>
+      <y>80</y>
       <w>30</w>
-      <h>890</h>
+      <h>870</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;870.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;850.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>600</y>
-      <w>370</w>
+      <x>1060</x>
+      <y>430</y>
+      <w>230</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>tirer(c)
 lt=&lt;-</panel_attributes>
-    <additional_attributes>350.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
