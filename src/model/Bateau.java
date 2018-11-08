@@ -81,5 +81,29 @@ public class Bateau {
         this.zoneSup = zoneSup;
     }
 
-    
+    public void diminuerMunitions(){
+        this.setMunitions(munitions-1);
+    }
+
+    public void diminuerVie(){
+        this.setPv(pv-1);
+    }
+
+    public boolean aMunitions(){
+        return (this.getMunitions()>0)? true : false;
+    }
+
+    public boolean estMort(){
+        return (this.getPv()<=0)? true:false;
+    }
+
+    public boolean peutTirer(){
+        return(this.aMunitions() && !(this.estMort()))? true:false;
+
+    }
+
+
+    //public Texture getTexture()
+    //public List<Point> getAllPositions()
+
 }
