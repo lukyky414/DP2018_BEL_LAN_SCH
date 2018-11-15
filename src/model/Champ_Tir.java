@@ -16,7 +16,6 @@ public class Champ_Tir {
             //On considère que une case hors du terrain est déjà touchée
             return true;
         }
-
     }
 
     public void touche(Point pos) {
