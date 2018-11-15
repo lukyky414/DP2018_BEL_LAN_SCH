@@ -2,108 +2,136 @@ package model;
 
 import factory.SingletonEpoque;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Bateau {
-
-    private static int NEXT_ID;
-    private static int HAUT = 0;
-    private static int BAS = 1;
-    private static int GAUCHE = 2;
-    private static int DROITE = 3;
+    private static int NEXT_ID = 0;
+    public static int HAUT = 0;
+	public static int BAS = 1;
+	public static int GAUCHE = 2;
+	public static int DROITE = 3;
 
     private SingletonEpoque epoque;
 
-    public int id;
-    public int munitions;
-    public int pv;
-    public int direction;
-    public Point position;
-    public int taille;
-    public ArrayList<Point> zoneSup;
+    private int id;
+	private int munitions;
+	private int pv;
+	private int direction;
+	private Point position;
+	private int taille;
+	private ArrayList<Point> zoneSup;
 
-    public Bateau() { }
+    public Bateau(SingletonEpoque epoque, int taille, ArrayList<Point> zoneSup) {
+    	this.id = NEXT_ID++;
+    	this.epoque = epoque;
+    	this.taille = taille;
+    	this.zoneSup = zoneSup;
+	}
 
-    public int getId() {
-        return id;
-    }
+	//###############
+	//#  FONCTIONS  #
+	//###############
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getMunitions() {
-        return munitions;
-    }
-
-    public void setMunitions(int munitions) {
-        this.munitions = munitions;
-    }
-
-    public int getPv() {
-        return pv;
-    }
-
-    public void setPv(int pv) {
-        this.pv = pv;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public int getTaille() {
-        return taille;
-    }
-
-    public void setTaille(int taille) {
-        this.taille = taille;
-    }
-
-    public ArrayList<Point> getZoneSup() {
-        return zoneSup;
-    }
-
-    public void setZoneSup(ArrayList<Point> zoneSup) {
-        this.zoneSup = zoneSup;
-    }
-
-    public void diminuerMunitions(){
-        this.setMunitions(munitions-1);
-    }
-
-    public void diminuerVie(){
-        this.setPv(pv-1);
-    }
-
+	/**
+	 * Cette methode verifie si le bateau a des munitions
+	 *
+	 * @return boolean
+	 */
     public boolean aMunitions(){
-        return (this.getMunitions()>0)? true : false;
+        return this.munitions>0;
     }
 
+    /**
+	 * Cette methode verifie si le bateau est mort
+	 * Un bateau est mort quand il n'a plus de PV
+	 *
+	 * @return boolean
+	 */
     public boolean estMort(){
-        return (this.getPv()<=0)? true:false;
+        return this.pv<=0;
     }
 
+    /**
+	 * Cette methode verifie si le bateau peut tirer
+	 * Un bateau peut tirer si il a des munitions et si il est vivant
+	 *
+	 * @return boolean
+	 */
     public boolean peutTirer(){
-        return(this.aMunitions() && !(this.estMort()))? true:false;
-
+        return this.aMunitions() && !(this.estMort());
     }
 
+    /**
+	 * Cette methode precise que le bateau vient d'utiliser une munition
+	 * Le nombre de munition diminue
+	 *
+	 * @return int, le nombre de munition restantes
+	 */
+    public int utiliserMunition(){
+    	this.munitions--;
+		return this.munitions;
+	}
 
-    //public Texture getTexture()
-    //public List<Point> getAllPositions()
+	/**
+	 * Cette methode precise que le bateau vient de se faire toucher
+	 * Le nombre de PV diminue
+	 *
+	 * @return int, le nombre de pv restants
+	 */
+	public int diminuerVie(){
+		this.pv--;
+		return this.pv;
+	}
 
+    //###############
+	//#     GET     #
+	//###############
+
+	public SingletonEpoque getEpoque() {
+		return epoque;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getMunitions() {
+		return munitions;
+	}
+
+	public int getPv() {
+		return pv;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public Point getPosition() {
+		return position;
+	}
+
+	public int getTaille() {
+		return taille;
+	}
+
+	public ArrayList<Point> getZoneSup() {
+		ArrayList<Point> res = new ArrayList<>(zoneSup.size());
+		for(Point p : zoneSup)
+			res.add(new Point(p));
+		return res;
+	}
+
+	//###############
+	//#    SET      #
+	//###############
+
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+
+	public void setPosition(Point position) {
+		this.position = position;
+	}
 }
