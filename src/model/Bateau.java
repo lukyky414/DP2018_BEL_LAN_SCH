@@ -1,6 +1,6 @@
 package model;
 
-import factory.SingletonEpoque;
+import textureFactory.SingletonEpoque;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Bateau {
 	public static int GAUCHE = 2;
 	public static int DROITE = 3;
 
-    private SingletonEpoque epoque;
+    private SingletonEpoque factory;
 
     private int id;
 	private int munitions;
@@ -24,7 +24,7 @@ public class Bateau {
 
     public Bateau(SingletonEpoque epoque, int taille, ArrayList<Point> zoneSup) {
     	this.id = NEXT_ID++;
-    	this.epoque = epoque;
+    	this.factory = epoque;
     	this.taille = taille;
     	this.zoneSup = zoneSup;
 	}
@@ -88,8 +88,8 @@ public class Bateau {
 	//#     GET     #
 	//###############
 
-	public SingletonEpoque getEpoque() {
-		return epoque;
+	public SingletonEpoque getFactory() {
+		return factory;
 	}
 
 	public int getId() {
@@ -121,6 +121,10 @@ public class Bateau {
 		for(Point p : zoneSup)
 			res.add(new Point(p));
 		return res;
+	}
+
+	public Texture getTexture(){
+		return factory.getTexture(this);
 	}
 
 	//###############
