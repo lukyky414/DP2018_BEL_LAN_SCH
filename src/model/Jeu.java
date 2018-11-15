@@ -1,11 +1,15 @@
 package model;
 
-public class Jeu {
+import java.util.Observable;
+
+public class Jeu extends Observable {
 
     public static Jeu instance;
 
     private boolean enCours;
 
+    private Terrain terrainJ1;
+    private Terrain terrainJ2;
 
     private Jeu () {
         enCours=true;
@@ -18,16 +22,21 @@ public class Jeu {
         return instance;
     }
 
-
-    public boolean verificationTir(Coup c) {
-
+    //TODO Modifier diagramme
+    public boolean verificationTir(Coup c, Terrain t) {
+        return t.verificationTirer(c);
     }
 
     public void tirHumain() {
 
     }
 
-    public void
+    public void tirIA() {
 
+    }
+
+    public void checkerConditionVictoireDefaite() {
+
+    }
 
 }

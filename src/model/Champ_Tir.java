@@ -10,7 +10,7 @@ public class Champ_Tir {
         int x=(int)(pos.getX());
         int y=(int)(pos.getY());
 
-        if (x >= 0 && x<=champ.length-1 && y >= 0 && y<=champ[0].length-1)  {
+        if (x >= 0 && x<=champ.length-1 && y >= 0 && y<=champ[0].length-1) {
             return champ[x][y];
         } else {
             //On considère que une case hors du terrain est déjà touchée
@@ -23,7 +23,7 @@ public class Champ_Tir {
         int x=(int)(pos.getX());
         int y=(int)(pos.getY());
 
-        if (x >= 0 && x<=champ.length-1 && y >= 0 && y<=champ[0].length-1)  {
+        if (x >= 0 && x<=champ.length-1 && y >= 0 && y<=champ[0].length-1) {
             champ[x][y]=true;
         }
     }
