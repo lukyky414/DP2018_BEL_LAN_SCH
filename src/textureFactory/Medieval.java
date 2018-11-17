@@ -13,25 +13,25 @@ public class Medieval extends SingletonEpoque {
 	private static Medieval instance = new Medieval();
 
 	@Override
-	SingletonEpoque getInstance() {
+	public SingletonEpoque getInstance() {
 		return instance;
 	}
 
 	//##################
 	//# Partie Factory #
 	//##################
-	private HashMap<Integer, Texture> textures;
+	//private HashMap<Integer, Texture> textures;
 
 	private Medieval(){
-		this.textures = new HashMap<>();
+		/*this.textures = new HashMap<>();*/
 	}
 
-	@Override
+	/*@Override
 	public Texture getTexture(Bateau b) throws WrongEpoqueException {
 		if(b.getFactory() == this)
 			return textures.get(b.getId());
 		throw new WrongEpoqueException("Ce bateau n'appartient pas a cette epoque.");
-	}
+	}*/
 
 	@Override
 	public List<Bateau> generateFleet() {

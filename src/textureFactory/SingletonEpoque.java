@@ -21,7 +21,7 @@ public abstract class SingletonEpoque {
 	 *
 	 * @return la texture du bateau
 	 */
-	public abstract Texture getTexture(Bateau b) throws WrongEpoqueException;
+	//public abstract Texture getTexture(Bateau b) throws WrongEpoqueException;
 
 	/**
 	 * Genere une nouvelle flotte de bateaux,

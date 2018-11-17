@@ -1,5 +1,6 @@
 package textureFactory;
 
+import com.sun.prism.Texture;
 import model.Bateau;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class SingletonContemporain extends SingletonEpoque {
 	private static SingletonContemporain instance = new SingletonContemporain();
 
 	@Override
-	SingletonEpoque getInstance() {
+	public SingletonEpoque getInstance() {
 		return instance;
 	}
 
@@ -26,12 +27,12 @@ public class SingletonContemporain extends SingletonEpoque {
 		this.textures = new HashMap<>();
 	}
 
-	@Override
+	/*@Override
     public Texture getTexture(Bateau b) throws WrongEpoqueException {
 		if(b.getFactory() == this)
 			return textures.get(b.getId());
 		throw new WrongEpoqueException("Ce bateau n'appartient pas a cette epoque.");
-	}
+	}*/
 
 	@Override
 	public List<Bateau> generateFleet() {

@@ -123,9 +123,9 @@ public class Bateau {
 		return res;
 	}
 
-	public Texture getTexture(){
+	/*public Texture getTexture(){
 		return factory.getTexture(this);
-	}
+	}*/
 
 	//###############
 	//#    SET      #
