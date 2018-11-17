@@ -2,7 +2,7 @@ package model;
 
 import java.awt.*;
 
-public class Champ_Tir {
+public class ChampTir {
 
     private boolean[][] champ;
 

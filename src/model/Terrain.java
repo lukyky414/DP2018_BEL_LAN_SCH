@@ -9,7 +9,7 @@ public class Terrain extends Observable {
     private ArrayList<Bateau> bateaux;
 
     private Disposition disposition;
-    private Champ_Tir champTir;
+    private ChampTir champTir;
 
     //Si une  case de la zone n'a pas été touché, on peut tirer.
     public boolean verificationTirer(Coup c) {
