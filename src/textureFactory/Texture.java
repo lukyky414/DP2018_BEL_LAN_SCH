@@ -1,4 +1,6 @@
 package textureFactory;
 
-public class Texture {
+public abstract class Texture {
+
+    abstract Texture getTexture();
 }
