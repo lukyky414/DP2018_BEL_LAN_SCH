@@ -1,5 +1,5 @@
 import model.Terrain;
-import view.VueJoueur;
+import view.VueJeu;
 
 import javax.swing.*;
 
@@ -11,7 +11,7 @@ public class Main {
 
         //Null pour l'instant
         Terrain terrain=null;
-        VueJoueur vj=new VueJoueur(null,10);
+        VueJeu vj=new VueJeu(null, null, 10);
         jf.add(vj);
 
         jf.pack();
