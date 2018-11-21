@@ -12,6 +12,15 @@ public class Coup {
         this.bateau = bateau;
     }
 
+    public void setBateau(Bateau bateau) {
+        this.bateau = bateau;
+    }
+
+    public void setXY(int x, int y) {
+        Point p=new Point(x,y);
+        this.pos=p;
+    }
+
     public Bateau getBateau() {
         return bateau;
     }

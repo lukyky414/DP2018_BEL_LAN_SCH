@@ -5,8 +5,21 @@ import java.awt.*;
 
 public class CustomJButton extends JButton {
 
-    public CustomJButton(String text) {
+    private int x;
+    private int y;
+
+    public CustomJButton(String text, int x, int y) {
         super(text);
+        this.x=x;
+        this.y=y;
+    }
+
+    public int getSpecialX() {
+        return x;
+    }
+
+    public int getSpecialY() {
+        return y;
     }
 
     protected void paintComponent(Graphics g) {

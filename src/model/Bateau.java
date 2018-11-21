@@ -9,9 +9,9 @@ public class Bateau {
 
     private static int NEXT_ID = 0;
     public static final int HAUT = 0;
-	public static final int BAS = 1;
-	public static final int GAUCHE = 2;
-	public static final int DROITE = 3;
+	public static final int DROITE = 1;
+	public static final int BAS = 2;
+	public static final int GAUCHE = 3;
 
     private SingletonEpoque factory;
 
