@@ -6,11 +6,12 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Bateau {
+
     private static int NEXT_ID = 0;
-    public static int HAUT = 0;
-	public static int BAS = 1;
-	public static int GAUCHE = 2;
-	public static int DROITE = 3;
+    public static final int HAUT = 0;
+	public static final int BAS = 1;
+	public static final int GAUCHE = 2;
+	public static final int DROITE = 3;
 
     private SingletonEpoque factory;
 

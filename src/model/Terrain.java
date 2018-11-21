@@ -10,6 +10,13 @@ public class Terrain extends Observable {
 
     private Disposition disposition;
     private ChampTir champTir;
+    private int taille;
+
+    public Terrain(int taille) {
+        this.taille = taille;
+        this.disposition = new Disposition(taille);
+        this.champTir = new ChampTir(taille);
+    }
 
     //Si une  case de la zone n'a pas été touché, on peut tirer.
     public boolean verificationTirer(Coup c) {
@@ -26,6 +33,10 @@ public class Terrain extends Observable {
             }
             return false;
         }
+    }
+
+    public boolean verificationPlacer(Coup c) {
+        return this.disposition.peutEtrePlace(c);
     }
 
     public void placerBateaux() {

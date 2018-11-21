@@ -7,7 +7,16 @@ public class Coup {
     private Point pos;
     private Bateau bateau;
 
+    public Coup(Point pos, Bateau bateau) {
+        this.pos = pos;
+        this.bateau = bateau;
+    }
+
     public Bateau getBateau() {
         return bateau;
+    }
+
+    public Point getPos() {
+        return pos;
     }
 }

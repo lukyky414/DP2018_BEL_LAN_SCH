@@ -5,6 +5,12 @@ import java.awt.*;
 public class ChampTir {
 
     private boolean[][] champ;
+    private int taille;
+
+    public ChampTir(int taille) {
+        this.taille = taille;
+        this.champ = new boolean[taille][taille];
+    }
 
     public boolean estTouche(Point pos) {
         int x=(int)(pos.getX());

@@ -1,16 +1,11 @@
 package view;
 
 import controller.PlacementListener;
-import model.CustomJButton;
+import model.Bateau;
 import model.Terrain;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Observable;
 import java.util.Observer;
 
 public abstract class VueGrille extends JPanel implements Observer {
@@ -62,12 +57,15 @@ public abstract class VueGrille extends JPanel implements Observer {
         button.setMargin(new Insets(0, 0, 0, 0));
         if (border) {
             button.setBackground(colorEmpty);
-
         } else {
             grid[x][y]=button;
-            button.addMouseListener(new PlacementListener(this.grid,x,y));
+           //TODO REMOVE THIS !!!
+            Bateau b= new Bateau(null,7,null);
+            b.setDirection(Bateau.GAUCHE);
+            if (terrain != null) {
+                button.addMouseListener(new PlacementListener(this.grid,x,y,terrain,b));
+            }
         }
-
         this.add(button);
 
 
