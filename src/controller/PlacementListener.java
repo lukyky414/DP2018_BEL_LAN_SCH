@@ -107,28 +107,28 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         switch (direction) {
             case Bateau.HAUT:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x-i,y,Math.PI);
+                    display(c,x-i,y,-Math.PI/2,i);
                 }
                 break;
             case Bateau.BAS:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x+i,y,0);
+                    display(c,x+i,y,0,i);
                 }
                 break;
             case Bateau.GAUCHE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y-i,Math.PI/2);
+                    display(c,x,y-i,Math.PI/2,i);
                 }
                 break;
             case Bateau.DROITE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y+i,-Math.PI/2);
+                    display(c,x,y+i,0,i);
                 }
                 break;
         }
     }
 
-    private void display(Color c, int x, int y, double rotation) {
+    private void display(Color c, int x, int y, double rotation, int numTexture) {
         if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
             CustomJButton cb=grid[x][y];
             cb.setBackground(c);
@@ -136,11 +136,16 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
                 cb.setIcon(null);
                 cb.setRotation(0);
             } else {
-                ImageIcon i =new ImageIcon("boat.png");
+                //
+                //ImageIcon i = b.getTexture(numTexture);
+
+
+                //A supprimer
+                /*ImageIcon i =new ImageIcon("boat.png");
                 Image img = i.getImage() ;
                 Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
                 cb.setRotation(rotation);
-                cb.setIcon(new ImageIcon(newimg));
+                cb.setIcon(new ImageIcon(newimg));*/
             }
         }
     }
