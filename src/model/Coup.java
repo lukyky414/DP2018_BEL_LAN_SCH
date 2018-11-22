@@ -3,7 +3,6 @@ package model;
 import java.awt.*;
 
 public class Coup {
-
     private Point pos;
     private Bateau bateau;
 
@@ -17,8 +16,7 @@ public class Coup {
     }
 
     public void setXY(int x, int y) {
-        Point p=new Point(x,y);
-        this.pos=p;
+        this.pos=new Point(x,y);
     }
 
     public Bateau getBateau() {

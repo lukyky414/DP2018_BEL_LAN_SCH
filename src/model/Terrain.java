@@ -14,8 +14,8 @@ public class Terrain extends Observable {
 
     public Terrain(int taille) {
         this.taille = taille;
-        this.disposition = new Disposition(taille);
-        this.champTir = new ChampTir(taille);
+        this.disposition = new Disposition();
+        this.champTir = new ChampTir();
     }
 
     //Si une  case de la zone n'a pas été touché, on peut tirer.
