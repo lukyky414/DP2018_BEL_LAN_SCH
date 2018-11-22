@@ -22,11 +22,11 @@ public class SingletonContemporain extends SingletonEpoque {
 	//##################
 	//# Partie Factory #
 	//##################
-	private HashMap<Integer, Texture> textures;
+	//private HashMap<Integer, Texture> textures;
 
-	private SingletonContemporain(){
+	/*private SingletonContemporain(){
 		this.textures = new HashMap<>();
-	}
+	}*/
 
 	/*@Override
     public Texture getTexture(Bateau b) throws WrongEpoqueException {
