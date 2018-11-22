@@ -3,14 +3,13 @@ package textureFactory;
 import model.Bateau;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-public class Medieval extends SingletonEpoque {
+public class SingletonMedieval extends SingletonEpoque {
 	//####################
 	//# Partie Singleton #
 	//####################
-	private static Medieval instance = new Medieval();
+	private static SingletonMedieval instance = new SingletonMedieval();
 
 	@Override
 	public SingletonEpoque getInstance() {
@@ -22,7 +21,7 @@ public class Medieval extends SingletonEpoque {
 	//##################
 	//private HashMap<Integer, Texture> textures;
 
-	private Medieval(){
+	private SingletonMedieval(){
 		/*this.textures = new HashMap<>();*/
 	}
 
