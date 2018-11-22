@@ -2,10 +2,12 @@ package textureFactory;
 
 import model.Bateau;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SingletonEpoque {
-	//### Partie Singleton ###
+
 	/**
 	 * Les epoques sont des singletons, donc il nous faut un getInstance.
 	 *
@@ -21,7 +23,7 @@ public abstract class SingletonEpoque {
 	 *
 	 * @return la texture du bateau
 	 */
-	//public abstract Texture getTexture(Bateau b) throws WrongEpoqueException;
+	public abstract ArrayList<ImageIcon> getTexture(Bateau b) throws WrongEpoqueException;
 
 	/**
 	 * Genere une nouvelle flotte de bateaux,
