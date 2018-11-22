@@ -26,6 +26,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
 
     private static final Color red=new Color(255, 0, 0,50);
     private static final Color green=new Color(0, 255, 0,50);
+    private static final Color blue=new Color(51, 255, 230,50);
 
     public PlacementListener(CustomJButton[][] grid, Terrain t, Bateau b) {
         this.grid = grid;
@@ -136,9 +137,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
                 cb.setIcon(null);
                 cb.setRotation(0);
             } else {
-                //
                 //ImageIcon i = b.getTexture(numTexture);
-
 
                 //A supprimer
                 /*ImageIcon i =new ImageIcon("boat.png");

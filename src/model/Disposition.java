@@ -39,11 +39,40 @@ public class Disposition {
 
     //TODO Modifier diagramme
     //TODO A compléter
-    public boolean placer(Bateau b) {
-        //int direction=
-        int taille=b.getTaille();
-        Point p=b.getPosition();
-        return false;
+    public boolean placer(Coup c) {
+        if (peutEtrePlace(c)) {
+            Bateau b=c.getBateau();
+            Point p=c.getPos();
+            int taille=b.getTaille();
+            int direction=b.getDirection();
+            int x=(int)p.getX();
+            int y=(int)p.getY();
+
+            switch (direction) {
+                case Bateau.HAUT:
+                    for (int i = 0; i < taille; i++) {
+                        champ[x-i][y]=b;
+                    }
+                    return true;
+                case Bateau.BAS:
+                    for (int i = 0; i < taille; i++) {
+                        champ[x+i][y]=b;
+                    }
+                    return true;
+                case Bateau.GAUCHE:
+                    for (int i = 0; i < taille; i++) {
+                        champ[x][y-i]=b;
+                    }
+                    return true;
+                case Bateau.DROITE:
+                    for (int i = 0; i < taille; i++) {
+                        champ[x][y+i]=b;
+                    }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean peutEtrePlace(Coup c) {
