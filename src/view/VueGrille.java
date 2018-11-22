@@ -73,8 +73,6 @@ public abstract class VueGrille extends JPanel implements Observer {
             }
         }
         this.add(button);
-
-
     }
 
 }

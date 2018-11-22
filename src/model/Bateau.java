@@ -2,6 +2,7 @@ package model;
 
 import textureFactory.SingletonEpoque;
 
+import javax.swing.*;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -124,9 +125,9 @@ public class Bateau {
 		return res;
 	}
 
-	/*public Texture getTexture(){
-		return factory.getTexture(this);
-	}*/
+	public ImageIcon getTexture(int i){
+		return null;
+	}
 
 	//###############
 	//#    SET      #
