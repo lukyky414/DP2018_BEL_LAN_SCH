@@ -5,6 +5,7 @@ import model.Coup;
 import model.Terrain;
 import view.CustomJButton;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -106,40 +107,41 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         switch (direction) {
             case Bateau.HAUT:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x-i,y);
+                    display(c,x-i,y,Math.PI);
                 }
                 break;
             case Bateau.BAS:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x+i,y);
+                    display(c,x+i,y,0);
                 }
                 break;
             case Bateau.GAUCHE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y-i);
+                    display(c,x,y-i,Math.PI/2);
                 }
                 break;
             case Bateau.DROITE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y+i);
+                    display(c,x,y+i,-Math.PI/2);
                 }
                 break;
         }
     }
 
-    private void display(Color c, int x, int y) {
+    private void display(Color c, int x, int y, double rotation) {
         if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
             CustomJButton cb=grid[x][y];
             cb.setBackground(c);
-            //if (c==null) {
-                /*cb.setIcon(null);*/
-            //} else {
-                /*ImageIcon i =new ImageIcon("test.png");
+            if (c==null) {
+                cb.setIcon(null);
+                cb.setRotation(0);
+            } else {
+                ImageIcon i =new ImageIcon("boat.png");
                 Image img = i.getImage() ;
                 Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
-                System.out.println(i.getImage());
-                cb.setIcon(new ImageIcon(newimg));*/
-            //}
+                cb.setRotation(rotation);
+                cb.setIcon(new ImageIcon(newimg));
+            }
         }
     }
 

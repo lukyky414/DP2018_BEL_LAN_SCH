@@ -10,6 +10,11 @@ import java.awt.*;
 public class Main {
 
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(new javax.swing.plaf.metal.MetalLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         JFrame jf=new JFrame("Bataille Navale");
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
