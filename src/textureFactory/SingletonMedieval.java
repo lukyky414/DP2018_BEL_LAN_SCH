@@ -10,6 +10,8 @@ import java.util.List;
 
 public class SingletonMedieval extends SingletonEpoque {
 
+	private static final String chemin="img/Medieval/";
+
 	private static SingletonMedieval instance = new SingletonMedieval();
 	private HashMap<Integer, ArrayList<ImageIcon>> textures;
 
@@ -24,30 +26,30 @@ public class SingletonMedieval extends SingletonEpoque {
 		this.textures = new HashMap<Integer, ArrayList<ImageIcon>>();
 
 		ArrayList<ImageIcon> list_icon= new ArrayList<ImageIcon>();
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T1-1.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T1-1.png"));
 
 		this.textures.put(0,list_icon);
 
 		list_icon= new ArrayList<ImageIcon>();
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T2-1.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T2-2.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T2-1.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T2-2.png"));
 
 		this.textures.put(1,list_icon);
 
 		list_icon= new ArrayList<ImageIcon>();
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T3-1.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T3-2.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T3-3.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T3-1.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T3-2.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T3-3.png"));
 
 		//Les bateaux 2 et 3 auront la même texture
 		this.textures.put(2,list_icon);
 		this.textures.put(3,list_icon);
 
 		list_icon= new ArrayList<ImageIcon>();
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T4-1.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T4-2.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T4-3.png"));
-		list_icon.add(new ImageIcon("img/Medieval/Bateau T4-4.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T4-1.png"));
+		list_icon.add(new ImageIcon(chemin+"/Bateau T4-2.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T4-3.png"));
+		list_icon.add(new ImageIcon(chemin+"Bateau T4-4.png"));
 
 		this.textures.put(4,list_icon);
 	}

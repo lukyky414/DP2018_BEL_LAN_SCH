@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Disposition {
 
+    private Terrain terrain;
     private Bateau[][] champ;
 	/*
 	 * { { B , B , B },
@@ -12,7 +13,8 @@ public class Disposition {
 	 *
 	 * Une position X,Y correspond a champ[Y][X] */
 
-    public Disposition() {
+    public Disposition(Terrain terrain) {
+        this.terrain=terrain;
         this.champ = new Bateau[10][10];
     }
 
@@ -70,24 +72,26 @@ public class Disposition {
             switch (direction) {
                 case Bateau.HAUT:
                     for (int i = 0; i < taille; i++) {
-                        champ[x-i][y]=b;
+                        champ[y][x-i]=b;
                     }
                     return true;
                 case Bateau.BAS:
                     for (int i = 0; i < taille; i++) {
-                        champ[x+i][y]=b;
+                        champ[y][x+i]=b;
                     }
                     return true;
                 case Bateau.GAUCHE:
                     for (int i = 0; i < taille; i++) {
-                        champ[x][y-i]=b;
+                        champ[y-i][x]=b;
                     }
                     return true;
                 case Bateau.DROITE:
                     for (int i = 0; i < taille; i++) {
-                        champ[x][y+i]=b;
+                        champ[y+i][x]=b;
                     }
             }
+            b.setPosition(new Point(c.getPos()));
+            this.terrain.ajouterBateau(b);
             return true;
         } else {
             return false;

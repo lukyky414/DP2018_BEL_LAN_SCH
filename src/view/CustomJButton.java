@@ -9,12 +9,22 @@ public class CustomJButton extends JButton {
     private int y;
 
     private double rotation;
+    private boolean bateauPose;
 
     public CustomJButton(String text, int x, int y) {
         super(text);
         this.x=x;
         this.y=y;
         this.rotation=0;
+        this.bateauPose=false;
+    }
+
+    public boolean isBateauPose() {
+        return bateauPose;
+    }
+
+    public void setBateauPose(boolean bateauPose) {
+        this.bateauPose = bateauPose;
     }
 
     public void setRotation(double rotation) {

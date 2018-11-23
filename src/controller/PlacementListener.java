@@ -48,6 +48,10 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 3) {
             changerRotation(1);
+        } else {
+            if (t.verificationPlacer(c)) {
+                t.placer(c);
+            }
         }
     }
 
@@ -135,10 +139,12 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
             CustomJButton cb=grid[x][y];
             cb.setBackground(c);
-            if (c==null) {
-                cb.setIcon(null);
-                cb.setRotation(0);
-            } else {
+
+            //if (!cb.isBateauPose()) {
+                if (c==null) {
+                    cb.setIcon(null);
+                    cb.setRotation(0);
+                } else {
                 /*switch (numTexture) {
                     case 0:
                         i = SingletonMedieval.getInstance().textures.get(1).get(0);
@@ -156,20 +162,22 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
                         i =new ImageIcon("Bateau T5-5.png");
                         break;
                 }*/
-                ImageIcon i = null;
-                try {
-                    i = b.getTexture(numTexture);
-                } catch (WrongEpoqueException e) {
-                    e.printStackTrace();
+                    ImageIcon i = null;
+                    try {
+                        i = b.getTexture(numTexture);
+                    } catch (WrongEpoqueException e) {
+                        e.printStackTrace();
+                    }
+                    //A supprimer
+                    //ImageIcon i =new ImageIcon("Bateau T3-1.png");
+                    Image img = i.getImage() ;
+                    Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
+                    cb.setRotation(rotation);
+                    cb.setIcon(new ImageIcon(newimg));
                 }
-                //A supprimer
-                //ImageIcon i =new ImageIcon("Bateau T3-1.png");
-                Image img = i.getImage() ;
-                Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
-                cb.setRotation(rotation);
-                cb.setIcon(new ImageIcon(newimg));
             }
-        }
+
+        //}
     }
 
     //Permet d'avoir un seul listener

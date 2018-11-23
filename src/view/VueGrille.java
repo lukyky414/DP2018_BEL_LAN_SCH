@@ -4,6 +4,9 @@ import controller.PlacementListener;
 import model.Bateau;
 import model.Terrain;
 import textureFactory.SingletonContemporain;
+import textureFactory.SingletonFutur;
+import textureFactory.SingletonMedieval;
+import textureFactory.SingletonStarWars;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +27,9 @@ public abstract class VueGrille extends JPanel implements Observer {
     public VueGrille(Terrain t, int s, int tailleBoutons) {
         this.tailleBouton=tailleBoutons;
         this.terrain = t;
+        if (this.terrain != null) {
+            this.terrain.addObserver(this);
+        }
         this.size = s;
         GridLayout gridLayout = new GridLayout(this.size + 1, this.size + 1, 1, 1);
         this.setLayout(gridLayout);
@@ -32,7 +38,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         this.grid = new CustomJButton[size + 1][size + 1];
 
         //TODO REMOVE THIS !!!
-        Bateau b= new Bateau(SingletonContemporain.getInstance(),4,5,null);
+        Bateau b= new Bateau(SingletonFutur.getInstance(),4,5,null);
         b.setDirection(Bateau.GAUCHE);
 
         this.placementListener=new PlacementListener(this.grid,terrain,b);

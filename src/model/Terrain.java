@@ -14,8 +14,17 @@ public class Terrain extends Observable {
 
     public Terrain(int taille) {
         this.taille = taille;
-        this.disposition = new Disposition();
+        this.disposition = new Disposition(this);
         this.champTir = new ChampTir();
+        this.bateaux = new ArrayList<Bateau>();
+    }
+
+    public void ajouterBateau(Bateau b) {
+        this.bateaux.add(b);
+    }
+
+    public ArrayList<Bateau> getBateaux() {
+        return bateaux;
     }
 
     //Si une  case de la zone n'a pas été touché, on peut tirer.
@@ -37,6 +46,17 @@ public class Terrain extends Observable {
 
     public boolean verificationPlacer(Coup c) {
         return this.disposition.peutEtrePlace(c);
+    }
+
+    public boolean placer(Coup c) {
+        if (this.disposition.placer(c)) {
+            setChanged();
+            notifyObservers();
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public void placerBateaux() {
