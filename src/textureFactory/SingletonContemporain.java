@@ -93,5 +93,10 @@ public class SingletonContemporain extends SingletonEpoque {
 		Bateau b4=new Bateau(this,id,5,null);
 		return list;
 	}
+
+	@Override
+	public String toString() {
+		return "Contemporaine";
+	}
 }
 

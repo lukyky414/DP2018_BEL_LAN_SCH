@@ -82,4 +82,9 @@ public class SingletonMedieval extends SingletonEpoque {
 		Bateau b4=new Bateau(this,id,4,null);
 		return list;
 	}
+
+	@Override
+	public String toString() {
+		return "Mediévale";
+	}
 }
