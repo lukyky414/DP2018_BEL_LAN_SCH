@@ -3,6 +3,7 @@ package view;
 import controller.PlacementListener;
 import model.Bateau;
 import model.Terrain;
+import textureFactory.SingletonContemporain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +32,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         this.grid = new CustomJButton[size + 1][size + 1];
 
         //TODO REMOVE THIS !!!
-        Bateau b= new Bateau(null,7,null);
+        Bateau b= new Bateau(SingletonContemporain.getInstance(),4,5,null);
         b.setDirection(Bateau.GAUCHE);
 
         this.placementListener=new PlacementListener(this.grid,terrain,b);

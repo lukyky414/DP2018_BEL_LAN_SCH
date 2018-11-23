@@ -8,14 +8,6 @@ import java.util.List;
 
 public abstract class SingletonEpoque {
 
-	/**
-	 * Les epoques sont des singletons, donc il nous faut un getInstance.
-	 *
-	 * @return l'instance de la textureFactory
-	 */
-	public abstract SingletonEpoque getInstance();
-
-
 	//### Partie Texture Factory ###
 
 	/**
@@ -31,5 +23,6 @@ public abstract class SingletonEpoque {
 	 *
 	 * @return liste de bateau, correspondant a la flotte
 	 */
-	public abstract List<Bateau> generateFleet();
+	public abstract ArrayList<Bateau> generateFleet();
+
 }

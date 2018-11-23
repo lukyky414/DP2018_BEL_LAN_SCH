@@ -3,6 +3,8 @@ package controller;
 import model.Bateau;
 import model.Coup;
 import model.Terrain;
+import textureFactory.SingletonMedieval;
+import textureFactory.WrongEpoqueException;
 import view.CustomJButton;
 
 import javax.swing.*;
@@ -113,12 +115,12 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
                 break;
             case Bateau.BAS:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x+i,y,0,i);
+                    display(c,x+i,y,Math.PI/2,i);
                 }
                 break;
             case Bateau.GAUCHE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y-i,Math.PI/2,i);
+                    display(c,x,y-i,Math.PI,i);
                 }
                 break;
             case Bateau.DROITE:
@@ -137,14 +139,35 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
                 cb.setIcon(null);
                 cb.setRotation(0);
             } else {
-                //ImageIcon i = b.getTexture(numTexture);
-
+                /*switch (numTexture) {
+                    case 0:
+                        i = SingletonMedieval.getInstance().textures.get(1).get(0);
+                        break;
+                    case 1:
+                        i =new ImageIcon("img/Medieval/Bateau T2-1.png");
+                        break;
+                    case 2:
+                        i =new ImageIcon("img/Medieval/Bateau T2-2.png");
+                        break;
+                    case 3:
+                        i =new ImageIcon("Bateau T5-4.png");
+                        break;
+                    case 4:
+                        i =new ImageIcon("Bateau T5-5.png");
+                        break;
+                }*/
+                ImageIcon i = null;
+                try {
+                    i = b.getTexture(numTexture);
+                } catch (WrongEpoqueException e) {
+                    e.printStackTrace();
+                }
                 //A supprimer
-                /*ImageIcon i =new ImageIcon("boat.png");
+                //ImageIcon i =new ImageIcon("Bateau T3-1.png");
                 Image img = i.getImage() ;
                 Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
                 cb.setRotation(rotation);
-                cb.setIcon(new ImageIcon(newimg));*/
+                cb.setIcon(new ImageIcon(newimg));
             }
         }
     }

@@ -1,6 +1,7 @@
 package model;
 
 import textureFactory.SingletonEpoque;
+import textureFactory.WrongEpoqueException;
 
 import javax.swing.*;
 import java.awt.Point;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 
 public class Bateau {
 
-    private static int NEXT_ID = 0;
     public static final int HAUT = 0;
 	public static final int DROITE = 1;
 	public static final int BAS = 2;
@@ -16,6 +16,7 @@ public class Bateau {
 
     private SingletonEpoque factory;
 
+    //Un id de 0 à 4 pour identifier les textures du bateau
     private int id;
 	private int munitions;
 	private int pv;
@@ -24,8 +25,8 @@ public class Bateau {
 	private int taille;
 	private ArrayList<Point> zoneSup;
 
-    public Bateau(SingletonEpoque epoque, int taille, ArrayList<Point> zoneSup) {
-    	this.id = NEXT_ID++;
+    public Bateau(SingletonEpoque epoque, int id, int taille, ArrayList<Point> zoneSup) {
+    	this.id = id;
     	this.factory = epoque;
     	this.taille = taille;
     	this.zoneSup = zoneSup;
@@ -125,8 +126,8 @@ public class Bateau {
 		return res;
 	}
 
-	public ImageIcon getTexture(int i){
-		return null;
+	public ImageIcon getTexture(int i) throws WrongEpoqueException {
+		return factory.getTexture(this).get(i);
 	}
 
 	//###############
