@@ -3,12 +3,20 @@ package textureFactory;
 import model.Bateau;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SingletonEpoque {
 
 	//### Partie Texture Factory ###
+	public static int TAILLE=50;
+
+	public static ImageIcon redimensionner(ImageIcon imageIcon, int taille) {
+		Image img = imageIcon.getImage() ;
+		Image newimg = img.getScaledInstance( taille, taille,  java.awt.Image.SCALE_SMOOTH ) ;
+		return new ImageIcon(newimg);
+	}
 
 	/**
 	 * On demande une texture d'un bateau.

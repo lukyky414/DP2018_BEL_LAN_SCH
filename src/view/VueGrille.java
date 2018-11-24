@@ -38,7 +38,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         this.grid = new CustomJButton[size + 1][size + 1];
 
         //TODO REMOVE THIS !!!
-        Bateau b= new Bateau(SingletonFutur.getInstance(),4,5,null);
+        Bateau b= new Bateau(SingletonStarWars.getInstance(),2,3,null);
         b.setDirection(Bateau.GAUCHE);
 
         this.placementListener=new PlacementListener(this.grid,terrain,b);

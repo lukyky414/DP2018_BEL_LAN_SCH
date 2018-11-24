@@ -46,11 +46,17 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        setXYFromMouseEvent(e);
         if (e.getButton() == 3) {
             changerRotation(1);
         } else {
             if (t.verificationPlacer(c)) {
                 t.placer(c);
+                afficherBateau();
+                int taille=this.b.getTaille();
+                int direction=this.b.getDirection();
+                setPlacedInDirection(direction,taille);
+                System.out.println(direction);
             }
         }
     }
@@ -68,24 +74,13 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         setXYFromMouseEvent(e);
-
-        int taille=this.b.getTaille();
-        int direction=this.b.getDirection();
-
-        if (t.verificationPlacer(c)) {
-            setColorInDirection(direction,taille,PlacementListener.green);
-        } else {
-            setColorInDirection(direction,taille,PlacementListener.red);
-        }
+        afficherBateau();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         setXYFromMouseEvent(e);
-
-        int taille=this.b.getTaille();
-        int direction=this.b.getDirection();
-        setColorInDirection(direction,taille,null);
+        effacerBateau();
     }
 
     @Override
@@ -95,19 +90,27 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
 
     //rotation 1 ou -1
     private void changerRotation(int rotation) {
-        int olddirection=b.getDirection();
         int newdirection=(b.getDirection()+rotation+4)%4;
-        int taille=b.getTaille();
-
-        setColorInDirection(olddirection,taille,null);
-
-
+        effacerBateau();
         this.b.setDirection(newdirection);
+        afficherBateau();
+    }
+
+    private void afficherBateau() {
+        int taille=this.b.getTaille();
+        int direction=this.b.getDirection();
+
         if (t.verificationPlacer(c)) {
-            setColorInDirection(newdirection,taille,green);
+            setColorInDirection(direction,taille,green);
         } else {
-            setColorInDirection(newdirection,taille,red);
+            setColorInDirection(direction,taille,red);
         }
+    }
+
+    private void effacerBateau() {
+        int direction=b.getDirection();
+        int taille=b.getTaille();
+        setColorInDirection(direction,taille,null);
     }
 
     public void setColorInDirection(int direction, int nbcases, Color c) {
@@ -135,49 +138,65 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         }
     }
 
+    public void setPlacedInDirection(int direction, int nbcases) {
+        //System.out.println("direction="+direction);
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+(int)(x-i)+" y="+y);
+                    placed(x-i,y);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+(int)(x+i)+" y="+y);
+                    placed(x+i,y);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+x+" y="+(int)(y-i));
+                    placed(x,y-i);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+x+" y="+(int)(y+i));
+                    placed(x,y+i);
+                }
+                break;
+        }
+    }
+
+    public void placed(int x, int y) {
+        //if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
+            CustomJButton cb = grid[x][y];
+            cb.setBateauPose(true);
+            //System.out.println("x="+x+" y="+y);
+       //}
+    }
+
     private void display(Color c, int x, int y, double rotation, int numTexture) {
         if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
             CustomJButton cb=grid[x][y];
             cb.setBackground(c);
 
-            //if (!cb.isBateauPose()) {
+            ImageIcon imgIcon = null;
+            if (!cb.isBateauPose()) {
                 if (c==null) {
-                    cb.setIcon(null);
                     cb.setRotation(0);
+                    cb.setIcon(null);
                 } else {
-                /*switch (numTexture) {
-                    case 0:
-                        i = SingletonMedieval.getInstance().textures.get(1).get(0);
-                        break;
-                    case 1:
-                        i =new ImageIcon("img/Medieval/Bateau T2-1.png");
-                        break;
-                    case 2:
-                        i =new ImageIcon("img/Medieval/Bateau T2-2.png");
-                        break;
-                    case 3:
-                        i =new ImageIcon("Bateau T5-4.png");
-                        break;
-                    case 4:
-                        i =new ImageIcon("Bateau T5-5.png");
-                        break;
-                }*/
-                    ImageIcon i = null;
                     try {
-                        i = b.getTexture(numTexture);
+                        imgIcon = b.getTexture(numTexture);
                     } catch (WrongEpoqueException e) {
                         e.printStackTrace();
                     }
-                    //A supprimer
-                    //ImageIcon i =new ImageIcon("Bateau T3-1.png");
-                    Image img = i.getImage() ;
-                    Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
                     cb.setRotation(rotation);
-                    cb.setIcon(new ImageIcon(newimg));
+                    cb.setIcon(imgIcon);
                 }
             }
-
-        //}
+        }
     }
 
     //Permet d'avoir un seul listener
