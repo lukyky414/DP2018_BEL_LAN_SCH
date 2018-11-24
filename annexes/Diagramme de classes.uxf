@@ -71,7 +71,7 @@ bg=white</panel_attributes>
 --
 Textures : List&lt;Texture&gt;
 --
-getTexture(Bateau b) : Texture 
+getTexture(Bateau bateauEnCours) : Texture
 
 genererFlotte() : List&lt;bateau&gt;
 bg=white
@@ -121,7 +121,7 @@ group=2</panel_attributes>
 champ : Bateau [10][10]
 --
 get(Point pos) : Bateau
-placer(Bateau b) : void
+placer(Bateau bateauEnCours) : void
 bg=white
 group=2</panel_attributes>
     <additional_attributes/>
@@ -286,7 +286,7 @@ group=1</panel_attributes>
 --
 Textures : List&lt;Texture&gt;
 --
-getTexture(Bateau b) : Texture 
+getTexture(Bateau bateauEnCours) : Texture
 
 genererFlotte() : List&lt;bateau&gt;
 bg=white

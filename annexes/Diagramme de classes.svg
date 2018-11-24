@@ -287,7 +287,7 @@
       /><text x="5" font-size="14px" y="59.9062" clip-path="url(#clipPath12)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >get(Point pos) : Bateau</text
       ><text x="5" font-size="14px" y="75.875" clip-path="url(#clipPath12)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >placer(Bateau b) : void</text
+      >placer(Bateau bateauEnCours) : void</text
     ></g
     ><g fill="rgb(255,255,255)" fill-opacity="0.4902" transform="translate(1400,960)" stroke-opacity="0.4902" stroke="rgb(255,255,255)"
     ><rect x="0.5" width="258.5" height="88.5" y="0.5" clip-path="url(#clipPath13)" stroke="none"
@@ -317,7 +317,7 @@
       >Textures : List&lt;Texture&gt;</text
       ><path fill="none" d="M1 44.9375 L319 44.9375" clip-path="url(#clipPath14)"
       /><text x="5" font-size="14px" y="59.9062" clip-path="url(#clipPath14)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >getTexture(Bateau b) : Texture </text
+      >getTexture(Bateau bateauEnCours) : Texture </text
       ><text x="5" font-size="14px" y="91.8438" clip-path="url(#clipPath14)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >genererFlotte() : List&lt;bateau&gt;</text
     ></g
@@ -653,7 +653,7 @@
       >Textures : List&lt;Texture&gt;</text
       ><path fill="none" d="M1 44.9375 L319 44.9375" clip-path="url(#clipPath14)"
       /><text x="5" font-size="14px" y="59.9062" clip-path="url(#clipPath14)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >getTexture(Bateau b) : Texture </text
+      >getTexture(Bateau bateauEnCours) : Texture </text
       ><text x="5" font-size="14px" y="91.8438" clip-path="url(#clipPath14)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >genererFlotte() : List&lt;bateau&gt;</text
     ></g

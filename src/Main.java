@@ -10,7 +10,6 @@ import java.awt.*;
 public class Main {
 
     public static void main(String args[]) {
-
         //On utilise le rendu par défaut
         try {
             UIManager.setLookAndFeel(new javax.swing.plaf.metal.MetalLookAndFeel());

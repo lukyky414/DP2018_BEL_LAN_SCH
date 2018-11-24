@@ -2,7 +2,7 @@ Pour pouvoir cloner le projet, il faut deja que j'ajoute le compte en
 collaborateur, puis que j'ajoute la cle publique SSH generee.
 Pour generer une cle SSH il faut faire la commande suivante:
 
-ssh-keygen -t rsa -b 4096 -C "<Adresse Email du compte Git>"
+ssh-keygen -t rsa -bateauEnCours 4096 -C "<Adresse Email du compte Git>"
 
 (machine perso)
   Si la commande ssh-keygen n'est pas reconnu, il faut installer le paquet

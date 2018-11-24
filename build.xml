@@ -1,0 +1,30 @@
+<project name="DP2018_Team_Rocket" basedir="." default="run">
+  <target name="clean">
+    <delete dir="out"/>
+    <delete dir="jar"/>
+  </target>
+  
+  <target name="compile" depends="clean">
+    <mkdir dir="out"/>
+    <javac includeantruntime="false" srcdir="src" destdir="out" encoding="UTF-8">
+      <classpath>
+        <fileset dir="res"/>
+      </classpath>
+    </javac>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <mkdir dir="jar"/>
+    <jar destfile="jar/DP2018_Team_Rocket.jar" basedir="out">
+      <fileset dir="res"/>
+      <manifest>
+        <attribute name="Main-Class" value="Main"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="run" depends="jar">
+    <java jar="jar/DP2018_Team_Rocket.jar" fork="true"/>
+  </target>
+  
+</project>

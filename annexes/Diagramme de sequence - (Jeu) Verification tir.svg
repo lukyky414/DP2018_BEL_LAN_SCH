@@ -133,7 +133,7 @@
     ><g transform="translate(820,60)"
     ><rect fill="none" x="0.5" width="158.5" height="28.5" y="0.5" clip-path="url(#clipPath7)"
       /><text x="51" font-size="14px" y="17.9688" text-decoration="underline" clip-path="url(#clipPath7)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >b:Bateau</text
+      >bateauEnCours:Bateau</text
     ></g
     ><g transform="translate(720,230)"
     ><path fill="none" d="M179.5 20.5 L10.5 20.5" clip-path="url(#clipPath8)"
@@ -214,7 +214,7 @@
     ><path fill="none" d="M11.5 20.5 L390.5 20.5" clip-path="url(#clipPath14)"
       /><path fill="none" d="M22.2583 27 L11 20.5 L22.2583 14" clip-path="url(#clipPath14)"
       /><text x="196.1069" font-size="14px" y="16" clip-path="url(#clipPath14)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >b</text
+      >bateauEnCours</text
     ></g
     ><g transform="translate(510,130)"
     ><path fill="none" d="M10.5 20.5 L219.5 20.5" clip-path="url(#clipPath12)"
