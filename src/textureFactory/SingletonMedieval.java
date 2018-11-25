@@ -10,10 +10,9 @@ import java.util.List;
 
 public class SingletonMedieval extends SingletonEpoque {
 
-	private static final String chemin="img/Medieval/";
+	private static final String chemin="/img/Medieval/";
 
 	private static SingletonMedieval instance = new SingletonMedieval();
-	private HashMap<Integer, ArrayList<ImageIcon>> textures;
 
 	public static SingletonMedieval getInstance() {
 		if (instance == null) {
@@ -23,6 +22,8 @@ public class SingletonMedieval extends SingletonEpoque {
 	}
 
 	private SingletonMedieval(){
+		this.presentationEpoque=SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Medieval.png"))),SingletonEpoque.TAILLE_PRESENTATION_WIDTH,SingletonEpoque.TAILLE_PRESENTATION_HEIGHT);
+
 		this.textures = new HashMap<Integer, ArrayList<ImageIcon>>();
 
 		ArrayList<ImageIcon> list_icon= new ArrayList<ImageIcon>();
@@ -52,21 +53,6 @@ public class SingletonMedieval extends SingletonEpoque {
 		list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T4-4.png"))),SingletonEpoque.TAILLE));
 
 		this.textures.put(4,list_icon);
-	}
-
-
-	/**
-	 * Fonction qui récupère un bateau. On a besoin de la taille du bateau pour aller chercher la liste de textures correspondantes
-	 * @parap bateau
-	 * @return liste
-	 */
-	@Override
-	public ArrayList<ImageIcon> getTexture(Bateau b) throws WrongEpoqueException {
-		if(b.getFactory() == this) {
-			return this.textures.get(b.getId());
-		} else {
-			throw new WrongEpoqueException("Ce bateau n'appartient pas a cette epoque.");
-		}
 	}
 
 	@Override

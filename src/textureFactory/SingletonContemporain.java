@@ -16,7 +16,6 @@ public class SingletonContemporain extends SingletonEpoque {
 	private static final String chemin="/img/Contemporain/";
 
 	private static SingletonContemporain instance = new SingletonContemporain();
-	private HashMap<Integer, ArrayList<ImageIcon>> textures;
 
 	public static SingletonContemporain getInstance() {
 		if (instance == null) {
@@ -30,6 +29,7 @@ public class SingletonContemporain extends SingletonEpoque {
 
 
 	private SingletonContemporain(){
+		this.presentationEpoque=SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Contemporain.jpg"))),SingletonEpoque.TAILLE_PRESENTATION_WIDTH,SingletonEpoque.TAILLE_PRESENTATION_HEIGHT);
 		this.textures = new HashMap<Integer, ArrayList<ImageIcon>>();
 		ArrayList<ImageIcon> list_icon= new ArrayList<ImageIcon>();
 
@@ -69,15 +69,6 @@ public class SingletonContemporain extends SingletonEpoque {
 		list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T5-5.png"))),SingletonEpoque.TAILLE));
 
 		this.textures.put(4,list_icon);
-	}
-
-	@Override
-    public ArrayList<ImageIcon> getTexture(Bateau b) throws WrongEpoqueException {
-		if(b.getFactory() == this) {
-			return this.textures.get(b.getId());
-		} else {
-			throw new WrongEpoqueException("Ce bateau n'appartient pas a cette epoque.");
-		}
 	}
 
 	@Override

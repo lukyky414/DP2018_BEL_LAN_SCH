@@ -2,6 +2,10 @@ import model.Bateau;
 import model.Coup;
 import model.Disposition;
 import model.Terrain;
+import textureFactory.SingletonContemporain;
+import textureFactory.SingletonFutur;
+import textureFactory.SingletonMedieval;
+import textureFactory.SingletonStarWars;
 import view.VueJeu;
 
 import javax.swing.*;
@@ -22,6 +26,19 @@ public class Main {
 
         //Null pour l'instant
         Terrain terrain=new Terrain(10);
+
+        /*JPanel jp=new JPanel();
+        jp.setLayout(new GridLayout(1,3));
+        jp.add(new JLabel(SingletonMedieval.getInstance().getPresentationEpoque()));
+        jp.add(new JLabel(SingletonContemporain.getInstance().getPresentationEpoque()));
+        jp.add(new JLabel(SingletonFutur.getInstance().getPresentationEpoque()));
+        jp.add(new JLabel(SingletonStarWars.getInstance().getPresentationEpoque()));
+
+        JScrollPane jsp=new JScrollPane(jp);
+
+        jf.add(jsp);*/
+
+
         VueJeu vj=new VueJeu(terrain, null, 10);
         jf.add(vj);
 
