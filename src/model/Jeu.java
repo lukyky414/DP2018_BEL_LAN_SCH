@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Jeu extends Observable {
@@ -27,8 +29,15 @@ public class Jeu extends Observable {
         return t.verificationTirer(c);
     }
 
-    public void tirHumain() {
-
+    public void tirHumain(Coup c) {
+        Bateau b = c.getBateau();
+        b.utiliserMunition();
+        ArrayList<Point> zoneSup = b.getZoneSup();
+        for(Point p : zoneSup){
+           boolean estTouche = terrainJ2.getChampTir().estTouche(p);
+           if(!estTouche)
+               
+        }
     }
 
     public void tirIA() {
@@ -36,6 +45,29 @@ public class Jeu extends Observable {
     }
 
     public void checkerConditionVictoireDefaite() {
+        ArrayList<Bateau> bateaux = terrainJ1.getBateaux();
+        boolean aPerdu = true;
+        for(Bateau b : bateaux){
+            if(b.getMunitions() > 0 && (!b.estMort()))
+                aPerdu = false;
+        }
+        if (aPerdu)
+            return;
+            //VueVictoire ?
+        else{
+            ArrayList<Bateau> bateauxJ2 = terrainJ2.getBateaux();
+            boolean J2Perdu = true;
+            for(Bateau b : bateauxJ2){
+                if(b.getMunitions() > 0 && (!b.estMort()))
+                    J2Perdu = false;
+            }
+            if(J2Perdu)
+                return;
+                //vueVictoire
+            else
+                //on continue la partie
+                return;
+        }
 
     }
 
