@@ -70,4 +70,8 @@ public class Terrain extends Observable {
     public ChampTir getChampTir() {
         return champTir;
     }
+
+    public Disposition getDisposition() {
+        return disposition;
+    }
 }

@@ -30,13 +30,28 @@ public class Jeu extends Observable {
     }
 
     public void tirHumain(Coup c) {
+        //On recupere le bateau qui tire et on lui baisse ses munitions
         Bateau b = c.getBateau();
         b.utiliserMunition();
         ArrayList<Point> zoneSup = b.getZoneSup();
+
+        //On recupere la disposition du terrain adverse pour savoir si le coup porté a échoué
+        Disposition d = terrainJ2.getDisposition();
+        ChampTir champ = terrainJ2.getChampTir();
         for(Point p : zoneSup){
-           boolean estTouche = terrainJ2.getChampTir().estTouche(p);
-           if(!estTouche)
-               
+           boolean estTouche = champ.estTouche(p);
+           if(!estTouche){
+               champ.touche(p);
+               //get recupere le bateau touche
+               Bateau ennemi = d.get(p);
+               ennemi.diminuerVie();
+               boolean mort = ennemi.estMort();
+               if(mort)
+                   terrainJ2.destroyShip(ennemi);
+               checkerConditionVictoireDefaite();
+
+           }
+
         }
     }
 
