@@ -86,4 +86,7 @@ public class Jeu extends Observable {
 
     }
 
+    public void setTerrainJ1(Terrain terrainJ1){
+    	this.terrainJ1 = terrainJ1;
+	}
 }

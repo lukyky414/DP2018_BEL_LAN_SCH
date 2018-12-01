@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<jeu>
+    <epoque>Contemporaine</epoque>
+    <joueur>
+        <terrain>0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000</terrain>
+        <bateaux>
+            <bateau>
+                <id>0</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>1</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>1</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>2</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>2</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>3</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>3</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>4</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>4</id>
+                <munitions>42</munitions>
+                <position>
+                    <x>1</x>
+                    <y>5</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+        </bateaux>
+    </joueur>
+    <joueur>
+        <terrain>0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000</terrain>
+        <bateaux>
+            <bateau>
+                <id>0</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>1</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>1</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>2</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>2</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>3</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>3</id>
+                <munitions>10</munitions>
+                <position>
+                    <x>1</x>
+                    <y>4</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+            <bateau>
+                <id>4</id>
+                <munitions>42</munitions>
+                <position>
+                    <x>1</x>
+                    <y>5</y>
+                </position>
+                <direction>1</direction>
+            </bateau>
+        </bateaux>
+    </joueur>
+</jeu>

@@ -30,6 +30,8 @@ public class Bateau {
     	this.factory = epoque;
     	this.taille = taille;
     	this.zoneSup = zoneSup;
+    	//TODO MUNITION DANS LE CONSTRUCTEUR
+    	this.munitions = 100;
 	}
 
 	//###############
