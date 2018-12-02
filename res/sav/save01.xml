@@ -2,11 +2,11 @@
 <jeu>
     <epoque>Contemporaine</epoque>
     <joueur>
-        <terrain>0000000000
-0000000000
-0000000000
-0000000000
-0000000000
+        <terrain>1000000000
+0100000000
+0010000000
+0001000000
+0000100000
 0000000000
 0000000000
 0000000000
@@ -17,8 +17,8 @@
                 <id>0</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
-                    <y>1</y>
+                    <x>0</x>
+                    <y>0</y>
                 </position>
                 <direction>1</direction>
             </bateau>
@@ -27,7 +27,7 @@
                 <munitions>10</munitions>
                 <position>
                     <x>1</x>
-                    <y>2</y>
+                    <y>1</y>
                 </position>
                 <direction>1</direction>
             </bateau>
@@ -35,8 +35,8 @@
                 <id>2</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
-                    <y>3</y>
+                    <x>2</x>
+                    <y>2</y>
                 </position>
                 <direction>1</direction>
             </bateau>
@@ -44,8 +44,8 @@
                 <id>3</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
-                    <y>4</y>
+                    <x>3</x>
+                    <y>3</y>
                 </position>
                 <direction>1</direction>
             </bateau>
@@ -53,8 +53,8 @@
                 <id>4</id>
                 <munitions>42</munitions>
                 <position>
-                    <x>1</x>
-                    <y>5</y>
+                    <x>4</x>
+                    <y>4</y>
                 </position>
                 <direction>1</direction>
             </bateau>
@@ -85,7 +85,7 @@
                 <id>1</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
+                    <x>2</x>
                     <y>2</y>
                 </position>
                 <direction>1</direction>
@@ -94,7 +94,7 @@
                 <id>2</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
+                    <x>3</x>
                     <y>3</y>
                 </position>
                 <direction>1</direction>
@@ -103,7 +103,7 @@
                 <id>3</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
+                    <x>4</x>
                     <y>4</y>
                 </position>
                 <direction>1</direction>
@@ -112,7 +112,7 @@
                 <id>4</id>
                 <munitions>42</munitions>
                 <position>
-                    <x>1</x>
+                    <x>5</x>
                     <y>5</y>
                 </position>
                 <direction>1</direction>

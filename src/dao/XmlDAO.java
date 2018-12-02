@@ -1,7 +1,9 @@
 package dao;
 
 import model.Bateau;
+import model.Coup;
 import model.Jeu;
+import model.Terrain;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -9,7 +11,6 @@ import textureFactory.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.File;
 import java.util.List;
@@ -21,7 +22,7 @@ public class XmlDAO implements DAO {
     }
 
 	@Override
-	public Jeu load(String path) throws WrongSaveException {
+	public void load(String path) throws WrongSaveException {
 		try {
 			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder builder = factory.newDocumentBuilder();
@@ -34,46 +35,82 @@ public class XmlDAO implements DAO {
 
 			final NodeList NodeJoueurs = racine.getElementsByTagName("joueur");
 
-			System.out.println(NomEpoque + ":" + epoque.toString());
+			System.out.println(NomEpoque + "=" + epoque.toString());
+
+			Jeu game = Jeu.getInstance();
+
 
 			for(int i = 0; i < 2; i++){
+				System.out.println(System.getProperty("line.separator") + "TERRAIN:");
+				System.out.println("fichier:");
 				final Element ElementJoueur = (Element) NodeJoueurs.item(i);
-				System.out.println("Terrain:");
-				System.out.println(ElementJoueur.getElementsByTagName("terrain").item(0).getTextContent());
+
+				String champ = ElementJoueur.getElementsByTagName("terrain").item(0).getTextContent();
+				System.out.println(champ);
 
 				final NodeList NodeBateaux = ElementJoueur.getElementsByTagName("bateau");
 				int taille = NodeBateaux.getLength();
 
 				List<Bateau> bateaux = epoque.generateFleet();
 
+				Terrain terrain = new Terrain();
+
+				//Les bateaux
 				for(int j = 0; j < taille; j++){
 					final Element ElementBateau = (Element) NodeBateaux.item(j);
 
 					int id = Integer.valueOf(ElementBateau.getElementsByTagName("id").item(0).getTextContent());
 					int mun = Integer.valueOf(ElementBateau.getElementsByTagName("id").item(0).getTextContent());
 
-					System.out.println("Bateau id:" + id);
-					System.out.println("mun:" + mun);
-
 					final Element pos = (Element) ElementBateau.getElementsByTagName("position").item(0);
 
 					int posX = Integer.valueOf(pos.getElementsByTagName("x").item(0).getTextContent());
 					int posY = Integer.valueOf(pos.getElementsByTagName("y").item(0).getTextContent());
-					System.out.println("posX:" + posX + " posY:" + posY);
 
 					int dir = Integer.valueOf(ElementBateau.getElementsByTagName("direction").item(0).getTextContent());
-					System.out.println("dir:" + dir);
 
 					Bateau bateau = transformBateau(bateaux, id, mun, posX, posY, dir);
 
-					//TODO PLACER LES BATEAUX
-				}
-			}
+					System.out.println(bateau);
 
+					//terrain.ajouterBateau(bateau);
+					Coup c = new Coup(new Point(posX, posY), bateau);
+					if(!terrain.verificationPlacer(c))
+						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
+					terrain.placer(c);
+				}
+
+				//Les tirs joués
+				System.out.println("----------");
+				System.out.println("resultat:");
+
+				String[] lignes = champ.split(System.getProperty("line.separator"));
+				for(int k = 0; k < 10; k++){
+					String l = lignes[k];
+					for(int j = 0; j < 10; j++){
+						if(l.charAt(j) == '1'){
+							terrain.Tirer(new Point(j,k));
+						}
+					}
+				}
+				System.out.println(terrain.getChampTir());
+
+				for(Bateau b : terrain.getBateaux()){
+					System.out.println(b);
+				}
+
+
+
+
+
+				if(i ==0)
+					game.setTerrainJ1(terrain);
+				else
+					game.setTerrainJ2(terrain);
+			}
 		} catch (Exception e) {
 			throw new WrongSaveException(e.getMessage());
 		}
-		return null;
 	}
 
 	private Bateau transformBateau(List<Bateau> bateaux, int id, int munitions, int posX, int posY, int dir) throws WrongSaveException {

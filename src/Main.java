@@ -1,15 +1,7 @@
-import model.Bateau;
-import model.Coup;
-import model.Disposition;
 import model.Terrain;
-import textureFactory.SingletonContemporain;
-import textureFactory.SingletonFutur;
-import textureFactory.SingletonMedieval;
-import textureFactory.SingletonStarWars;
 import view.VueJeu;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 
@@ -25,7 +17,7 @@ public class Main {
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Null pour l'instant
-        Terrain terrain=new Terrain(10);
+        Terrain terrain=new Terrain();
 
         /*JPanel jp=new JPanel();
         jp.setLayout(new GridLayout(1,3));

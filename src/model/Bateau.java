@@ -30,8 +30,9 @@ public class Bateau {
     	this.factory = epoque;
     	this.taille = taille;
     	this.zoneSup = zoneSup;
-    	//TODO MUNITION DANS LE CONSTRUCTEUR
+    	//TODO MUNITION & VIE DANS LE CONSTRUCTEUR
     	this.munitions = 100;
+    	this.pv = taille;
 	}
 
 	//###############
@@ -142,5 +143,16 @@ public class Bateau {
 
 	public void setPosition(Point position) {
 		this.position = position;
+	}
+
+
+	//################
+	//#  TOSTRING    #
+	//################
+
+
+	@Override
+	public String toString() {
+		return "Bateau id:"+this.id+" mun:"+munitions+" posX:"+position.x+" posY:"+position.y+" dir:"+direction+" vie:"+pv;
 	}
 }

@@ -74,4 +74,16 @@ public class ChampTir implements Iterable<Boolean> {
 	public Iterator<Boolean> iterator() {
 		return new ChampTirIterator(this);
 	}
+
+	@Override
+	public String toString() {
+		String res = "";
+		for(int i = 0; i < 10; i++){
+			for(int j = 0; j < 10; j++){
+				res+=(this.champ[j][i])?"1":"0";
+			}
+			res+=System.getProperty("line.separator");
+		}
+		return res;
+	}
 }
