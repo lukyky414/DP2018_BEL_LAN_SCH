@@ -1,8 +1,6 @@
 package dao;
 
-import model.Jeu;
-
 public interface DAO {
-    void save(Jeu j);
+    void save(String path);
     void load(String path) throws WrongSaveException;
 }

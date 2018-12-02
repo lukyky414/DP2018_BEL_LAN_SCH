@@ -1,5 +1,7 @@
 package model;
 
+import textureFactory.SingletonEpoque;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -93,4 +95,12 @@ public class Jeu extends Observable {
 	public void setTerrainJ2(Terrain terrainJ2){
 		this.terrainJ2 = terrainJ2;
 	}
+
+	public SingletonEpoque getEpoque(){
+    	return this.terrainJ1.getBateaux().get(0).getFactory();
+	}
+
+	public Terrain getTerrainJ1(){ return this.terrainJ1;}
+
+	public Terrain getTerrainJ2(){ return this.terrainJ2;}
 }

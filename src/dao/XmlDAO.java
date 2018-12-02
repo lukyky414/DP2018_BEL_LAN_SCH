@@ -11,16 +11,95 @@ import textureFactory.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class XmlDAO implements DAO {
 	@Override
-    public void save(Jeu j){
+    public void save(String path){
+		try {
+			Jeu jeu = Jeu.getInstance();
+			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder builder = factory.newDocumentBuilder();
+			final Document document= builder.newDocument();
 
-    }
+			final Element racine = document.createElement("jeu");
+			document.appendChild(racine);
 
+			final Element epoque = document.createElement("epoque");
+			racine.appendChild(epoque);
+
+			epoque.appendChild(document.createTextNode(jeu.getEpoque().toString()));
+
+			for(int i = 0; i < 2; i++){
+				final Element joueur = document.createElement("joueur");
+				racine.appendChild(joueur);
+
+				final Element terrain = document.createElement("terrain");
+				joueur.appendChild(terrain);
+
+				terrain.appendChild(document.createTextNode((i==0?jeu.getTerrainJ1() : jeu.getTerrainJ2()).getChampTir().toString()));
+
+				for(Bateau b : (i==0?jeu.getTerrainJ1() : jeu.getTerrainJ2()).getBateaux()){
+					final Element bateau = document.createElement("bateau");
+					joueur.appendChild(bateau);
+
+					final Element id = document.createElement("id");
+					bateau.appendChild(id);
+					id.appendChild(document.createTextNode(Integer.toString(b.getId())));
+
+					final Element mun = document.createElement("munitions");
+					bateau.appendChild(mun);
+					mun.appendChild(document.createTextNode(Integer.toString(b.getMunitions())));
+
+					final Element pos = document.createElement("position");
+					bateau.appendChild(pos);
+					final Element posX = document.createElement("x");
+					pos.appendChild(posX);
+					posX.appendChild(document.createTextNode(Integer.toString(b.getPosition().x)));
+					final Element posY = document.createElement("y");
+					pos.appendChild(posY);
+					posY.appendChild(document.createTextNode(Integer.toString(b.getPosition().y)));
+
+					final Element dir = document.createElement("direction");
+					bateau.appendChild(dir);
+					dir.appendChild(document.createTextNode(Integer.toString(b.getDirection())));
+				}
+			}
+
+
+
+
+
+			final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			final Transformer transformer = transformerFactory.newTransformer();
+			final DOMSource source = new DOMSource(document);
+			final StreamResult sortie = new StreamResult(new File(path));
+			//final StreamResult sortie = new StreamResult(System.out);
+
+			transformer.setOutputProperty(OutputKeys.VERSION, "1.0");
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+			transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+			transformer.transform(source, sortie);
+
+		} catch (ParserConfigurationException | TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+
+	//TODO effacer sout
 	@Override
 	public void load(String path) throws WrongSaveException {
 		try {
@@ -35,18 +114,18 @@ public class XmlDAO implements DAO {
 
 			final NodeList NodeJoueurs = racine.getElementsByTagName("joueur");
 
-			System.out.println(NomEpoque + "=" + epoque.toString());
+			//System.out.println(NomEpoque + "=" + epoque.toString());
 
 			Jeu game = Jeu.getInstance();
 
 
 			for(int i = 0; i < 2; i++){
-				System.out.println(System.getProperty("line.separator") + "TERRAIN:");
-				System.out.println("fichier:");
+				//System.out.println(System.getProperty("line.separator") + "TERRAIN:");
+				//System.out.println("fichier:");
 				final Element ElementJoueur = (Element) NodeJoueurs.item(i);
 
 				String champ = ElementJoueur.getElementsByTagName("terrain").item(0).getTextContent();
-				System.out.println(champ);
+				//System.out.println(champ);
 
 				final NodeList NodeBateaux = ElementJoueur.getElementsByTagName("bateau");
 				int taille = NodeBateaux.getLength();
@@ -71,7 +150,7 @@ public class XmlDAO implements DAO {
 
 					Bateau bateau = transformBateau(bateaux, id, mun, posX, posY, dir);
 
-					System.out.println(bateau);
+					//System.out.println(bateau);
 
 					//terrain.ajouterBateau(bateau);
 					Coup c = new Coup(new Point(posX, posY), bateau);
@@ -81,8 +160,8 @@ public class XmlDAO implements DAO {
 				}
 
 				//Les tirs joués
-				System.out.println("----------");
-				System.out.println("resultat:");
+				//System.out.println("----------");
+				//System.out.println("resultat:");
 
 				String[] lignes = champ.split(System.getProperty("line.separator"));
 				for(int k = 0; k < 10; k++){
@@ -93,10 +172,10 @@ public class XmlDAO implements DAO {
 						}
 					}
 				}
-				System.out.println(terrain.getChampTir());
+				//System.out.println(terrain.getChampTir());
 
 				for(Bateau b : terrain.getBateaux()){
-					System.out.println(b);
+					//System.out.println(b);
 				}
 
 
