@@ -9,14 +9,13 @@ import java.util.ArrayList;
 
 public class Bateau {
 
-    public static final int HAUT = 0;
-	public static final int DROITE = 1;
-	public static final int BAS = 2;
-	public static final int GAUCHE = 3;
-
     private SingletonEpoque factory;
+    public final static int HAUT = 0;
+	public final static int BAS = 1;
+	public final static int GAUCHE = 2;
+	public final static int DROITE = 3;
 
-    //Un id de 0 à 4 pour identifier les textures du bateau
+
     private int id;
 	private int munitions;
 	private int pv;
@@ -144,7 +143,6 @@ public class Bateau {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
-
 
 	//################
 	//#  TOSTRING    #

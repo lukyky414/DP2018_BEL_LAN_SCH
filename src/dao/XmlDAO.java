@@ -152,7 +152,7 @@ public class XmlDAO implements DAO {
 
 					//System.out.println(bateau);
 
-					//terrain.ajouterBateau(bateau);
+					terrain.ajouterBateau(bateau);
 					Coup c = new Coup(new Point(posX, posY), bateau);
 					if(!terrain.verificationPlacer(c))
 						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
