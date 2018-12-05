@@ -22,6 +22,7 @@ public abstract class VueGrille extends JPanel implements Observer {
     protected int size;
     protected int tailleBouton;
     protected CustomJButton[][] grid;
+    protected JButton[] buttonBateau;
 
     protected PlacementListener placementListener;
 
@@ -39,7 +40,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         this.grid = new CustomJButton[size + 1][size + 1];
 
         //TODO REMOVE THIS !!!
-        ArrayList<Bateau> liste=SingletonFutur.getInstance().generateFleet();
+        ArrayList<Bateau> liste=SingletonStarWars.getInstance().generateFleet();
         this.placementListener=new PlacementListener(this.grid,terrain,liste);
 
         //Les boutons de 1 à 10

@@ -188,7 +188,8 @@ public class XmlDAO implements DAO {
 					game.setTerrainJ2(terrain);
 			}
 		} catch (Exception e) {
-			throw new WrongSaveException(e.getMessage());
+			e.printStackTrace();
+			//throw new WrongSaveException(e.getMessage());
 		}
 	}
 

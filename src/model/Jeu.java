@@ -8,7 +8,7 @@ import java.util.Observable;
 
 public class Jeu extends Observable {
 
-    public static Jeu instance;
+    private static Jeu instance;
 
     private boolean enCours;
 
