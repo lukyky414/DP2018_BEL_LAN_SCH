@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class Bateau {
 
     private SingletonEpoque factory;
-    public static int HAUT = 0;
-	public static int BAS = 1;
-	public static int GAUCHE = 2;
-	public static int DROITE = 3;
+    public final static int HAUT = 0;
+	public final static int BAS = 1;
+	public final static int GAUCHE = 2;
+	public final static int DROITE = 3;
 
 
     private int id;
