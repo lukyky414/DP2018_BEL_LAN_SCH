@@ -9,6 +9,7 @@ import textureFactory.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Observer;
 
 public abstract class VueGrille extends JPanel implements Observer {
@@ -173,10 +174,10 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
         if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
             CustomJButton cb=grid[x][y];
-            cb.setBackground(c);
 
             ImageIcon imgIcon = null;
             if (!cb.isBateauPose()) {
+                cb.setBackground(c);
                 if (c==null) {
                     cb.setRotation(0);
                     cb.setIcon(null);
@@ -192,7 +193,5 @@ public abstract class VueGrille extends JPanel implements Observer {
             }
         }
     }
-
-
 
 }

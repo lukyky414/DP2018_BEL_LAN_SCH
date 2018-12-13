@@ -64,6 +64,7 @@ public class Disposition {
         if (peutEtrePlace(c)) {
             Bateau b=c.getBateau();
             Point p=c.getPos();
+            b.setPosition(p);
             int taille=b.getTaille();
             int direction=b.getDirection();
             int x=(int)p.getX();

@@ -50,6 +50,7 @@ public class Terrain extends Observable {
 
     public boolean placer(Coup c) {
         if (this.disposition.placer(c)) {
+            bateaux.add(c.getBateau());
             setChanged();
             notifyObservers();
             return true;

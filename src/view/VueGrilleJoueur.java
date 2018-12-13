@@ -17,17 +17,21 @@ public class VueGrilleJoueur extends VueGrille {
 
     @Override
     public void update(Observable o, Object arg) {
-        /*ArrayList<Bateau> list=this.terrain.getBateaux();
-        for (int i=0;i<list.size();i++) {
-            Bateau b=list.get(i);
-            Point p=b.getPosition();
-            int x=(int)p.getX();
-            int y=(int)p.getY();
-            int direction=b.getDirection();
-            int taille=b.getTaille();
+        if (this.terrain != null) {
+            ArrayList<Bateau> list=this.terrain.getBateaux();
+            for (int i=0;i<list.size();i++) {
+                Bateau b=list.get(i);
+                Point p=b.getPosition();
+                //System.out.println(p);
+                int x=(int)p.getX()+1;
+                int y=(int)p.getY()+1;
+                int direction=b.getDirection();
+                int taille=b.getTaille();
 
-            //setColorInDirection(b,x,y,direction,taille,new Color(0,0,0,0));
-        }*/
+                setColorInDirection(direction,taille,new Color(0,0,0,0),x,y,b);
+                setPlacedInDirection(direction,taille,x,y);
+            }
+        }
     }
 
     /*public void setColorInDirection(Bateau b, int x,int y, int direction, int nbcases, Color c) {

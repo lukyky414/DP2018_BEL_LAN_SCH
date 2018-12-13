@@ -54,12 +54,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         } else {
             if (terrain.verificationPlacer(coup)) {
                 terrain.placer(coup);
-                vueGrille.afficherBateau(this.x,this.y,bateauEnCours,this.coup);
-                int taille=this.bateauEnCours.getTaille();
-                int direction=this.bateauEnCours.getDirection();
-                vueGrille.setPlacedInDirection(direction,taille,this.x,this.y);
                 this.listeBateaux.remove(bateauEnCours);
-                vueGrille.effacerBateau(this.x,this.y,bateauEnCours);
                 if (this.listeBateaux.size() > 0) {
                     setBateauEnCours(this.listeBateaux.get(0));
                 } else {
