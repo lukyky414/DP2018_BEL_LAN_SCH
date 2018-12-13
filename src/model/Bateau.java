@@ -11,9 +11,9 @@ public class Bateau {
 
     private SingletonEpoque factory;
     public final static int HAUT = 0;
-	public final static int BAS = 1;
-	public final static int GAUCHE = 2;
-	public final static int DROITE = 3;
+	public final static int BAS = 2;
+	public final static int GAUCHE = 3;
+	public final static int DROITE = 1;
 
 
     private int id;
