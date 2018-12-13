@@ -67,13 +67,13 @@ public class Terrain extends Observable {
 
     }
 
-    public boolean Tirer(Coup c){
+    public boolean tirer(Coup c){
 		Bateau b=c.getBateau();
 		if (b.estMort() || !b.aMunitions()) {
 			return false;
 		} else {
 			if (!champTir.estTouche(c.getPos())) {
-				this.Tirer(c.getPos());
+				this.tirer(c.getPos());
 				b.utiliserMunition();
 			}
 			else return false;//Case deja touchee
@@ -82,14 +82,14 @@ public class Terrain extends Observable {
 			for (int i=0;i<alp.size();i++) {
 				Point p=alp.get(i);
 				if (!champTir.estTouche(p)) {
-					this.Tirer(p);
+					this.tirer(p);
 				}
 			}
 			return false;
 		}
 	}
 
-    public boolean Tirer(Point pos){
+    public boolean tirer(Point pos){
     	if(champTir.estTouche(pos))
     		return false;
     	champTir.touche(pos);

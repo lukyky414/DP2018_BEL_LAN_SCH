@@ -3,10 +3,9 @@ package controller;
 import model.Bateau;
 import model.Coup;
 import model.Terrain;
-import textureFactory.WrongEpoqueException;
 import view.CustomJButton;
+import view.VueGrille;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 public class PlacementListener implements MouseListener, MouseWheelListener {
 
     private Terrain terrain;
+    private VueGrille vueGrille;
 
     private ArrayList<Bateau> listeBateaux=new ArrayList<Bateau>();
     private Bateau bateauEnCours;
@@ -27,11 +27,8 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
 
     private CustomJButton[][] grid;
 
-    private static final Color red=new Color(255, 0, 0,50);
-    private static final Color green=new Color(0, 255, 0,50);
-    private static final Color blue=new Color(51, 255, 230,50);
-
-    public PlacementListener(CustomJButton[][] grid, Terrain t, ArrayList<Bateau> listeBateaux) {
+    public PlacementListener(VueGrille vg, CustomJButton[][] grid, Terrain t, ArrayList<Bateau> listeBateaux) {
+        this.vueGrille=vg;
         this.grid = grid;
         this.terrain = t;
         this.listeBateaux=listeBateaux;
@@ -57,12 +54,12 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         } else {
             if (terrain.verificationPlacer(coup)) {
                 terrain.placer(coup);
-                afficherBateau();
+                vueGrille.afficherBateau(this.x,this.y,bateauEnCours,this.coup);
                 int taille=this.bateauEnCours.getTaille();
                 int direction=this.bateauEnCours.getDirection();
-                setPlacedInDirection(direction,taille);
+                vueGrille.setPlacedInDirection(direction,taille,this.x,this.y);
                 this.listeBateaux.remove(bateauEnCours);
-                effacerBateau();
+                vueGrille.effacerBateau(this.x,this.y,bateauEnCours);
                 if (this.listeBateaux.size() > 0) {
                     setBateauEnCours(this.listeBateaux.get(0));
                 } else {
@@ -88,7 +85,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
             return;
         }
         setXYFromMouseEvent(e);
-        afficherBateau();
+        vueGrille.afficherBateau(this.x,this.y,bateauEnCours,this.coup);
     }
 
     @Override
@@ -97,7 +94,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
             return;
         }
         setXYFromMouseEvent(e);
-        effacerBateau();
+        vueGrille.effacerBateau(this.x, this.y, bateauEnCours);
     }
 
     @Override
@@ -114,118 +111,9 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
             return;
         }
         int newdirection=(bateauEnCours.getDirection()+rotation+4)%4;
-        effacerBateau();
+        vueGrille.effacerBateau(this.x, this.y, bateauEnCours);
         this.bateauEnCours.setDirection(newdirection);
-        afficherBateau();
-    }
-
-    private void afficherBateau() {
-        if (bateauEnCours == null) {
-            return;
-        }
-
-        int taille=this.bateauEnCours.getTaille();
-        int direction=this.bateauEnCours.getDirection();
-
-        if (terrain.verificationPlacer(coup)) {
-            setColorInDirection(direction,taille,green);
-        } else {
-            setColorInDirection(direction,taille,red);
-        }
-    }
-
-    private void effacerBateau() {
-        if (bateauEnCours == null) {
-            return;
-        }
-        int direction=bateauEnCours.getDirection();
-        int taille= bateauEnCours.getTaille();
-        setColorInDirection(direction,taille,null);
-    }
-
-    public void setColorInDirection(int direction, int nbcases, Color c) {
-        switch (direction) {
-            case Bateau.HAUT:
-                for (int i = 0; i < nbcases; i++) {
-                    display(c,x-i,y,-Math.PI/2,i);
-                }
-                break;
-            case Bateau.BAS:
-                for (int i = 0; i < nbcases; i++) {
-                    display(c,x+i,y,Math.PI/2,i);
-                }
-                break;
-            case Bateau.GAUCHE:
-                for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y-i,Math.PI,i);
-                }
-                break;
-            case Bateau.DROITE:
-                for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y+i,0,i);
-                }
-                break;
-        }
-    }
-
-    public void setPlacedInDirection(int direction, int nbcases) {
-        switch (direction) {
-            case Bateau.HAUT:
-                for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+(int)(x-i)+" y="+y);
-                    placed(x-i,y);
-                }
-                break;
-            case Bateau.BAS:
-                for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+(int)(x+i)+" y="+y);
-                    placed(x+i,y);
-                }
-                break;
-            case Bateau.GAUCHE:
-                for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+x+" y="+(int)(y-i));
-                    placed(x,y-i);
-                }
-                break;
-            case Bateau.DROITE:
-                for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+x+" y="+(int)(y+i));
-                    placed(x,y+i);
-                }
-                break;
-        }
-    }
-
-    public void placed(int x, int y) {
-        CustomJButton cb = grid[x][y];
-        cb.setBateauPose(true);
-    }
-
-    private void display(Color c, int x, int y, double rotation, int numTexture) {
-        if (bateauEnCours == null) {
-            return;
-        }
-        if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
-            CustomJButton cb=grid[x][y];
-            cb.setBackground(c);
-
-            ImageIcon imgIcon = null;
-            if (!cb.isBateauPose()) {
-                if (c==null) {
-                    cb.setRotation(0);
-                    cb.setIcon(null);
-                } else {
-                    try {
-                        imgIcon = bateauEnCours.getTexture(numTexture);
-                    } catch (WrongEpoqueException e) {
-                        e.printStackTrace();
-                    }
-                    cb.setRotation(rotation);
-                    cb.setIcon(imgIcon);
-                }
-            }
-        }
+        vueGrille.afficherBateau(this.x,this.y,bateauEnCours,this.coup);
     }
 
     //Permet d'avoir un seul listener

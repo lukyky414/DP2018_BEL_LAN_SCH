@@ -2,11 +2,9 @@ package view;
 
 import controller.PlacementListener;
 import model.Bateau;
+import model.Coup;
 import model.Terrain;
-import textureFactory.SingletonContemporain;
-import textureFactory.SingletonFutur;
-import textureFactory.SingletonMedieval;
-import textureFactory.SingletonStarWars;
+import textureFactory.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +24,10 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     protected PlacementListener placementListener;
 
+    private static final Color red=new Color(255, 0, 0,50);
+    private static final Color green=new Color(0, 255, 0,50);
+    //private static final Color blue=new Color(51, 255, 230,50);
+
     public VueGrille(Terrain t, int s, int tailleBoutons) {
         this.tailleBouton=tailleBoutons;
         this.terrain = t;
@@ -41,7 +43,7 @@ public abstract class VueGrille extends JPanel implements Observer {
 
         //TODO REMOVE THIS !!!
         ArrayList<Bateau> liste=SingletonStarWars.getInstance().generateFleet();
-        this.placementListener=new PlacementListener(this.grid,terrain,liste);
+        this.placementListener=new PlacementListener(this,this.grid,terrain,liste);
 
         //Les boutons de 1 à 10
         for (int j = 0; j < size + 1; j++) {
@@ -81,5 +83,116 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
         this.add(button);
     }
+
+    public void effacerBateau(int x, int y, Bateau b) {
+        if (b == null) {
+            return;
+        }
+        int direction=b.getDirection();
+        int taille= b.getTaille();
+        setColorInDirection(direction,taille,null,x,y,b);
+    }
+
+    public void afficherBateau(int x, int y, Bateau b, Coup coup) {
+        if (b == null) {
+            return;
+        }
+
+        int taille=b.getTaille();
+        int direction=b.getDirection();
+
+        if (terrain.verificationPlacer(coup)) {
+            setColorInDirection(direction,taille,green,x,y,b);
+        } else {
+            setColorInDirection(direction,taille,red,x,y,b);
+        }
+    }
+
+    public void setPlacedInDirection(int direction, int nbcases, int x ,int y) {
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+(int)(x-i)+" y="+y);
+                    placed(x-i,y);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+(int)(x+i)+" y="+y);
+                    placed(x+i,y);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+x+" y="+(int)(y-i));
+                    placed(x,y-i);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    //System.out.println("x="+x+" y="+(int)(y+i));
+                    placed(x,y+i);
+                }
+                break;
+        }
+    }
+
+    public void placed(int x, int y) {
+        CustomJButton cb = grid[x][y];
+        cb.setBateauPose(true);
+    }
+
+    public void setColorInDirection(int direction, int nbcases, Color c, int x, int y, Bateau b) {
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    display(c,x-i,y,-Math.PI/2,i,b);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    display(c,x+i,y,Math.PI/2,i,b);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    display(c,x,y-i,Math.PI,i,b);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    display(c,x,y+i,0,i,b);
+                }
+                break;
+        }
+    }
+
+    public void display(Color c, int x, int y, double rotation, int numTexture, Bateau b) {
+        if (b == null) {
+            return;
+        }
+        if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
+            CustomJButton cb=grid[x][y];
+            cb.setBackground(c);
+
+            ImageIcon imgIcon = null;
+            if (!cb.isBateauPose()) {
+                if (c==null) {
+                    cb.setRotation(0);
+                    cb.setIcon(null);
+                } else {
+                    try {
+                        imgIcon = b.getTexture(numTexture);
+                    } catch (WrongEpoqueException e) {
+                        e.printStackTrace();
+                    }
+                    cb.setRotation(rotation);
+                    cb.setIcon(imgIcon);
+                }
+            }
+        }
+    }
+
+
 
 }

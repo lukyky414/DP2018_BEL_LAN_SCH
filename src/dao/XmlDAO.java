@@ -17,9 +17,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class XmlDAO implements DAO {
@@ -168,7 +165,7 @@ public class XmlDAO implements DAO {
 					String l = lignes[k];
 					for(int j = 0; j < 10; j++){
 						if(l.charAt(j) == '1'){
-							terrain.Tirer(new Point(j,k));
+							terrain.tirer(new Point(j,k));
 						}
 					}
 				}
