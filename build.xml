@@ -6,7 +6,7 @@
   
   <target name="compile" depends="clean">
     <mkdir dir="out"/>
-    <javac includeantruntime="false" srcdir="src" destdir="out" encoding="UTF-8">
+    <javac classpath="lib/junit-4.12.jar" includeantruntime="false" srcdir="src" destdir="out" encoding="UTF-8">
       <classpath>
         <fileset dir="res"/>
       </classpath>
