@@ -144,6 +144,10 @@ public class Bateau {
 		this.position = position;
 	}
 
+	public void setPv(int p){this.pv = p;}
+
+	public void setMunitions(int mun){this.munitions = mun;}
+
 	//################
 	//#  TOSTRING    #
 	//################
