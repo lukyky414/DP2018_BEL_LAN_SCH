@@ -5,6 +5,7 @@ import model.Coup;
 import model.Terrain;
 import view.CustomJButton;
 import view.VueGrille;
+import view.VueJeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class PlacementListener implements MouseListener, MouseWheelListener, ActionListener {
+
+    private VueJeu vj;
 
     private Terrain terrain;
     private VueGrille vueGrille;
@@ -24,12 +27,10 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
     private int x;
     private int y;
 
-    private CustomJButton[][] grid;
-
-    public PlacementListener(VueGrille vg, CustomJButton[][] grid, Terrain t, ArrayList<Bateau> listeBateaux, JButton[] tableauBoutonsBateaux) {
+    public PlacementListener(VueJeu vj, VueGrille vg, Terrain t, ArrayList<Bateau> listeBateaux, JButton[] tableauBoutonsBateaux) {
+        this.vj=vj;
         this.vueGrille=vg;
         this.tableauBoutonsBateaux=tableauBoutonsBateaux;
-        this.grid = grid;
         this.terrain = t;
         this.listeBateaux=listeBateaux;
         this.bateauEnCours = listeBateaux.get(0);
@@ -61,6 +62,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
                     setBateauEnCours(this.listeBateaux.get(0));
                 } else {
                     setBateauEnCours(null);
+                    vj.ajouterTirerListener();
                 }
             }
         }

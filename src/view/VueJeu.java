@@ -1,5 +1,6 @@
 package view;
 
+import controller.TirerListener;
 import model.Bateau;
 import model.Terrain;
 
@@ -24,8 +25,8 @@ public class VueJeu extends JPanel implements Observer  {
     public VueJeu(Terrain tj, Terrain ta, int taille) {
         this.terrainJoueur=tj;
         this.terrainAdversaire=ta;
-        this.vueGrilleJoueur = new VueGrilleJoueur(terrainJoueur,taille,50);
-        this.vueGrilleAdversaire = new VueGrilleAdversaire(terrainAdversaire,taille,50);
+        this.vueGrilleJoueur = new VueGrilleJoueur(this,terrainJoueur,taille,50);
+        this.vueGrilleAdversaire = new VueGrilleAdversaire(this,terrainAdversaire,taille,50);
         this.add(this.vueGrilleJoueur);
         this.add(Box.createRigidArea(new Dimension(50,0)));
         this.add(this.vueGrilleAdversaire);
@@ -37,15 +38,21 @@ public class VueJeu extends JPanel implements Observer  {
     }
 
     public void ajouterBateaux(ArrayList<Bateau> bateauJoueur, ArrayList<Bateau> bateauAdvesaire) {
-        Terrain terrain=new Terrain();
-        Terrain terrain2=new Terrain();
+        this.terrainJoueur=new Terrain();
+        this.terrainAdversaire=new Terrain();
         vueGrilleJoueur.effacerGrille();
         vueGrilleAdversaire.effacerGrille();
 
-        vueGrilleJoueur.ajouterTerrain(terrain);
-        vueGrilleAdversaire.ajouterTerrain(terrain2);
+        vueGrilleJoueur.ajouterTerrain(this.terrainJoueur);
+        vueGrilleAdversaire.ajouterTerrain(this.terrainAdversaire);
 
         vueGrilleJoueur.ajouterBateau(bateauJoueur);
         vueGrilleAdversaire.ajouterBateau(bateauAdvesaire);
+    }
+
+    public void ajouterTirerListener() {
+        TirerListener tl=new TirerListener(vueGrilleJoueur,vueGrilleAdversaire,terrainJoueur,terrainAdversaire);
+        vueGrilleJoueur.ajouterTirerListener(tl);
+        vueGrilleAdversaire.ajouterTirerListener(tl);
     }
 }

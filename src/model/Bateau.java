@@ -28,7 +28,11 @@ public class Bateau {
     	this.id = id;
     	this.factory = epoque;
     	this.taille = taille;
-    	this.zoneSup = zoneSup;
+    	if (zoneSup == null) {
+			this.zoneSup=new ArrayList<Point>();
+		} else {
+			this.zoneSup = zoneSup;
+		}
     	//TODO MUNITION & VIE DANS LE CONSTRUCTEUR
     	this.munitions = 100;
     	this.pv = taille;

@@ -1,6 +1,7 @@
 package view;
 
 import controller.PlacementListener;
+import controller.TirerListener;
 import model.Bateau;
 import model.ChampTir;
 import model.Coup;
@@ -16,6 +17,8 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     public final static Color colorEmpty = new Color(0, 0, 0,0);
 
+    protected VueJeu vj;
+
     protected ArrayList<Bateau> listeBateaux;
     protected Terrain terrain;
 
@@ -29,12 +32,13 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     protected PlacementListener placementListener;
 
-    protected static final Color red=new Color(255, 0, 0,50);
-    protected static final Color green=new Color(0, 255, 0,50);
-    protected static final Color empty=new Color(0,0,0,0);
+    public static final Color red=new Color(255, 0, 0,50);
+    public static final Color green=new Color(0, 255, 0,50);
+    public static final Color empty=new Color(0,0,0,0);
     //private static final Color blue=new Color(51, 255, 230,50);
 
-    public VueGrille(Terrain t, int s, int tailleBoutons) {
+    public VueGrille(VueJeu vj, Terrain t, int s, int tailleBoutons) {
+        this.vj=vj;
         this.listeBateaux=null;
         this.tableauBoutonsBateaux=new JButton[5];
         this.panelGrille=new JPanel();
@@ -81,7 +85,11 @@ public abstract class VueGrille extends JPanel implements Observer {
         this.add(panelBoutonsBateaux);
         this.add(Box.createRigidArea(espaceBoutons));
         this.add(panelGrille);
-}
+    }
+
+    public ArrayList<Bateau> getListeBateaux() {
+        return listeBateaux;
+    }
 
     private void addJButton(CustomJButton button, String s, boolean border, int x, int y) {
         button = new CustomJButton(s,x,y);
@@ -108,6 +116,17 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
     }
 
+    public boolean appartienA(JButton jb) {
+        for (int i=1;i<grid.length;i++) {
+            for (int j=1;j<grid[0].length;j++) {
+                if (grid[i][j].equals(jb)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void ajouterTerrain(Terrain t) {
         this.terrain=t;
         this.terrain.addObserver(this);
@@ -127,13 +146,22 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
     }
 
+    public void removeListener(TirerListener tl) {
+        //On met à jour le Placement Listener
+        for (int i = 1; i < size + 1; i++) {
+            for (int j = 1; j < size + 1; j++) {
+                grid[i][j].removeMouseListener(tl);
+            }
+        }
+    }
+
     public void ajouterBateau(ArrayList<Bateau> listeBateaux) {
         if (this.placementListener != null) {
             removeListener(this.placementListener);
         }
 
         this.listeBateaux=listeBateaux;
-        this.placementListener=new PlacementListener(this,this.grid,terrain,listeBateaux,tableauBoutonsBateaux);
+        this.placementListener=new PlacementListener(this.vj,this,terrain,listeBateaux,tableauBoutonsBateaux);
 
         //On met à jour le Placement Listener
         for (int i = 1; i < size + 1; i++) {
@@ -149,7 +177,16 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
     }
 
-
+    public void ajouterTirerListener(TirerListener tl) {
+        if (this.placementListener != null) {
+            removeListener(this.placementListener);
+        }
+        for (int i = 1; i < size + 1; i++) {
+            for (int j = 1; j < size + 1; j++) {
+                grid[i][j].addMouseListener(tl);
+            }
+        }
+    }
 
     public void effacerGrille() {
         for (int i=1;i<grid.length;i++) {
@@ -277,6 +314,28 @@ public abstract class VueGrille extends JPanel implements Observer {
             if (!temporaire) {
                 setPermanent(x,y,false);
             }
+        }
+    }
+
+    public void resetCouleurTirJButton(int x, int y, Bateau b, boolean temporaire) {
+        ArrayList<Point> alp=b.getZoneSup();
+        resetJButton(x,y,temporaire);
+        for (int i=0;i<alp.size();i++) {
+            Point ptDecalage=alp.get(i);
+            int nx=(int)(x+ptDecalage.getX());
+            int ny=(int)(y+ptDecalage.getY());
+            resetJButton(nx,ny,temporaire);
+        }
+    }
+
+    public void afficherCouleurTirJButton(int x, int y, Color c, Bateau b, boolean temporaire) {
+        ArrayList<Point> alp=b.getZoneSup();
+        afficherCouleurJButton(x,y,c,temporaire);
+        for (int i=0;i<alp.size();i++) {
+            Point ptDecalage=alp.get(i);
+            int nx=(int)(x+ptDecalage.getX());
+            int ny=(int)(y+ptDecalage.getY());
+            afficherCouleurJButton(nx,ny,c,temporaire);
         }
     }
 

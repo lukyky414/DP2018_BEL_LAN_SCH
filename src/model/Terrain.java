@@ -30,13 +30,18 @@ public class Terrain extends Observable {
     //Si une  case de la zone n'a pas été touché, on peut tirer.
     public boolean verificationTirer(Coup c) {
         Bateau b=c.getBateau();
+        Point ptCentral=c.getPos();
         if (b.estMort() || b.aMunitions() == false) {
             return false;
         } else {
+            if (!champTir.estTouche(ptCentral)) {
+                return true;
+            }
             ArrayList<Point>alp=b.getZoneSup();
             for (int i=0;i<alp.size();i++) {
-                Point p=alp.get(i);
-                if (champTir.estTouche(p) == false) {
+                Point ptDecalage=alp.get(i);
+                Point ptNouveau=new Point((int)(ptCentral.getX()+ptDecalage.getX()),(int)(ptCentral.getY()+ptDecalage.getY()));
+                if (!champTir.estTouche(ptNouveau)) {
                     return true;
                 }
             }
@@ -69,6 +74,7 @@ public class Terrain extends Observable {
     }
 
     public boolean tirer(Coup c){
+        Point ptCentral=c.getPos();
 		Bateau b=c.getBateau();
 		if (b.estMort() || !b.aMunitions()) {
 			return false;
@@ -77,18 +83,18 @@ public class Terrain extends Observable {
 				this.tirer(c.getPos());
 				b.utiliserMunition();
 			}
-			else return false;//Case deja touchee
 
 			ArrayList<Point>alp=b.getZoneSup();
 			for (int i=0;i<alp.size();i++) {
-				Point p=alp.get(i);
-				if (!champTir.estTouche(p)) {
-					this.tirer(p);
+                Point ptDecalage=alp.get(i);
+                Point ptNouveau=new Point((int)(ptCentral.getX()+ptDecalage.getX()),(int)(ptCentral.getY()+ptDecalage.getY()));
+				if (!champTir.estTouche(ptNouveau)) {
+					this.tirer(ptNouveau);
                     setChanged();
                     notifyObservers();
 				}
 			}
-			return false;
+			return true;
 		}
 	}
 

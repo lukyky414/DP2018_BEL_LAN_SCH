@@ -11,8 +11,8 @@ import java.util.Observable;
 
 public class VueGrilleAdversaire extends VueGrille {
 
-    public VueGrilleAdversaire(Terrain t, int s, int tb) {
-        super(t,s,tb);
+    public VueGrilleAdversaire(VueJeu vj, Terrain t, int s, int tb) {
+        super(vj,t,s,tb);
         panelBoutonsBateaux.setVisible(false);
     }
 
