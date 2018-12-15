@@ -15,6 +15,7 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     public final static Color colorEmpty = new Color(0, 0, 0,0);
 
+    protected ArrayList<Bateau> listeBateaux;
     protected Terrain terrain;
 
     protected int size;
@@ -33,6 +34,7 @@ public abstract class VueGrille extends JPanel implements Observer {
     //private static final Color blue=new Color(51, 255, 230,50);
 
     public VueGrille(Terrain t, int s, int tailleBoutons) {
+        this.listeBateaux=null;
         this.tableauBoutonsBateaux=new JButton[5];
         this.panelGrille=new JPanel();
         this.panelBoutonsBateaux=new JPanel();
@@ -48,10 +50,6 @@ public abstract class VueGrille extends JPanel implements Observer {
         panelGrille.setMinimumSize(new Dimension(560,560));
         //Création d'une grille de boutons
         this.grid = new CustomJButton[size + 1][size + 1];
-
-        //TODO REMOVE THIS !!!
-        ArrayList<Bateau> liste=SingletonStarWars.getInstance().generateFleet();
-        this.placementListener=new PlacementListener(this,this.grid,terrain,liste,tableauBoutonsBateaux);
 
         //Les boutons de 1 à 10
         for (int j = 0; j < size + 1; j++) {
@@ -77,7 +75,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         Dimension espaceBoutons=new Dimension(0,10);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         panelBoutonsBateaux.setLayout(new BoxLayout(panelBoutonsBateaux,BoxLayout.X_AXIS));
-        ajoutertBoutons(this.tableauBoutonsBateaux);
+        ajoutertBoutons();
         this.add(Box.createRigidArea(espaceBoutons));
         this.add(panelBoutonsBateaux);
         this.add(Box.createRigidArea(espaceBoutons));
@@ -101,18 +99,60 @@ public abstract class VueGrille extends JPanel implements Observer {
         panelGrille.add(button);
     }
 
-    private void ajoutertBoutons(JButton[] tableauBoutonsBateaux) {
+    private void ajoutertBoutons() {
         for (int i=0;i<5;i++) {
             JButton bouton=new JButton("Bateau "+i);
-            bouton.addActionListener(this.placementListener);
             tableauBoutonsBateaux[i]=bouton;
             panelBoutonsBateaux.add(bouton);
         }
     }
 
+    public void ajouterTerrain(Terrain t) {
+        this.terrain=t;
+        this.terrain.addObserver(this);
+    }
+
+    public void removeListener(PlacementListener pl) {
+        //On met à jour le Placement Listener
+        for (int i = 1; i < size + 1; i++) {
+            for (int j = 1; j < size + 1; j++) {
+                grid[i][j].removeMouseListener(pl);
+                grid[i][j].removeMouseWheelListener(pl);
+            }
+        }
+
+        for (int i=0;i<tableauBoutonsBateaux.length;i++) {
+            tableauBoutonsBateaux[i].removeActionListener(pl);
+        }
+    }
+
+    public void ajouterBateau(ArrayList<Bateau> listeBateaux) {
+        if (this.placementListener != null) {
+            removeListener(this.placementListener);
+        }
+
+        this.listeBateaux=listeBateaux;
+        this.placementListener=new PlacementListener(this,this.grid,terrain,listeBateaux,tableauBoutonsBateaux);
+
+        //On met à jour le Placement Listener
+        for (int i = 1; i < size + 1; i++) {
+            for (int j = 1; j < size + 1; j++) {
+                grid[i][j].addMouseListener(this.placementListener);
+                grid[i][j].addMouseWheelListener(this.placementListener);
+            }
+        }
+
+        for (int i=0;i<tableauBoutonsBateaux.length;i++) {
+            tableauBoutonsBateaux[i].addActionListener(this.placementListener);
+            tableauBoutonsBateaux[i].setEnabled(true);
+        }
+    }
+
+
+
     public void effacerGrille() {
         for (int i=1;i<grid.length;i++) {
-            for (int j=1;i<grid[0].length;i++) {
+            for (int j=1;j<grid[0].length;j++) {
                 resetJButton(i,j,false);
             }
         }

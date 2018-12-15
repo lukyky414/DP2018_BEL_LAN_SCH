@@ -1,7 +1,11 @@
+import model.Bateau;
 import model.Terrain;
+import textureFactory.SingletonEpoque;
 import view.VueJeu;
+import view.VueMenuBar;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -18,7 +22,7 @@ public class Main {
 
         //Null pour l'instant
         Terrain terrain=new Terrain();
-
+        Terrain terrain2=new Terrain();
         /*JPanel jp=new JPanel();
         jp.setLayout(new GridLayout(1,3));
         jp.add(new JLabel(SingletonMedieval.getInstance().getPresentationEpoque()));
@@ -31,7 +35,9 @@ public class Main {
         jf.add(jsp);*/
 
 
-        VueJeu vj=new VueJeu(terrain, null, 10);
+        VueJeu vj=new VueJeu(terrain, terrain2, 10);
+        VueMenuBar vmb=new VueMenuBar(jf,vj);
+        jf.setJMenuBar(vmb);
         jf.add(vj);
 
         jf.pack();
@@ -44,4 +50,5 @@ public class Main {
         Coup c=new Coup(p,b);
         System.out.println(d.peutEtrePlace(c));*/
     }
+
 }
