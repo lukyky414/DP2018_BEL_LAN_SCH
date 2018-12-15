@@ -2,8 +2,10 @@ package view;
 
 import controller.PlacementListener;
 import model.Bateau;
+import model.ChampTir;
 import model.Terrain;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -16,7 +18,7 @@ public class VueGrilleAdversaire extends VueGrille {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        updateTir();
     }
 
     @Override

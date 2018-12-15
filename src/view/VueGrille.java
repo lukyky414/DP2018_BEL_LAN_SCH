@@ -2,6 +2,7 @@ package view;
 
 import controller.PlacementListener;
 import model.Bateau;
+import model.ChampTir;
 import model.Coup;
 import model.Terrain;
 import textureFactory.*;
@@ -28,9 +29,9 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     protected PlacementListener placementListener;
 
-    private static final Color red=new Color(255, 0, 0,50);
-    private static final Color green=new Color(0, 255, 0,50);
-    private static final Color empty=new Color(0,0,0,0);
+    protected static final Color red=new Color(255, 0, 0,50);
+    protected static final Color green=new Color(0, 255, 0,50);
+    protected static final Color empty=new Color(0,0,0,0);
     //private static final Color blue=new Color(51, 255, 230,50);
 
     public VueGrille(Terrain t, int s, int tailleBoutons) {
@@ -326,6 +327,19 @@ public abstract class VueGrille extends JPanel implements Observer {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void updateTir() {
+        ChampTir ct=this.terrain.getChampTir();
+        Point p=new Point(0,0);
+        for (int i=0;i<10;i++) {
+            for (int j=0;j<10;j++) {
+                p.setLocation(i,j);
+                if (ct.estTouche(p)) {
+                    afficherCouleurJButton(i+1,j+1,red,false);
+                }
+            }
         }
     }
 

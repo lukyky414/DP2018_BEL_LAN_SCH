@@ -84,6 +84,8 @@ public class Terrain extends Observable {
 				Point p=alp.get(i);
 				if (!champTir.estTouche(p)) {
 					this.tirer(p);
+                    setChanged();
+                    notifyObservers();
 				}
 			}
 			return false;
@@ -97,6 +99,8 @@ public class Terrain extends Observable {
     	Bateau b = disposition.get(pos);
     	if(b != null)
     		b.diminuerVie();
+        setChanged();
+        notifyObservers();
     	return true;
 	}
 

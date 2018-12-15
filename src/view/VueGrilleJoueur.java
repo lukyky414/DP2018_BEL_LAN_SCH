@@ -1,6 +1,7 @@
 package view;
 
 import model.Bateau;
+import model.ChampTir;
 import model.Terrain;
 import textureFactory.WrongEpoqueException;
 
@@ -31,6 +32,7 @@ public class VueGrilleJoueur extends VueGrille {
 
                 bateauDansUneDirection(x,y,direction,b,false);
                 couleurDansUneDirection(x,y,direction,taille,VueGrille.colorEmpty,false);
+                updateTir();
             }
         }
     }
