@@ -4,7 +4,7 @@ import dao.WrongSaveException;
 import dao.XmlDAO;
 import org.junit.Test;
 
-public class TestDAO {
+public class TestDAOXML {
 
 	@Test
 	public void load(){
