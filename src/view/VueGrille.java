@@ -8,10 +8,7 @@ import textureFactory.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Observer;
 
 public abstract class VueGrille extends JPanel implements Observer {
@@ -32,6 +29,7 @@ public abstract class VueGrille extends JPanel implements Observer {
 
     private static final Color red=new Color(255, 0, 0,50);
     private static final Color green=new Color(0, 255, 0,50);
+    private static final Color empty=new Color(0,0,0,0);
     //private static final Color blue=new Color(51, 255, 230,50);
 
     public VueGrille(Terrain t, int s, int tailleBoutons) {
@@ -112,8 +110,12 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
     }
 
-    private void ajouterBoutons(ArrayList<JButton> aljb) {
-
+    public void effacerGrille() {
+        for (int i=1;i<grid.length;i++) {
+            for (int j=1;i<grid[0].length;i++) {
+                resetJButton(i,j,false);
+            }
+        }
     }
 
     public void effacerBateau(int x, int y, Bateau b) {
@@ -122,7 +124,7 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
         int direction=b.getDirection();
         int taille= b.getTaille();
-        setColorInDirection(direction,taille,null,x,y,b);
+        resetDansUneDirection(x,y,direction,taille,true);
     }
 
     public void afficherBateau(int x, int y, Bateau b, Coup coup) {
@@ -134,94 +136,156 @@ public abstract class VueGrille extends JPanel implements Observer {
         int direction=b.getDirection();
 
         if (terrain.verificationPlacer(coup)) {
-            setColorInDirection(direction,taille,green,x,y,b);
+            bateauDansUneDirection(x,y,direction,b,true);
+            couleurDansUneDirection(x,y,direction,taille,green,true);
         } else {
-            setColorInDirection(direction,taille,red,x,y,b);
+            bateauDansUneDirection(x,y,direction,b,true);
+            couleurDansUneDirection(x,y,direction,taille,red,true);
         }
     }
 
-    public void setPlacedInDirection(int direction, int nbcases, int x ,int y) {
+    public void resetDansUneDirection(int x, int y, int direction, int nbcases, boolean temporaire) {
         switch (direction) {
             case Bateau.HAUT:
                 for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+(int)(x-i)+" y="+y);
-                    placed(x-i,y);
+                    resetJButton(x-i,y,temporaire);
                 }
                 break;
             case Bateau.BAS:
                 for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+(int)(x+i)+" y="+y);
-                    placed(x+i,y);
+                    resetJButton(x+i,y,temporaire);
                 }
                 break;
             case Bateau.GAUCHE:
                 for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+x+" y="+(int)(y-i));
-                    placed(x,y-i);
+                    resetJButton(x,y-i,temporaire);
                 }
                 break;
             case Bateau.DROITE:
                 for (int i = 0; i < nbcases; i++) {
-                    //System.out.println("x="+x+" y="+(int)(y+i));
-                    placed(x,y+i);
+                    resetJButton(x,y+i,temporaire);
                 }
                 break;
         }
     }
 
-    public void placed(int x, int y) {
-        CustomJButton cb = grid[x][y];
-        cb.setBateauPose(true);
-    }
-
-    public void setColorInDirection(int direction, int nbcases, Color c, int x, int y, Bateau b) {
+    public void couleurDansUneDirection(int x, int y, int direction, int nbcases, Color c, boolean temporaire) {
         switch (direction) {
             case Bateau.HAUT:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x-i,y,-Math.PI/2,i,b);
+                    afficherCouleurJButton(x-i,y,c,temporaire);
                 }
                 break;
             case Bateau.BAS:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x+i,y,Math.PI/2,i,b);
+                    afficherCouleurJButton(x+i,y,c,temporaire);
                 }
                 break;
             case Bateau.GAUCHE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y-i,Math.PI,i,b);
+                    afficherCouleurJButton(x,y-i,c,temporaire);
                 }
                 break;
             case Bateau.DROITE:
                 for (int i = 0; i < nbcases; i++) {
-                    display(c,x,y+i,0,i,b);
+                    afficherCouleurJButton(x,y+i,c,temporaire);
                 }
                 break;
         }
     }
 
-    public void display(Color c, int x, int y, double rotation, int numTexture, Bateau b) {
+    public void bateauDansUneDirection(int x, int y, int direction, Bateau b, boolean temporaire) {
         if (b == null) {
             return;
         }
-        if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
-            CustomJButton cb=grid[x][y];
-
-            ImageIcon imgIcon = null;
-            if (!cb.isBateauPose()) {
-                cb.setBackground(c);
-                if (c==null) {
-                    cb.setRotation(0);
-                    cb.setIcon(null);
-                } else {
-                    try {
-                        imgIcon = b.getTexture(numTexture);
-                    } catch (WrongEpoqueException e) {
-                        e.printStackTrace();
-                    }
-                    cb.setRotation(rotation);
-                    cb.setIcon(imgIcon);
+        int nbcases=b.getTaille();
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherImageBateauJButton(x-i, y,-Math.PI/2,i,b,temporaire);
                 }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherImageBateauJButton(x+i, y,Math.PI/2,i,b,temporaire);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherImageBateauJButton(x, y-i,Math.PI,i,b,temporaire);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherImageBateauJButton(x, y+i,0,i,b,temporaire);
+                }
+                break;
+        }
+    }
+
+    public void resetJButton(int x, int y, boolean temporaire) {
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb=grid[x][y];
+            if (!cb.isBateauPose() || !temporaire) {
+                cb.setRotation(0);
+                cb.setIcon(null);
+                cb.setBackground(null);
             }
+
+            //On veut qu'un JButton soit effacé de manière permanente
+            if (!temporaire) {
+                setPermanent(x,y,false);
+            }
+        }
+    }
+
+    public void afficherCouleurJButton(int x, int y, Color c, boolean temporaire) {
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb=grid[x][y];
+            if (!cb.isBateauPose() || !temporaire) {
+                cb.setBackground(c);
+            }
+            if (!temporaire) {
+                setPermanent(x,y,true);
+            }
+        }
+    }
+
+    public void afficherImageBateauJButton(int x, int y, double rotation, int numTexture, Bateau b, boolean temporaire) {
+        if (b == null) {
+            return;
+        }
+
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb=grid[x][y];
+            if (!cb.isBateauPose() || !temporaire) {
+                ImageIcon imgIcon=null;
+                try {
+                    imgIcon = b.getTexture(numTexture);
+                } catch (WrongEpoqueException e) {
+                    e.printStackTrace();
+                }
+                cb.setRotation(rotation);
+                cb.setIcon(imgIcon);
+            }
+            if (!temporaire) {
+                setPermanent(x,y,true);
+            }
+        }
+    }
+
+    public void setPermanent(int x, int y, boolean permanent) {
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb = grid[x][y];
+            cb.setBateauPose(permanent);
+        }
+    }
+
+    private boolean verifierCoordonnees(int x, int y) {
+        if (x>= 0 && x < grid.length && y>=0 && y < grid[0].length && grid[x][y] != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 

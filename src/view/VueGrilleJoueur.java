@@ -18,6 +18,7 @@ public class VueGrilleJoueur extends VueGrille {
     @Override
     public void update(Observable o, Object arg) {
         if (this.terrain != null) {
+            effacerGrille();
             ArrayList<Bateau> list=this.terrain.getBateaux();
             for (int i=0;i<list.size();i++) {
                 Bateau b=list.get(i);
@@ -28,8 +29,8 @@ public class VueGrilleJoueur extends VueGrille {
                 int direction=b.getDirection();
                 int taille=b.getTaille();
 
-                setColorInDirection(direction,taille,new Color(0,0,0,0),x,y,b);
-                setPlacedInDirection(direction,taille,x,y);
+                bateauDansUneDirection(x,y,direction,b,false);
+                couleurDansUneDirection(x,y,direction,taille,VueGrille.colorEmpty,false);
             }
         }
     }
