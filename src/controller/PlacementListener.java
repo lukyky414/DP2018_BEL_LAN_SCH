@@ -6,17 +6,16 @@ import model.Terrain;
 import view.CustomJButton;
 import view.VueGrille;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-public class PlacementListener implements MouseListener, MouseWheelListener {
+public class PlacementListener implements MouseListener, MouseWheelListener, ActionListener {
 
     private Terrain terrain;
     private VueGrille vueGrille;
+    private JButton[] tableauBoutonsBateaux;
 
     private ArrayList<Bateau> listeBateaux=new ArrayList<Bateau>();
     private Bateau bateauEnCours;
@@ -27,8 +26,9 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
 
     private CustomJButton[][] grid;
 
-    public PlacementListener(VueGrille vg, CustomJButton[][] grid, Terrain t, ArrayList<Bateau> listeBateaux) {
+    public PlacementListener(VueGrille vg, CustomJButton[][] grid, Terrain t, ArrayList<Bateau> listeBateaux, JButton[] tableauBoutonsBateaux) {
         this.vueGrille=vg;
+        this.tableauBoutonsBateaux=tableauBoutonsBateaux;
         this.grid = grid;
         this.terrain = t;
         this.listeBateaux=listeBateaux;
@@ -54,6 +54,8 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         } else {
             if (terrain.verificationPlacer(coup)) {
                 terrain.placer(coup);
+                int id=bateauEnCours.getId();
+                this.tableauBoutonsBateaux[id].setEnabled(false);
                 this.listeBateaux.remove(bateauEnCours);
                 if (this.listeBateaux.size() > 0) {
                     setBateauEnCours(this.listeBateaux.get(0));
@@ -119,4 +121,16 @@ public class PlacementListener implements MouseListener, MouseWheelListener {
         this.coup.setXY(x-1,y-1);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String bateauStringNum=e.getActionCommand();
+        int bateauNum=Integer.parseInt(bateauStringNum.split(" ")[1]);
+
+        for (int i=0;i<this.listeBateaux.size();i++) {
+            Bateau b=this.listeBateaux.get(i);
+            if (b.getId() == bateauNum) {
+                setBateauEnCours(b);
+            }
+        }
+    }
 }

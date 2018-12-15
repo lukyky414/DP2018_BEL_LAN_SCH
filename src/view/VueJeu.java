@@ -3,6 +3,7 @@ package view;
 import model.Terrain;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,8 +21,9 @@ public class VueJeu extends JPanel implements Observer  {
         this.terrainJoueur=tj;
         this.terrainAdversaire=ta;
         this.vueGrilleJoueur = new VueGrilleJoueur(terrainJoueur,taille,50);
-        this.vueGrilleAdversaire = new VueGrilleAdversaire(terrainAdversaire,taille,30);
+        this.vueGrilleAdversaire = new VueGrilleAdversaire(terrainAdversaire,taille,50);
         this.add(this.vueGrilleJoueur);
+        this.add(Box.createRigidArea(new Dimension(50,0)));
         this.add(this.vueGrilleAdversaire);
     }
 

@@ -8,6 +8,7 @@ public class VueGrilleAdversaire extends VueGrille {
 
     public VueGrilleAdversaire(Terrain t, int s, int tb) {
         super(t,s,tb);
+        panelBoutonsBateaux.setVisible(false);
     }
 
     @Override

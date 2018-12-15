@@ -8,6 +8,8 @@ import textureFactory.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -22,6 +24,9 @@ public abstract class VueGrille extends JPanel implements Observer {
     protected int tailleBouton;
     protected CustomJButton[][] grid;
     protected JButton[] buttonBateau;
+    protected JPanel panelGrille;
+    protected JPanel panelBoutonsBateaux;
+    protected JButton[] tableauBoutonsBateaux;
 
     protected PlacementListener placementListener;
 
@@ -30,6 +35,9 @@ public abstract class VueGrille extends JPanel implements Observer {
     //private static final Color blue=new Color(51, 255, 230,50);
 
     public VueGrille(Terrain t, int s, int tailleBoutons) {
+        this.tableauBoutonsBateaux=new JButton[5];
+        this.panelGrille=new JPanel();
+        this.panelBoutonsBateaux=new JPanel();
         this.tailleBouton=tailleBoutons;
         this.terrain = t;
         if (this.terrain != null) {
@@ -37,14 +45,15 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
         this.size = s;
         GridLayout gridLayout = new GridLayout(this.size + 1, this.size + 1, 1, 1);
-        this.setLayout(gridLayout);
-
+        panelGrille.setLayout(gridLayout);
+        panelGrille.setMaximumSize(new Dimension(560,560));
+        panelGrille.setMinimumSize(new Dimension(560,560));
         //Création d'une grille de boutons
         this.grid = new CustomJButton[size + 1][size + 1];
 
         //TODO REMOVE THIS !!!
         ArrayList<Bateau> liste=SingletonStarWars.getInstance().generateFleet();
-        this.placementListener=new PlacementListener(this,this.grid,terrain,liste);
+        this.placementListener=new PlacementListener(this,this.grid,terrain,liste,tableauBoutonsBateaux);
 
         //Les boutons de 1 à 10
         for (int j = 0; j < size + 1; j++) {
@@ -66,7 +75,16 @@ public abstract class VueGrille extends JPanel implements Observer {
                 addJButton(grid[i][j], "", false,i,j);
             }
         }
-    }
+
+        Dimension espaceBoutons=new Dimension(0,10);
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        panelBoutonsBateaux.setLayout(new BoxLayout(panelBoutonsBateaux,BoxLayout.X_AXIS));
+        ajoutertBoutons(this.tableauBoutonsBateaux);
+        this.add(Box.createRigidArea(espaceBoutons));
+        this.add(panelBoutonsBateaux);
+        this.add(Box.createRigidArea(espaceBoutons));
+        this.add(panelGrille);
+}
 
     private void addJButton(CustomJButton button, String s, boolean border, int x, int y) {
         button = new CustomJButton(s,x,y);
@@ -82,7 +100,20 @@ public abstract class VueGrille extends JPanel implements Observer {
                 button.addMouseWheelListener(this.placementListener);
             }
         }
-        this.add(button);
+        panelGrille.add(button);
+    }
+
+    private void ajoutertBoutons(JButton[] tableauBoutonsBateaux) {
+        for (int i=0;i<5;i++) {
+            JButton bouton=new JButton("Bateau "+i);
+            bouton.addActionListener(this.placementListener);
+            tableauBoutonsBateaux[i]=bouton;
+            panelBoutonsBateaux.add(bouton);
+        }
+    }
+
+    private void ajouterBoutons(ArrayList<JButton> aljb) {
+
     }
 
     public void effacerBateau(int x, int y, Bateau b) {
