@@ -38,6 +38,7 @@ public class TirerListener implements MouseListener {
         this.x=0;
         this.y=0;
         this.coup = new Coup(new Point(0,0), bateauSelectionne);
+        vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
     }
 
     public void setBateauEnCours(Bateau bateauEnCours) {
@@ -62,9 +63,13 @@ public class TirerListener implements MouseListener {
             Disposition dispoJoueur=terrainJoueur.getDisposition();
             Bateau bateauclique=dispoJoueur.get(this.coup.getPos());
             if (bateauclique != null) {
-                System.out.println("SELECTION");
+                if (bateauSelectionne != null) {
+                    vueGrilleJoueur.nettoyerBordJButtonBateauDansUneDirection(bateauSelectionne);
+                }
+                //System.out.println("SELECTION");
                 bateauSelectionne=bateauclique;
                 this.coup.setBateau(bateauSelectionne);
+                vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
             }
         }
     }

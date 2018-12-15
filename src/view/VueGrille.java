@@ -9,6 +9,7 @@ import model.Terrain;
 import textureFactory.*;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observer;
@@ -31,6 +32,7 @@ public abstract class VueGrille extends JPanel implements Observer {
     protected JButton[] tableauBoutonsBateaux;
 
     protected PlacementListener placementListener;
+    protected TirerListener tirerListener;
 
     public static final Color red=new Color(255, 0, 0,50);
     public static final Color green=new Color(0, 255, 0,50);
@@ -160,6 +162,10 @@ public abstract class VueGrille extends JPanel implements Observer {
             removeListener(this.placementListener);
         }
 
+        if (this.tirerListener != null) {
+            removeListener(this.tirerListener);
+        }
+
         this.listeBateaux=listeBateaux;
         this.placementListener=new PlacementListener(this.vj,this,terrain,listeBateaux,tableauBoutonsBateaux);
 
@@ -181,6 +187,12 @@ public abstract class VueGrille extends JPanel implements Observer {
         if (this.placementListener != null) {
             removeListener(this.placementListener);
         }
+
+        if (this.tirerListener != null) {
+            removeListener(this.tirerListener);
+        }
+
+        this.tirerListener=tl;
         for (int i = 1; i < size + 1; i++) {
             for (int j = 1; j < size + 1; j++) {
                 grid[i][j].addMouseListener(tl);
@@ -308,6 +320,7 @@ public abstract class VueGrille extends JPanel implements Observer {
                 cb.setRotation(0);
                 cb.setIcon(null);
                 cb.setBackground(null);
+                cb.setBorder(UIManager.getBorder("Button.border"));
             }
 
             //On veut qu'un JButton soit effacé de manière permanente
@@ -371,6 +384,84 @@ public abstract class VueGrille extends JPanel implements Observer {
             if (!temporaire) {
                 setPermanent(x,y,true);
             }
+        }
+    }
+
+    public void afficherBordJButton(int x, int y, Color c) {
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb=grid[x][y];
+            cb.setBorder(new LineBorder(c));
+        }
+    }
+
+    public void resetBordJButton(int x, int y) {
+        if (verifierCoordonnees(x,y)) {
+            CustomJButton cb=grid[x][y];
+            cb.setBorder(UIManager.getBorder("Button.border"));
+        }
+    }
+
+    public void afficherBordJButtonBateauDansUneDirection(Bateau b, Color c) {
+        if (b == null) {
+            return;
+        }
+        int x=(int)(b.getPosition().getX()+1);
+        int y=(int)(b.getPosition().getY()+1);
+        int nbcases=b.getTaille();
+        int direction=b.getDirection();
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherBordJButton(x-i,y,c);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherBordJButton(x+i,y,c);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherBordJButton(x,y-i,c);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    afficherBordJButton(x,y+i,c);
+                }
+                break;
+        }
+    }
+
+    public void nettoyerBordJButtonBateauDansUneDirection(Bateau b) {
+        if (b == null) {
+            return;
+        }
+        int x=(int)(b.getPosition().getX()+1);
+        int y=(int)(b.getPosition().getY()+1);
+        int nbcases=b.getTaille();
+        int direction=b.getDirection();
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < nbcases; i++) {
+                    resetBordJButton(x-i,y);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < nbcases; i++) {
+                    resetBordJButton(x+i,y);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < nbcases; i++) {
+                    resetBordJButton(x,y-i);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < nbcases; i++) {
+                    resetBordJButton(x,y+i);
+                }
+                break;
         }
     }
 
