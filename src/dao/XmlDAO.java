@@ -107,7 +107,7 @@ public class XmlDAO implements DAO {
 			final Element racine = document.getDocumentElement();
 
 			String NomEpoque = racine.getElementsByTagName("epoque").item(0).getTextContent();
-			final SingletonEpoque epoque = this.getEpoque(NomEpoque);
+			final SingletonEpoque epoque = getEpoque(NomEpoque);
 
 			final NodeList NodeJoueurs = racine.getElementsByTagName("joueur");
 
@@ -171,13 +171,9 @@ public class XmlDAO implements DAO {
 				}
 				//System.out.println(terrain.getChampTir());
 
-				for(Bateau b : terrain.getBateaux()){
+				//for(Bateau b : terrain.getBateaux()){
 					//System.out.println(b);
-				}
-
-
-
-
+				//}
 
 				if(i ==0)
 					game.setTerrainJ1(terrain);
@@ -186,11 +182,11 @@ public class XmlDAO implements DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			//throw new WrongSaveException(e.getMessage());
+			throw new WrongSaveException(e.getMessage());
 		}
 	}
 
-	private Bateau transformBateau(List<Bateau> bateaux, int id, int munitions, int posX, int posY, int dir) throws WrongSaveException {
+	public static Bateau transformBateau(List<Bateau> bateaux, int id, int munitions, int posX, int posY, int dir) throws WrongSaveException {
 		Bateau bateau = null;
 		for(Bateau b : bateaux){
 			if(b.getId() == id)
@@ -210,7 +206,7 @@ public class XmlDAO implements DAO {
 		return bateau;
 	}
 
-	private SingletonEpoque getEpoque(String epoque) throws WrongSaveException {
+	public static SingletonEpoque getEpoque(String epoque) throws WrongSaveException {
 		switch(epoque){
 			case "Contemporaine":
 				return SingletonContemporain.getInstance();

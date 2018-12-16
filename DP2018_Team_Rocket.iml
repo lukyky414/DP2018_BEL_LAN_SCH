@@ -32,5 +32,6 @@
     <orderEntry type="library" name="cglib:cglib:3.2.10" level="project" />
     <orderEntry type="library" name="com.fitbur.external:external-objenesis:1.0.0" level="project" />
     <orderEntry type="library" name="org.objenesis:objenesis:3.0.1" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
