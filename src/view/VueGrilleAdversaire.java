@@ -28,6 +28,7 @@ public class VueGrilleAdversaire extends VueGrille {
         this.listeBateaux=listeBateaux;
         this.placementListener=null;
 
+        this.listeBateaux.get(0).setPv(1);
         //TODO effacer test
         Coup c=new Coup(new Point(0,0),this.listeBateaux.get(0));
         this.terrain.placer(c);

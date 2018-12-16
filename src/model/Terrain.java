@@ -70,7 +70,39 @@ public class Terrain extends Observable {
     }
 
     public void destroyShip(Bateau b) {
+        Point p=b.getPosition();
+        int x=(int)(p.getX());
+        int y=(int)(p.getY());
+        int direction=b.getDirection();
+        int taille=b.getTaille();
 
+        ChampTir ct=this.getChampTir();
+        switch (direction) {
+            case Bateau.HAUT:
+                for (int i = 0; i < taille; i++) {
+                    Point ptBateau=new Point(x-i,y);
+                    ct.touche(ptBateau);
+                }
+                break;
+            case Bateau.BAS:
+                for (int i = 0; i < taille; i++) {
+                    Point ptBateau=new Point(x+i,y);
+                    ct.touche(ptBateau);
+                }
+                break;
+            case Bateau.GAUCHE:
+                for (int i = 0; i < taille; i++) {
+                    Point ptBateau=new Point(x,y-i);
+                    ct.touche(ptBateau);
+                }
+                break;
+            case Bateau.DROITE:
+                for (int i = 0; i < taille; i++) {
+                    Point ptBateau=new Point(x,y+i);
+                    ct.touche(ptBateau);
+                }
+                break;
+        }
     }
 
     public boolean tirer(Coup c){
@@ -103,8 +135,13 @@ public class Terrain extends Observable {
     		return false;
     	champTir.touche(pos);
     	Bateau b = disposition.get(pos);
-    	if(b != null)
-    		b.diminuerVie();
+    	if(b != null) {
+            b.diminuerVie();
+            if (b.estMort()) {
+                this.destroyShip(b);
+            }
+        }
+
         setChanged();
         notifyObservers();
     	return true;
