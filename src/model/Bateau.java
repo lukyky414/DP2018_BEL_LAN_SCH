@@ -26,6 +26,7 @@ public class Bateau {
 
     public Bateau(SingletonEpoque epoque, int id, int taille, ArrayList<Point> zoneSup) {
     	this.id = id;
+    	this.direction=Bateau.DROITE;
     	this.factory = epoque;
     	this.taille = taille;
     	if (zoneSup == null) {

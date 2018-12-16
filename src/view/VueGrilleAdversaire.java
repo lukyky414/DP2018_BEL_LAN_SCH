@@ -3,7 +3,9 @@ package view;
 import controller.PlacementListener;
 import model.Bateau;
 import model.ChampTir;
+import model.Coup;
 import model.Terrain;
+import textureFactory.SingletonMedieval;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,5 +27,9 @@ public class VueGrilleAdversaire extends VueGrille {
     public void ajouterBateau(ArrayList<Bateau> listeBateaux) {
         this.listeBateaux=listeBateaux;
         this.placementListener=null;
+
+        //TODO effacer test
+        Coup c=new Coup(new Point(0,0),this.listeBateaux.get(0));
+        this.terrain.placer(c);
     }
 }
