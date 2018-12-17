@@ -46,6 +46,16 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
         if (bateauEnCours == null) {
             return;
         }
@@ -66,16 +76,6 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
                 }
             }
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override

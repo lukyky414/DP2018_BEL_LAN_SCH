@@ -48,6 +48,16 @@ public class TirerListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
@@ -58,7 +68,7 @@ public class TirerListener implements MouseListener {
                     terrainAdverse.tirer(this.coup);
                 }
             }
-        //Si on clique sur notre grille
+            //Si on clique sur notre grille
         } else {
             Disposition dispoJoueur=terrainJoueur.getDisposition();
             Bateau bateauclique=dispoJoueur.get(this.coup.getPos());
@@ -72,16 +82,6 @@ public class TirerListener implements MouseListener {
                 vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
             }
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override

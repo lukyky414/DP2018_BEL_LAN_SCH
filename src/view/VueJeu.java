@@ -3,6 +3,7 @@ package view;
 import controller.TirerListener;
 import model.Bateau;
 import model.Terrain;
+import textureFactory.SingletonEpoque;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.util.Observer;
 public class VueJeu extends JPanel implements Observer  {
 
     //Ici on aurait la grille + des autres infos
+    protected SingletonEpoque epoque;
 
     protected ArrayList<Bateau> listeBateaux;
     private Terrain terrainJoueur;
@@ -37,7 +39,10 @@ public class VueJeu extends JPanel implements Observer  {
         //Utilise Terrain pour mettre à jour les autres infos
     }
 
-    public void ajouterBateaux(ArrayList<Bateau> bateauJoueur, ArrayList<Bateau> bateauAdvesaire) {
+    public void ajouterBateauxEtEpoque(SingletonEpoque se) {
+        this.epoque=se;
+        ArrayList<Bateau> bateauJoueur=this.epoque.generateFleet();
+        ArrayList<Bateau> bateauAdvesaire=this.epoque.generateFleet();
         this.terrainJoueur=new Terrain();
         this.terrainAdversaire=new Terrain();
         this.vueGrilleJoueur.effacerGrille();

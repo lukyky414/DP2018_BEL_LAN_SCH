@@ -36,7 +36,7 @@ public class EpoqueChooser implements ActionListener {
             default:
                 se=null;
         }
-        vj.ajouterBateaux(se.generateFleet(),se.generateFleet());
+        vj.ajouterBateauxEtEpoque(se);
 		Main.setEnabled(vj, true);
     }
 }

@@ -62,7 +62,6 @@ public class Terrain extends Observable {
         } else {
             return false;
         }
-
     }
 
     public void placerBateaux() {
