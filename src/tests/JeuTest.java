@@ -43,7 +43,4 @@ public class JeuTest {
         EasyMock.expect(j.verificationTir(c, t)).andReturn(false);
     }
 
-    @Test
-    public void tirHumain() {
-    }
 }

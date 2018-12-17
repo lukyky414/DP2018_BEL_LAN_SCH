@@ -31,31 +31,7 @@ public class Jeu extends Observable {
         return t.verificationTirer(c);
     }
 
-    public void tirHumain(Coup c) {
-        //On recupere le bateau qui tire et on lui baisse ses munitions
-        Bateau b = c.getBateau();
-        b.utiliserMunition();
-        ArrayList<Point> zoneSup = b.getZoneSup();
 
-        //On recupere la disposition du terrain adverse pour savoir si le coup porté a échoué
-        Disposition d = terrainJ2.getDisposition();
-        ChampTir champ = terrainJ2.getChampTir();
-        for(Point p : zoneSup){
-           boolean estTouche = champ.estTouche(p);
-           if(!estTouche){
-               champ.touche(p);
-               //get recupere le bateau touche
-               Bateau ennemi = d.get(p);
-               ennemi.diminuerVie();
-               boolean mort = ennemi.estMort();
-               if(mort)
-                   terrainJ2.destroyShip(ennemi);
-               checkerConditionVictoireDefaite();
-
-           }
-
-        }
-    }
 
     public void tirIA() {
 
@@ -68,9 +44,14 @@ public class Jeu extends Observable {
             if(b.getMunitions() > 0 && (!b.estMort()))
                 aPerdu = false;
         }
-        if (aPerdu)
-            return;
-            //VueVictoire ?
+
+        //J1 perd
+        if (aPerdu) {
+            enCours = false;
+            System.out.println("Vous avez perdu");
+        }
+
+        //J2 ou IA perd
         else{
             ArrayList<Bateau> bateauxJ2 = terrainJ2.getBateaux();
             boolean J2Perdu = true;
@@ -78,12 +59,11 @@ public class Jeu extends Observable {
                 if(b.getMunitions() > 0 && (!b.estMort()))
                     J2Perdu = false;
             }
-            if(J2Perdu)
-                return;
-                //vueVictoire
-            else
-                //on continue la partie
-                return;
+            if(J2Perdu) {
+                enCours = false;
+                System.out.println("Vous avez gagné !");
+            }
+
         }
 
     }
