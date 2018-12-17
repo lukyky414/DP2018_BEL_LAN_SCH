@@ -20,6 +20,7 @@ public class VueGrilleAdversaire extends VueGrille {
 
     @Override
     public void update(Observable o, Object arg) {
+        effacerGrille();
         ArrayList<Bateau> list=this.terrain.getBateaux();
         for (Bateau b : list) {
             if (b.estMort()) {

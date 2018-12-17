@@ -17,6 +17,8 @@ public class VueMenuBar extends JMenuBar {
             private JMenuItem menuItemFutur;
             private JMenuItem menuItemMedieval;
             private JMenuItem menuItemStarWars;
+        private JMenuItem menuItemSauvegarder;
+        private JMenuItem menuItemCharger;
         private JMenuItem menuItemQuitter;
 
     public VueMenuBar(JFrame fenetre, VueJeu vj) {
@@ -28,6 +30,8 @@ public class VueMenuBar extends JMenuBar {
                 menuItemFutur=new JMenuItem("2-Epoque futuriste");
                 menuItemMedieval=new JMenuItem("3-Epoque medievale");
                 menuItemStarWars=new JMenuItem("4-Epoque starwars");
+            menuItemSauvegarder=new JMenuItem("Sauvegarder");
+            menuItemCharger=new JMenuItem("Charger");
             menuItemQuitter=new JMenuItem("Quitter");
 
         menuItemQuitter.addActionListener(new ActionListener() {
@@ -47,7 +51,11 @@ public class VueMenuBar extends JMenuBar {
                     menuDemarrer.add(menuItemMedieval);
                     menuDemarrer.add(menuItemStarWars);
             menuFichier.add(menuDemarrer);
+            menuFichier.add(menuItemSauvegarder);
+            menuFichier.add(menuItemCharger);
             menuFichier.add(menuItemQuitter);
+
+        //menuItemSauvegarder.setEnabled(false);
         this.add(menuFichier);
     }
 
