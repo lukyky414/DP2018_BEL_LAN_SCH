@@ -40,14 +40,14 @@ public class VueJeu extends JPanel implements Observer  {
     public void ajouterBateaux(ArrayList<Bateau> bateauJoueur, ArrayList<Bateau> bateauAdvesaire) {
         this.terrainJoueur=new Terrain();
         this.terrainAdversaire=new Terrain();
-        vueGrilleJoueur.effacerGrille();
-        vueGrilleAdversaire.effacerGrille();
+        this.vueGrilleJoueur.effacerGrille();
+        this.vueGrilleAdversaire.effacerGrille();
 
-        vueGrilleJoueur.ajouterTerrain(this.terrainJoueur);
-        vueGrilleAdversaire.ajouterTerrain(this.terrainAdversaire);
+        this.vueGrilleJoueur.ajouterTerrain(this.terrainJoueur);
+        this.vueGrilleAdversaire.ajouterTerrain(this.terrainAdversaire);
 
-        vueGrilleJoueur.ajouterBateau(bateauJoueur);
-        vueGrilleAdversaire.ajouterBateau(bateauAdvesaire);
+        this.vueGrilleJoueur.ajouterBateau(bateauJoueur);
+        this.vueGrilleAdversaire.ajouterBateau(bateauAdvesaire);
     }
 
     public void ajouterTirerListener() {

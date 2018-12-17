@@ -163,21 +163,9 @@ public abstract class VueGrille extends JPanel implements Observer {
             removeListener(this.tirerListener);
         }
 
+        this.placementListener=null;
+        this.tirerListener=null;
         this.listeBateaux=listeBateaux;
-        this.placementListener=new PlacementListener(this.vj,this,terrain,listeBateaux,tableauBoutonsBateaux);
-
-        //On met à jour le Placement Listener
-        for (int i = 1; i < size + 1; i++) {
-            for (int j = 1; j < size + 1; j++) {
-                grid[i][j].addMouseListener(this.placementListener);
-                grid[i][j].addMouseWheelListener(this.placementListener);
-            }
-        }
-
-        for (int i=0;i<tableauBoutonsBateaux.length;i++) {
-            tableauBoutonsBateaux[i].addActionListener(this.placementListener);
-            tableauBoutonsBateaux[i].setEnabled(true);
-        }
     }
 
     public void ajouterTirerListener(TirerListener tl) {
