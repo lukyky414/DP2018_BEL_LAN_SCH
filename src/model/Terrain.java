@@ -31,7 +31,7 @@ public class Terrain extends Observable {
     public boolean verificationTirer(Coup c) {
         Bateau b=c.getBateau();
         Point ptCentral=c.getPos();
-        if (b.estMort() || b.aMunitions() == false) {
+        if (!b.peutTirer()) {
             return false;
         } else {
             if (!champTir.estTouche(ptCentral)) {
@@ -65,9 +65,6 @@ public class Terrain extends Observable {
 
     }
 
-    public void placerBateaux() {
-
-    }
 
     public void destroyShip(Bateau b) {
         Point p=b.getPosition();
