@@ -20,6 +20,16 @@ public class VueGrilleAdversaire extends VueGrille {
 
     @Override
     public void update(Observable o, Object arg) {
+        ArrayList<Bateau> list=this.terrain.getBateaux();
+        for (Bateau b : list) {
+            if (b.estMort()) {
+                Point p=b.getPosition();
+                int x=(int)p.getX()+1;
+                int y=(int)p.getY()+1;
+                int direction=b.getDirection();
+                bateauDansUneDirection(x,y,direction,b,false);
+            }
+        }
         updateTir();
     }
 

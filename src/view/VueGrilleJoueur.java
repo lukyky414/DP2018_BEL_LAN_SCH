@@ -33,8 +33,8 @@ public class VueGrilleJoueur extends VueGrille {
 
                 bateauDansUneDirection(x,y,direction,b,false);
                 couleurDansUneDirection(x,y,direction,taille,VueGrille.colorEmpty,false);
-                updateTir();
             }
+            updateTir();
         }
     }
 
