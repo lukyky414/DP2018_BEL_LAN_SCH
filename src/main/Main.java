@@ -1,3 +1,5 @@
+package main;
+
 import model.Bateau;
 import model.Terrain;
 import textureFactory.SingletonEpoque;
@@ -5,6 +7,7 @@ import view.VueJeu;
 import view.VueMenuBar;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -42,6 +45,7 @@ public class Main {
 
         jf.pack();
         jf.setVisible(true);
+        setEnabled(vj,false);
         /*
         Disposition d=new Disposition(10);
         Bateau b= new Bateau(null,2,null);
@@ -51,4 +55,12 @@ public class Main {
         System.out.println(d.peutEtrePlace(c));*/
     }
 
+	public static void setEnabled(Component component, boolean enabled) {
+		component.setEnabled(enabled);
+		if (component instanceof Container) {
+			for (Component child : ((Container) component).getComponents()) {
+				setEnabled(child, enabled);
+			}
+		}
+	}
 }

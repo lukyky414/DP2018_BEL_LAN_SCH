@@ -1,6 +1,6 @@
 package controller;
 
-import model.Bateau;
+import main.Main;
 import textureFactory.*;
 import view.VueJeu;
 
@@ -37,5 +37,6 @@ public class EpoqueChooser implements ActionListener {
                 se=null;
         }
         vj.ajouterBateaux(se.generateFleet(),se.generateFleet());
+		Main.setEnabled(vj, true);
     }
 }
