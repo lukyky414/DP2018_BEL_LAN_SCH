@@ -32,11 +32,6 @@ public class Jeu extends Observable {
     }
 
 
-
-    public void tirIA() {
-
-    }
-
     public void checkerConditionVictoireDefaite() {
         ArrayList<Bateau> bateaux = terrainJ1.getBateaux();
         boolean aPerdu = true;
