@@ -2,6 +2,7 @@ package view;
 
 import controller.TirerListener;
 import model.Bateau;
+import model.Jeu;
 import model.Terrain;
 import textureFactory.SingletonEpoque;
 
@@ -43,8 +44,15 @@ public class VueJeu extends JPanel implements Observer  {
         this.epoque=se;
         ArrayList<Bateau> bateauJoueur=this.epoque.generateFleet();
         ArrayList<Bateau> bateauAdvesaire=this.epoque.generateFleet();
+
         this.terrainJoueur=new Terrain();
         this.terrainAdversaire=new Terrain();
+
+        Jeu jeu=Jeu.getInstance();
+
+        jeu.setTerrainJ1(terrainJoueur);
+        jeu.setTerrainJ2(terrainAdversaire);
+
         this.vueGrilleJoueur.effacerGrille();
         this.vueGrilleAdversaire.effacerGrille();
 
@@ -59,5 +67,15 @@ public class VueJeu extends JPanel implements Observer  {
         TirerListener tl=new TirerListener(vueGrilleJoueur,vueGrilleAdversaire,terrainJoueur,terrainAdversaire);
         vueGrilleJoueur.ajouterTirerListener(tl);
         vueGrilleAdversaire.ajouterTirerListener(tl);
+    }
+
+    //
+    public static void setEnabled(Component component, boolean enabled) {
+        component.setEnabled(enabled);
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                setEnabled(child, enabled);
+            }
+        }
     }
 }

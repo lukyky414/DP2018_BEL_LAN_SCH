@@ -3,6 +3,7 @@ package controller;
 import main.Main;
 import textureFactory.*;
 import view.VueJeu;
+import view.VueMenuBar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +11,11 @@ import java.awt.event.ActionListener;
 public class EpoqueChooser implements ActionListener {
 
     private VueJeu vj;
+    private VueMenuBar vmb;
 
-    public EpoqueChooser(VueJeu vj) {
+    public EpoqueChooser(VueJeu vj, VueMenuBar vmb) {
         this.vj = vj;
+        this.vmb=vmb;
     }
 
     @Override
@@ -36,7 +39,9 @@ public class EpoqueChooser implements ActionListener {
             default:
                 se=null;
         }
+
+        vmb.peutSauvegarder(true);
         vj.ajouterBateauxEtEpoque(se);
-		Main.setEnabled(vj, true);
+        VueJeu.setEnabled(vj, true);
     }
 }

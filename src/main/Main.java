@@ -1,6 +1,7 @@
 package main;
 
 import model.Bateau;
+import model.Jeu;
 import model.Terrain;
 import textureFactory.SingletonEpoque;
 import view.VueJeu;
@@ -26,26 +27,22 @@ public class Main {
         //Null pour l'instant
         Terrain terrain=new Terrain();
         Terrain terrain2=new Terrain();
-        /*JPanel jp=new JPanel();
-        jp.setLayout(new GridLayout(1,3));
-        jp.add(new JLabel(SingletonMedieval.getInstance().getPresentationEpoque()));
-        jp.add(new JLabel(SingletonContemporain.getInstance().getPresentationEpoque()));
-        jp.add(new JLabel(SingletonFutur.getInstance().getPresentationEpoque()));
-        jp.add(new JLabel(SingletonStarWars.getInstance().getPresentationEpoque()));
 
-        JScrollPane jsp=new JScrollPane(jp);
+        Jeu jeu=Jeu.getInstance();
 
-        jf.add(jsp);*/
-
+        jeu.setTerrainJ1(terrain);
+        jeu.setTerrainJ2(terrain);
 
         VueJeu vj=new VueJeu(terrain, terrain2, 10);
         VueMenuBar vmb=new VueMenuBar(jf,vj);
         jf.setJMenuBar(vmb);
         jf.add(vj);
 
+        VueJeu.setEnabled(vj,false);
+
         jf.pack();
         jf.setVisible(true);
-        setEnabled(vj,false);
+
         /*
         Disposition d=new Disposition(10);
         Bateau b= new Bateau(null,2,null);
@@ -55,12 +52,5 @@ public class Main {
         System.out.println(d.peutEtrePlace(c));*/
     }
 
-	public static void setEnabled(Component component, boolean enabled) {
-		component.setEnabled(enabled);
-		if (component instanceof Container) {
-			for (Component child : ((Container) component).getComponents()) {
-				setEnabled(child, enabled);
-			}
-		}
-	}
+
 }

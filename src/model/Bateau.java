@@ -149,7 +149,13 @@ public class Bateau {
 		this.position = position;
 	}
 
-	public void setPv(int p){this.pv = p;}
+	public void setPv(int p){
+		if (p >= this.taille) {
+			this.pv = this.taille;
+		} else {
+			this.pv = p;
+		}
+	}
 
 	public void setMunitions(int mun){this.munitions = mun;}
 

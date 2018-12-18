@@ -1,5 +1,6 @@
 package view;
 
+import controller.EnregistrerChargerListener;
 import controller.EpoqueChooser;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ public class VueMenuBar extends JMenuBar {
 
     private JFrame fenetre;
     private EpoqueChooser epoqueChooser;
+    private EnregistrerChargerListener enregistrerChargerListener;
 
     private JMenu menuFichier;
         private JMenu menuDemarrer;
@@ -23,7 +25,9 @@ public class VueMenuBar extends JMenuBar {
 
     public VueMenuBar(JFrame fenetre, VueJeu vj) {
         this.fenetre=fenetre;
-        this.epoqueChooser=new EpoqueChooser(vj);
+        this.epoqueChooser=new EpoqueChooser(vj,this);
+        this.enregistrerChargerListener=new EnregistrerChargerListener(fenetre,vj);
+
         menuFichier=new JMenu("Fichier");
             menuDemarrer=new JMenu("Démarrer");
                 menuItemContemporain=new JMenuItem("1-Epoque contemporaine");
@@ -45,6 +49,8 @@ public class VueMenuBar extends JMenuBar {
         menuItemFutur.addActionListener(this.epoqueChooser);
         menuItemMedieval.addActionListener(this.epoqueChooser);
         menuItemStarWars.addActionListener(this.epoqueChooser);
+        menuItemSauvegarder.addActionListener(this.enregistrerChargerListener);
+        menuItemCharger.addActionListener(this.enregistrerChargerListener);
 
                     menuDemarrer.add(menuItemContemporain);
                     menuDemarrer.add(menuItemFutur);
@@ -55,8 +61,12 @@ public class VueMenuBar extends JMenuBar {
             menuFichier.add(menuItemCharger);
             menuFichier.add(menuItemQuitter);
 
-        //menuItemSauvegarder.setEnabled(false);
+        peutSauvegarder(false);
         this.add(menuFichier);
+    }
+
+    public void peutSauvegarder(boolean enable) {
+        menuItemSauvegarder.setEnabled(enable);
     }
 
 }
