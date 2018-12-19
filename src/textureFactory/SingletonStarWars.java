@@ -102,7 +102,7 @@ public class SingletonStarWars extends SingletonEpoque {
 		tmp.add(new Point(2,0));
 		tmp.add(new Point(-1,0));
 		tmp.add(new Point(-2,0));
-        list.add(new Bateau(this,1, 1, 1, 1,tmp));
+        list.add(new Bateau(this,1, 1, 2, 1,tmp));
 
 
         /*
@@ -141,9 +141,44 @@ public class SingletonStarWars extends SingletonEpoque {
 		tmp.add(new Point(-1,0));
 		tmp.add(new Point(-2,0));
 		tmp.add(new Point(-3,0));
-        list.add(new Bateau(this,2, 1, 2, 1,tmp));
+        list.add(new Bateau(this,2, 1, 1, 1,tmp));
 
+
+        /*
+        *  xxxxx
+        * x     x
+        * x x x x
+        * x  o  x
+        *  x   x
+        *   xxx
+        * */
 		tmp = new ArrayList<>();
+		tmp.add(new Point(-3,-2));
+		tmp.add(new Point(-3,-1));
+		tmp.add(new Point(-3,0));
+		tmp.add(new Point(-3,1));
+		tmp.add(new Point(-3,2));
+
+		tmp.add(new Point(-2, -3));
+		tmp.add(new Point(-2,3));
+
+		tmp.add(new Point(-1,-3));
+		tmp.add(new Point(-1,-1));
+		tmp.add(new Point(-1,1));
+		tmp.add(new Point(-1,3));
+
+		tmp.add(new Point(0,-3));
+		tmp.add(new Point(0,3));
+
+		tmp.add(new Point(1,-3));
+		tmp.add(new Point(1,3));
+
+		tmp.add(new Point(2,-2));
+		tmp.add(new Point(2,2));
+
+		tmp.add(new Point(3,-1));
+		tmp.add(new Point(3,0));
+		tmp.add(new Point(3,1));
         list.add(new Bateau(this,3, 2, 1, 2,tmp));
 
 
