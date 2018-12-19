@@ -6,12 +6,11 @@ import java.util.Random;
 
 public class IA {
 
-    private ArrayList<Bateau> bateaux;
+
     private int difficulte;
     private Terrain terrain;
 
     public IA(int diff, Terrain terr){
-        bateaux = new ArrayList<Bateau>();
         terrain = terr;
         difficulte = diff;
     }
@@ -25,9 +24,9 @@ public class IA {
      * et une nouvelle pos
      */
     public void placerBateaux(){
-        bateaux = Jeu.getInstance().getEpoque().generateFleet();
+        ArrayList<Bateau> bateaux = Jeu.getInstance().getEpoque().generateFleet();
         Point p = new Point(1,1);
-        Coup c = new Coup(p,bateaux.get(0));
+        Coup c = new Coup(p, bateaux.get(0));
         Random r = new Random();
         for(Bateau b : bateaux){
             c.setBateau(b);
@@ -37,8 +36,7 @@ public class IA {
                p.y = r.nextInt(10);
                c.getBateau().setPosition(p);
            }while(!terrain.getDisposition().peutEtrePlace(c));
-
-
+            terrain.placer(c);
         }
     }
 
