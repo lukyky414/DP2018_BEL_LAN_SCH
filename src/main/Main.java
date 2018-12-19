@@ -12,6 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
+	public static VueJeu vj;
 
     public static void main(String args[]) {
         //On utilise le rendu par défaut
@@ -33,7 +34,7 @@ public class Main {
         jeu.setTerrainJ1(terrain);
         jeu.setTerrainJ2(terrain);
 
-        VueJeu vj=new VueJeu(terrain, terrain2, 10);
+        vj=new VueJeu(terrain, terrain2, 10);
         VueMenuBar vmb=new VueMenuBar(jf,vj);
         jf.setJMenuBar(vmb);
         jf.add(vj);

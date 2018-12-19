@@ -11,6 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.nio.file.Paths;
 
 public class EnregistrerChargerListener implements ActionListener {
 
@@ -26,6 +27,7 @@ public class EnregistrerChargerListener implements ActionListener {
         this.chooser = new JFileChooser();
         this.chooser.setFileFilter(new FileNameExtensionFilter("XML File","xml"));
         this.chooser.setSelectedFile(new File("sauvegarde.xml"));
+		this.chooser.setCurrentDirectory(Paths.get("res/sav/").toAbsolutePath().toFile());
         this.xmlDao = new XmlDAO();
     }
 
@@ -45,6 +47,7 @@ public class EnregistrerChargerListener implements ActionListener {
 
     private void enregistrer() {
         File f=selectFile(false);
+
         if (f != null) {
             this.xmlDao.save(f.getPath());
         }
@@ -60,6 +63,8 @@ public class EnregistrerChargerListener implements ActionListener {
             }
         }
         VueJeu.setEnabled(vj,true);
+        vj.update(null,null);
+        vj.ajouterTirerListener();
     }
 
     public File selectFile(boolean load) {

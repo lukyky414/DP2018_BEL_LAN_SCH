@@ -1,5 +1,6 @@
 package dao;
 
+import main.Main;
 import model.Bateau;
 import model.Coup;
 import model.Jeu;
@@ -179,11 +180,14 @@ public class XmlDAO implements DAO {
 					//System.out.println(b);
 				//}
 
-				if(i ==0)
-					game.setTerrainJ1(terrain);
-				else
-					game.setTerrainJ2(terrain);
+				if(i ==0) {
+					game.getTerrainJ1().resetTerrain(terrain);
+				}
+				else {
+					game.getTerrainJ2().resetTerrain(terrain);
+				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WrongSaveException(e.getMessage());

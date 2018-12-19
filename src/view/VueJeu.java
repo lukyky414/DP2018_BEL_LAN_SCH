@@ -38,6 +38,8 @@ public class VueJeu extends JPanel implements Observer  {
     @Override
     public void update(Observable o, Object arg) {
         //Utilise Terrain pour mettre à jour les autres infos
+		vueGrilleJoueur.update(o,arg);
+		vueGrilleAdversaire.update(o,arg);
     }
 
     public void ajouterBateauxEtEpoque(SingletonEpoque se) {

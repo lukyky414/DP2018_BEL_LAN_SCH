@@ -19,6 +19,12 @@ public class Terrain extends Observable {
         this.bateaux = new ArrayList<Bateau>();
     }
 
+    public void resetTerrain(Terrain t){
+    	this.disposition = t.disposition;
+    	this.champTir = t.champTir;
+    	this.bateaux = t.bateaux;
+	}
+
 
     public void ajouterBateau(Bateau b) {
         this.bateaux.add(b);
