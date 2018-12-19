@@ -18,6 +18,7 @@ public abstract class VueGrille extends JPanel implements Observer {
     protected VueJeu vj;
 
     protected ArrayList<Bateau> listeBateaux;
+    protected Bateau bateauSelectionne;
     protected Terrain terrain;
 
     protected int size;
@@ -26,6 +27,11 @@ public abstract class VueGrille extends JPanel implements Observer {
     protected JButton[] buttonBateau;
     protected JPanel panelGrille;
     protected JPanel panelBoutonsBateaux;
+    protected JPanel panelInfo;
+
+    protected JTextField jtVie;
+    protected JTextField jtMunition;
+
     protected JButton[] tableauBoutonsBateaux;
 
     protected PlacementListener placementListener;
@@ -35,13 +41,17 @@ public abstract class VueGrille extends JPanel implements Observer {
     public static final Color green=new Color(0, 255, 0,50);
     public static final Color empty=new Color(0,0,0,0);
     private static final Color blue=new Color(18, 21, 255,50);
+    private final Font FONT = new JLabel().getFont();
 
     public VueGrille(VueJeu vj, Terrain t, int s, int tailleBoutons) {
         this.vj=vj;
         this.listeBateaux=null;
+        this.bateauSelectionne=null;
         this.tableauBoutonsBateaux=new JButton[5];
         this.panelGrille=new JPanel();
         this.panelBoutonsBateaux=new JPanel();
+        this.panelInfo=new JPanel();
+
         this.tailleBouton=tailleBoutons;
         this.terrain = t;
         if (this.terrain != null) {
@@ -77,13 +87,53 @@ public abstract class VueGrille extends JPanel implements Observer {
         }
 
         Dimension espaceBoutons=new Dimension(0,10);
+        Dimension espaceInfos=new Dimension(100,0);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         panelBoutonsBateaux.setLayout(new BoxLayout(panelBoutonsBateaux,BoxLayout.X_AXIS));
+        panelInfo.setLayout(new BoxLayout(panelInfo,BoxLayout.X_AXIS));
+
+
+        Font fontInfos=new Font(FONT.getName(), Font.PLAIN, 25);
+
+        this.jtVie = new JTextField("");
+        this.jtVie.setEditable(false);
+        this.jtVie.setFont(fontInfos);
+
+        JLabel labelVie=new JLabel("Vie ");
+        labelVie.setFont(fontInfos);
+        labelVie.setLabelFor(jtVie);
+
+        this.jtMunition = new JTextField("");
+        this.jtMunition.setEditable(false);
+        this.jtMunition.setFont(fontInfos);
+
+        JLabel labelMunition=new JLabel("Munitions ");
+        labelMunition.setFont(fontInfos);
+        labelVie.setLabelFor(jtMunition);
+
+        panelInfo.add(Box.createRigidArea(espaceInfos));
+        panelInfo.add(labelVie);
+        panelInfo.add(jtVie);
+        panelInfo.add(Box.createRigidArea(espaceInfos));
+        panelInfo.add(labelMunition);
+        panelInfo.add(jtMunition);
+        panelInfo.add(Box.createRigidArea(espaceInfos));
+
         ajoutertBoutons();
         this.add(Box.createRigidArea(espaceBoutons));
         this.add(panelBoutonsBateaux);
         this.add(Box.createRigidArea(espaceBoutons));
         this.add(panelGrille);
+        this.add(Box.createRigidArea(espaceBoutons));
+        this.add(panelInfo);
+    }
+
+    public JTextField getJtVie() {
+        return jtVie;
+    }
+
+    public JTextField getJtMunition() {
+        return jtMunition;
     }
 
     public ArrayList<Bateau> getListeBateaux() {
@@ -183,6 +233,14 @@ public abstract class VueGrille extends JPanel implements Observer {
                 grid[i][j].addMouseListener(tl);
             }
         }
+    }
+
+    public void setBateauSelectionne(Bateau bateauSelectionne) {
+        this.bateauSelectionne = bateauSelectionne;
+    }
+
+    public Bateau getBateauSelectionne() {
+        return bateauSelectionne;
     }
 
     public void effacerGrille() {
@@ -482,5 +540,4 @@ public abstract class VueGrille extends JPanel implements Observer {
             }
         }
     }
-
 }

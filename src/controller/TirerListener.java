@@ -7,6 +7,7 @@ import model.Terrain;
 import view.CustomJButton;
 import view.VueGrille;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ public class TirerListener implements MouseListener {
     private VueGrille vueGrilleAdverse;
 
     private ArrayList<Bateau> listeBateauxJoueur;
-    private Bateau bateauSelectionne;
 
     private Coup coup;
     private int x;
@@ -34,17 +34,13 @@ public class TirerListener implements MouseListener {
         this.terrainJoueur=terrainJoueur;
         this.terrainAdverse=terrainAdverse;
         this.listeBateauxJoueur=terrainJoueur.getBateaux();
-        this.bateauSelectionne = listeBateauxJoueur.get(0);
+        vueGrilleJoueur.setBateauSelectionne(listeBateauxJoueur.get(0));
         this.x=0;
         this.y=0;
-        this.coup = new Coup(new Point(0,0), bateauSelectionne);
-        vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
+        this.coup = new Coup(new Point(0,0), vueGrilleJoueur.getBateauSelectionne());
+        vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(vueGrilleJoueur.getBateauSelectionne(),Color.yellow);
     }
 
-    public void setBateauEnCours(Bateau bateauEnCours) {
-        this.bateauSelectionne = bateauEnCours;
-        this.coup.setBateau(bateauEnCours);
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -61,7 +57,7 @@ public class TirerListener implements MouseListener {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
-            if (bateauSelectionne == null) {
+            if (vueGrilleJoueur.getBateauSelectionne() == null) {
                 return;
             } else {
                 if (terrainAdverse.verificationTirer(this.coup)) {
@@ -73,13 +69,18 @@ public class TirerListener implements MouseListener {
             Disposition dispoJoueur=terrainJoueur.getDisposition();
             Bateau bateauclique=dispoJoueur.get(this.coup.getPos());
             if (bateauclique != null) {
-                if (bateauSelectionne != null) {
-                    vueGrilleJoueur.nettoyerBordJButtonBateauDansUneDirection(bateauSelectionne);
+                if (vueGrilleJoueur.getBateauSelectionne() != null) {
+                    vueGrilleJoueur.nettoyerBordJButtonBateauDansUneDirection(vueGrilleJoueur.getBateauSelectionne());
                 }
                 //System.out.println("SELECTION");
-                bateauSelectionne=bateauclique;
-                this.coup.setBateau(bateauSelectionne);
-                vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
+                vueGrilleJoueur.setBateauSelectionne(bateauclique);
+                this.coup.setBateau(vueGrilleJoueur.getBateauSelectionne());
+                vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(vueGrilleJoueur.getBateauSelectionne(),Color.yellow);
+                Bateau b=this.vueGrilleJoueur.getBateauSelectionne();
+                if (b != null) {
+                    vueGrilleJoueur.getJtVie().setText(""+b.getPv());
+                    vueGrilleJoueur.getJtMunition().setText(""+b.getMunitions());
+                }
             }
         }
     }
@@ -89,13 +90,13 @@ public class TirerListener implements MouseListener {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
-            if (bateauSelectionne == null) {
+            if (vueGrilleJoueur.getBateauSelectionne() == null) {
                 return;
             } else {
                 if (terrainAdverse.verificationTirer(this.coup)) {
-                    vueGrilleAdverse.afficherCouleurTirJButton(this.x,this.y,VueGrille.green,bateauSelectionne,true);
+                    vueGrilleAdverse.afficherCouleurTirJButton(this.x,this.y,VueGrille.green,vueGrilleJoueur.getBateauSelectionne(),true);
                 } else {
-                    vueGrilleAdverse.afficherCouleurTirJButton(this.x,this.y,VueGrille.red,bateauSelectionne,true);
+                    vueGrilleAdverse.afficherCouleurTirJButton(this.x,this.y,VueGrille.red,vueGrilleJoueur.getBateauSelectionne(),true);
                 }
             }
         }
@@ -106,10 +107,10 @@ public class TirerListener implements MouseListener {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
-            if (bateauSelectionne == null) {
+            if (vueGrilleJoueur.getBateauSelectionne() == null) {
                 return;
             } else {
-                vueGrilleAdverse.resetCouleurTirJButton(this.x,this.y,bateauSelectionne,true);
+                vueGrilleAdverse.resetCouleurTirJButton(this.x,this.y,vueGrilleJoueur.getBateauSelectionne(),true);
             }
         }
     }
