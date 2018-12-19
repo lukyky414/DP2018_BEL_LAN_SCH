@@ -69,7 +69,7 @@ public class VueJeu extends JPanel implements Observer  {
         if (this.terrainAdversaire != null) {
             this.terrainAdversaire.deleteObservers();
         }
-        
+
         this.epoque=se;
         ArrayList<Bateau> bateauJoueur=this.epoque.generateFleet();
         ArrayList<Bateau> bateauAdvesaire=this.epoque.generateFleet();
