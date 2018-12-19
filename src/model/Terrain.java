@@ -110,7 +110,6 @@ public class Terrain extends Observable {
 		} else {
 			if (!champTir.estTouche(c.getPos())) {
 				this.tirer(c.getPos());
-				b.utiliserMunition();
 			}
 
 			ArrayList<Point>alp=b.getZoneSup();
@@ -123,6 +122,7 @@ public class Terrain extends Observable {
                     notifyObservers();
 				}
 			}
+			b.utiliserMunition();
 			return true;
 		}
 	}
