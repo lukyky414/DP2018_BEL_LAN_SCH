@@ -92,7 +92,6 @@ public class Disposition {
                     }
             }
             b.setPosition(new Point(c.getPos()));
-            this.terrain.ajouterBateau(b);
             return true;
         } else {
             return false;
