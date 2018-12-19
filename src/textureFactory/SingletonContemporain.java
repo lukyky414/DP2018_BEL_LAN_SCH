@@ -5,6 +5,7 @@ package textureFactory;
 import model.Bateau;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -72,12 +73,38 @@ public class SingletonContemporain extends SingletonEpoque {
 
 	@Override
 	public ArrayList<Bateau> generateFleet() {
+		ArrayList<Point> zone1= new ArrayList<Point>();
+		zone1.add(new Point(0,-1));
+		zone1.add(new Point(1,0));
+
+		ArrayList<Point> zone2= new ArrayList<Point>();
+		zone2.add(new Point(0,-1));
+		zone2.add(new Point(0,1));
+		zone2	.add(new Point(0,2));
+
+		ArrayList<Point> zone3= new ArrayList<Point>();
+		zone3.add(new Point(1,0));
+		zone3.add(new Point(2,0));
+		zone3.add(new Point(3,0));
+
+		zone3.add(new Point(0,1));
+		zone3.add(new Point(0,2));
+		zone3.add(new Point(0,3));
+
+		zone3.add(new Point(0,-1));
+		zone3.add(new Point(0,-2));
+		zone3.add(new Point(0,-3));
+
+		zone3.add(new Point(0,-1));
+		zone3.add(new Point(0,1));
+		zone3.add(new Point(0,2));
+
 		ArrayList<Bateau> list = new ArrayList<>();
-		list.add(new Bateau(this,0, , , 2,null));
-		list.add(new Bateau(this,1, , , 3,null));
-		list.add(new Bateau(this,2, , , 3,null));
-		list.add(new Bateau(this,3, , , 4,null));
-		list.add(new Bateau(this,4, , , 5,null));
+		list.add(new Bateau(this,0, 1, 100, 2,null));
+		list.add(new Bateau(this,1, 2, 100, 3,null));
+		list.add(new Bateau(this,2, 3, 5, 3,zone1));
+		list.add(new Bateau(this,3, 4, 4, 4,zone2));
+		list.add(new Bateau(this,4, 5, 1, 5,zone3));
 		return list;
 	}
 
