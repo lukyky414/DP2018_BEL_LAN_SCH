@@ -38,7 +38,7 @@ public class XmlDAO implements DAO {
 			epoque.appendChild(document.createTextNode(jeu.getEpoque().toString()));
 
 			for(int i = 0; i < 2; i++){
-				final Element joueur = document.createElement("joueur");
+				final Element joueur = document.createElement("joueur"+(i+1));
 				racine.appendChild(joueur);
 
 				final Element terrain = document.createElement("terrain");
@@ -116,7 +116,6 @@ public class XmlDAO implements DAO {
 			String NomEpoque = racine.getElementsByTagName("epoque").item(0).getTextContent();
 			final SingletonEpoque epoque = getEpoque(NomEpoque);
 
-			final NodeList NodeJoueurs = racine.getElementsByTagName("joueur");
 
 			//System.out.println(NomEpoque + "=" + epoque.toString());
 
@@ -126,7 +125,7 @@ public class XmlDAO implements DAO {
 			for(int i = 0; i < 2; i++){
 				//System.out.println(System.getProperty("line.separator") + "TERRAIN:");
 				//System.out.println("fichier:");
-				final Element ElementJoueur = (Element) NodeJoueurs.item(i);
+				final Element ElementJoueur = (Element) racine.getElementsByTagName("joueur"+(i+1)).item(i);
 
 				String champ = ElementJoueur.getElementsByTagName("terrain").item(0).getTextContent();
 				//System.out.println(champ);
@@ -154,7 +153,7 @@ public class XmlDAO implements DAO {
 
 					Bateau bateau = transformBateau(bateaux, id, mun, posX, posY, dir);
 
-					//System.out.println(bateau);
+					System.out.println(bateau);
 					Coup c = new Coup(new Point(posX, posY), bateau);
 					if(!terrain.verificationPlacer(c))
 						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
@@ -181,10 +180,10 @@ public class XmlDAO implements DAO {
 				//}
 
 				if(i ==0) {
-					game.getTerrainJ1().resetTerrain(terrain);
+					game.setTerrainJ1(terrain);
 				}
 				else {
-					game.getTerrainJ2().resetTerrain(terrain);
+					game.setTerrainJ2(terrain);
 				}
 			}
 

@@ -63,7 +63,7 @@ public class EnregistrerChargerListener implements ActionListener {
             }
         }
         VueJeu.setEnabled(vj,true);
-        vj.update(null,null);
+        vj.update();
         vj.ajouterTirerListener();
     }
 

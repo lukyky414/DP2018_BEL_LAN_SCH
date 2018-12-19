@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <jeu>
     <epoque>Contemporaine</epoque>
-    <joueur>
-        <terrain>1000000000
-0100000000
-0010000000
-0001000000
-0000100000
+    <joueur1>
+        <terrain>0000000000
+0000000000
+0000000000
+0000000000
+0000000000
 0000000000
 0000000000
 0000000000
@@ -26,7 +26,7 @@
                 <id>1</id>
                 <munitions>10</munitions>
                 <position>
-                    <x>1</x>
+                    <x>5</x>
                     <y>1</y>
                 </position>
                 <direction>1</direction>
@@ -59,8 +59,8 @@
                 <direction>1</direction>
             </bateau>
         </bateaux>
-    </joueur>
-    <joueur>
+    </joueur1>
+    <joueur2>
         <terrain>0000000000
 0000000000
 0000000000
@@ -118,5 +118,5 @@
                 <direction>1</direction>
             </bateau>
         </bateaux>
-    </joueur>
+    </joueur2>
 </jeu>
