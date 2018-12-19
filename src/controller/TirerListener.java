@@ -38,7 +38,9 @@ public class TirerListener implements MouseListener {
         this.x=0;
         this.y=0;
         this.coup = new Coup(new Point(0,0), vueGrilleJoueur.getBateauSelectionne());
-        vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(vueGrilleJoueur.getBateauSelectionne(),Color.yellow);
+        Bateau bateauSelectionne=vueGrilleJoueur.getBateauSelectionne();
+        vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
+        updateInfos(bateauSelectionne);
     }
 
 
@@ -57,11 +59,13 @@ public class TirerListener implements MouseListener {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
-            if (vueGrilleJoueur.getBateauSelectionne() == null) {
+            Bateau bateauSelectionne=vueGrilleJoueur.getBateauSelectionne();
+            if (bateauSelectionne == null) {
                 return;
             } else {
                 if (terrainAdverse.verificationTirer(this.coup)) {
                     terrainAdverse.tirer(this.coup);
+                    updateInfos(bateauSelectionne);
                 }
             }
             //Si on clique sur notre grille
@@ -77,10 +81,7 @@ public class TirerListener implements MouseListener {
                 this.coup.setBateau(vueGrilleJoueur.getBateauSelectionne());
                 vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(vueGrilleJoueur.getBateauSelectionne(),Color.yellow);
                 Bateau b=this.vueGrilleJoueur.getBateauSelectionne();
-                if (b != null) {
-                    vueGrilleJoueur.getJtVie().setText(""+b.getPv());
-                    vueGrilleJoueur.getJtMunition().setText(""+b.getMunitions());
-                }
+                updateInfos(b);
             }
         }
     }
@@ -126,5 +127,12 @@ public class TirerListener implements MouseListener {
         this.x=button.getSpecialX();
         this.y=button.getSpecialY();
         this.coup.setXY(x-1,y-1);
+    }
+
+    private void updateInfos(Bateau bateauselectionne) {
+        if (bateauselectionne != null) {
+            vueGrilleJoueur.getJtVie().setText(""+bateauselectionne.getPv());
+            vueGrilleJoueur.getJtMunition().setText(""+bateauselectionne.getMunitions());
+        }
     }
 }
