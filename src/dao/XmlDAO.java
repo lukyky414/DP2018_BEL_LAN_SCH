@@ -125,7 +125,7 @@ public class XmlDAO implements DAO {
 			for(int i = 0; i < 2; i++){
 				//System.out.println(System.getProperty("line.separator") + "TERRAIN:");
 				//System.out.println("fichier:");
-				final Element ElementJoueur = (Element) racine.getElementsByTagName("joueur"+(i+1)).item(i);
+				final Element ElementJoueur = (Element) racine.getElementsByTagName("joueur"+(i+1)).item(0);
 
 				String champ = ElementJoueur.getElementsByTagName("terrain").item(0).getTextContent();
 				//System.out.println(champ);
