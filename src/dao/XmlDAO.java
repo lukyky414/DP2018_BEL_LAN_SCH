@@ -142,7 +142,7 @@ public class XmlDAO implements DAO {
 					final Element ElementBateau = (Element) NodeBateaux.item(j);
 
 					int id = Integer.valueOf(ElementBateau.getElementsByTagName("id").item(0).getTextContent());
-					int mun = Integer.valueOf(ElementBateau.getElementsByTagName("id").item(0).getTextContent());
+					int mun = Integer.valueOf(ElementBateau.getElementsByTagName("munitions").item(0).getTextContent());
 
 					final Element pos = (Element) ElementBateau.getElementsByTagName("position").item(0);
 
