@@ -5,7 +5,6 @@ import model.Bateau;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class SingletonStarWars extends SingletonEpoque {
@@ -65,11 +64,11 @@ public class SingletonStarWars extends SingletonEpoque {
     @Override
     public ArrayList<Bateau> generateFleet() {
         ArrayList<Bateau> list = new ArrayList<>();
-        list.add(new Bateau(this,0, , ,2,null));
-        list.add(new Bateau(this,1, , ,2,null));
-        list.add(new Bateau(this,2, , ,3,null));
-        list.add(new Bateau(this,3, , ,3,null));
-        list.add(new Bateau(this,4, , ,4,null));
+        list.add(new Bateau(this,0, , , 2,null));
+        list.add(new Bateau(this,1, , , 2,null));
+        list.add(new Bateau(this,2, , , 3,null));
+        list.add(new Bateau(this,3, , , 3,null));
+        list.add(new Bateau(this,4, , , 4,null));
         return list;
     }
 

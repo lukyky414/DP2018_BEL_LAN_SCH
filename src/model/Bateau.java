@@ -25,7 +25,7 @@ public class Bateau {
 	private int taille;
 	private List<Point> zoneSup;
 
-    public Bateau(SingletonEpoque epoque, int id, int munitions, int vie, int taille, List<Point> zoneSup) {
+    public Bateau(SingletonEpoque epoque, int id, int vie, int munitions, int taille, List<Point> zoneSup) {
     	this.id = id;
     	this.direction=Bateau.DROITE;
     	this.factory = epoque;
@@ -37,7 +37,7 @@ public class Bateau {
 		}
     	//TODO MUNITION & VIE DANS LE CONSTRUCTEUR
     	this.munitions = munitions;
-    	this.pv = vie;
+    	setPv(vie);
 	}
 
 	//###############
