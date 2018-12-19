@@ -64,10 +64,10 @@ public class SingletonMedieval extends SingletonEpoque {
 		list.add(new Bateau(this,2, 2, 100, 3,null));
 
 		// xox
-		java.util.List<Point> tmp = new ArrayList<>();
+		ArrayList<Point> tmp = new ArrayList<>();
 		tmp.add(new Point(0,1));
 		tmp.add(new Point(0,-1));
-		list.add(new Bateau(this,3, 3, 5, 3,null));
+		list.add(new Bateau(this,3, 3, 5, 3,tmp));
 
 		// xx o xx
 		tmp = new ArrayList<>();
@@ -75,7 +75,7 @@ public class SingletonMedieval extends SingletonEpoque {
 		tmp.add(new Point(0,-2));
 		tmp.add(new Point(0,3));
 		tmp.add(new Point(0,-3));
-		list.add(new Bateau(this,4, 4, 3, 4,null));
+		list.add(new Bateau(this,4, 4, 3, 4,tmp));
 
 		return list;
 	}

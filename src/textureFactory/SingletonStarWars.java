@@ -3,6 +3,7 @@ package textureFactory;
 import model.Bateau;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -64,11 +65,22 @@ public class SingletonStarWars extends SingletonEpoque {
     @Override
     public ArrayList<Bateau> generateFleet() {
         ArrayList<Bateau> list = new ArrayList<>();
-        list.add(new Bateau(this,0, , , 2,null));
-        list.add(new Bateau(this,1, , , 2,null));
-        list.add(new Bateau(this,2, , , 3,null));
-        list.add(new Bateau(this,3, , , 3,null));
-        list.add(new Bateau(this,4, , , 4,null));
+		ArrayList<Point> tmp;
+
+		tmp = new ArrayList<>();
+        list.add(new Bateau(this,0, 1, 2, 1,tmp));
+
+		tmp = new ArrayList<>();
+        list.add(new Bateau(this,1, 1, 1, 1,tmp));
+
+		tmp = new ArrayList<>();
+        list.add(new Bateau(this,2, 1, 2, 1,tmp));
+
+		tmp = new ArrayList<>();
+        list.add(new Bateau(this,3, 2, 1, 2,tmp));
+
+		tmp = new ArrayList<>();
+        list.add(new Bateau(this,4, 3, 1, 3,tmp));
         return list;
     }
 
