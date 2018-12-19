@@ -27,37 +27,31 @@ public class SingletonStarWars extends SingletonEpoque {
         this.textures = new HashMap<Integer, ArrayList<ImageIcon>>();
 
         ArrayList<ImageIcon> list_icon= new ArrayList<ImageIcon>();
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T2-1.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T2-2.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"millenium.png"))),SingletonEpoque.TAILLE));
 
         this.textures.put(0,list_icon);
 
         list_icon= new ArrayList<ImageIcon>();
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau 2T2-1.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau 2T2-2.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"tie.png"))),SingletonEpoque.TAILLE));
 
         this.textures.put(1,list_icon);
 
         list_icon= new ArrayList<ImageIcon>();
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T3-1.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T3-2.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T3-3.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"death_star.png"))),SingletonEpoque.TAILLE));
 
         this.textures.put(2,list_icon);
 
         list_icon= new ArrayList<ImageIcon>();
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau 2T3-1.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau 2T3-2.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau 2T3-3.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"x_wing_1.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"x_wing_2.png"))),SingletonEpoque.TAILLE));
 
 
         this.textures.put(3,list_icon);
 
         list_icon= new ArrayList<ImageIcon>();
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T4-1.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T4-2.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T4-3.png"))),SingletonEpoque.TAILLE));
-        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"Bateau T4-4.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"destroyer_1.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"destroyer_2.png"))),SingletonEpoque.TAILLE));
+        list_icon.add(SingletonEpoque.redimensionner((new ImageIcon(getClass().getResource(chemin+"destroyer_3.png"))),SingletonEpoque.TAILLE));
 
         this.textures.put(4,list_icon);
     }
