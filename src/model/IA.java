@@ -7,6 +7,9 @@ import java.util.Random;
 public class IA {
 
 
+    private static final int FACILE = 0;
+    private static final int NORMAL = 1;
+    private static final int HARDCORE = 2;
     private int difficulte;
     private Terrain terrain;
 
@@ -38,6 +41,32 @@ public class IA {
            }while(!terrain.getDisposition().peutEtrePlace(c));
             terrain.placer(c);
         }
+    }
+
+
+    public boolean tirerFacile(){
+        Random r = new Random();
+        Point p = new Point(r.nextInt(10), r.nextInt(10));
+        Coup c = new Coup(p,terrain.getBateaux().get(r.nextInt(5)));
+
+        while(!(terrain.tirer(c))){
+
+            //Si le bateau ne peut pas tirer, on change le bateau
+            if(!c.getBateau().peutTirer())
+                c.setBateau(terrain.getBateaux().get(r.nextInt(5)));
+            else{
+                //On change le point qu'on vise
+                p.x = r.nextInt(10);
+                p.y = r.nextInt(10);
+                c.setXY(p.x, p.y);
+            }
+
+         }
+        return true;
+    }
+
+    public boolean tirMoyen(){
+       return true;
     }
 
 }
