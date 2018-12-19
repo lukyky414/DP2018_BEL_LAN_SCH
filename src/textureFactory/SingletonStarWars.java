@@ -67,19 +67,106 @@ public class SingletonStarWars extends SingletonEpoque {
         ArrayList<Bateau> list = new ArrayList<>();
 		ArrayList<Point> tmp;
 
+		/*
+		* x   x
+		*  x x
+		*   o
+		*  x x
+		* x   x
+		*/
 		tmp = new ArrayList<>();
+		tmp.add(new Point(1,1));
+		tmp.add(new Point(2,2));
+		tmp.add(new Point(-1,-1));
+		tmp.add(new Point(-2,-2));
+		tmp.add(new Point(1,-1));
+		tmp.add(new Point(2,-2));
+		tmp.add(new Point(-1,1));
+		tmp.add(new Point(-2,2));
         list.add(new Bateau(this,0, 1, 2, 1,tmp));
 
+
+        /*
+        *   x
+        *   x
+        * xxoxx
+        *   x
+        *   x
+        */
 		tmp = new ArrayList<>();
+		tmp.add(new Point(0,1));
+		tmp.add(new Point(0,2));
+		tmp.add(new Point(0,-1));
+		tmp.add(new Point(0,-2));
+		tmp.add(new Point(1,0));
+		tmp.add(new Point(2,0));
+		tmp.add(new Point(-1,0));
+		tmp.add(new Point(-2,0));
         list.add(new Bateau(this,1, 1, 1, 1,tmp));
 
+
+        /*
+        * x  x  x
+        *  x x x
+        *   xxx
+        * xxxoxxx
+        *   xxx
+        *  x x x
+        * x  x  x
+        */
 		tmp = new ArrayList<>();
+		tmp.add(new Point(1,1));
+		tmp.add(new Point(2,2));
+		tmp.add(new Point(3,3));
+		tmp.add(new Point(-1,-1));
+		tmp.add(new Point(-2,-2));
+		tmp.add(new Point(-3,-3));
+		tmp.add(new Point(1,-1));
+		tmp.add(new Point(2,-2));
+		tmp.add(new Point(3,-3));
+		tmp.add(new Point(-1,1));
+		tmp.add(new Point(-2,2));
+		tmp.add(new Point(-3,3));
+
+
+		tmp.add(new Point(0,1));
+		tmp.add(new Point(0,2));
+		tmp.add(new Point(0,3));
+		tmp.add(new Point(0,-1));
+		tmp.add(new Point(0,-2));
+		tmp.add(new Point(0,-3));
+		tmp.add(new Point(1,0));
+		tmp.add(new Point(2,0));
+		tmp.add(new Point(3,0));
+		tmp.add(new Point(-1,0));
+		tmp.add(new Point(-2,0));
+		tmp.add(new Point(-3,0));
         list.add(new Bateau(this,2, 1, 2, 1,tmp));
 
 		tmp = new ArrayList<>();
         list.add(new Bateau(this,3, 2, 1, 2,tmp));
 
+
+        //xxxxxxxxxoxxxxxxxxx
 		tmp = new ArrayList<>();
+		tmp.add(new Point(0,1));
+		tmp.add(new Point(0,2));
+		tmp.add(new Point(0,3));
+		tmp.add(new Point(0,4));
+		tmp.add(new Point(0,5));
+		tmp.add(new Point(0,6));
+		tmp.add(new Point(0,7));
+		tmp.add(new Point(0,8));
+		tmp.add(new Point(0,9));
+		tmp.add(new Point(0,-1));
+		tmp.add(new Point(0,-2));
+		tmp.add(new Point(0,-3));
+		tmp.add(new Point(0,-4));
+		tmp.add(new Point(0,-5));
+		tmp.add(new Point(0,-6));
+		tmp.add(new Point(0,-7));
+		tmp.add(new Point(0,-8));
+		tmp.add(new Point(0,-9));
         list.add(new Bateau(this,4, 3, 1, 3,tmp));
         return list;
     }
