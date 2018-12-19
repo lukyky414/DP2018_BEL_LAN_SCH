@@ -80,7 +80,7 @@ public class SingletonContemporain extends SingletonEpoque {
 		ArrayList<Point> zone2= new ArrayList<Point>();
 		zone2.add(new Point(0,-1));
 		zone2.add(new Point(0,1));
-		zone2	.add(new Point(0,2));
+		zone2.add(new Point(0,2));
 
 		ArrayList<Point> zone3= new ArrayList<Point>();
 		zone3.add(new Point(1,0));
@@ -95,9 +95,9 @@ public class SingletonContemporain extends SingletonEpoque {
 		zone3.add(new Point(0,-2));
 		zone3.add(new Point(0,-3));
 
-		zone3.add(new Point(0,-1));
-		zone3.add(new Point(0,1));
-		zone3.add(new Point(0,2));
+		zone3.add(new Point(-1,0));
+		zone3.add(new Point(-2,0));
+		zone3.add(new Point(-3,0));
 
 		ArrayList<Bateau> list = new ArrayList<>();
 		list.add(new Bateau(this,0, 1, 100, 2,null));

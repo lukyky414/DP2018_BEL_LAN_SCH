@@ -73,8 +73,8 @@ public class SingletonFutur extends SingletonEpoque {
         ArrayList<Point> zone2= new ArrayList<Point>();
         zone2.add(new Point(0,1));
         zone2.add(new Point(1,0));
-        zone2.add(new Point(0,1));
-        zone2.add(new Point(1,1));
+        zone2.add(new Point(0,-1));
+        zone2.add(new Point(-1,0));
 
         ArrayList<Point> zone3= new ArrayList<Point>();
         zone3.add(new Point(0,-1));
