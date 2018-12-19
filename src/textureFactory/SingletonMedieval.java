@@ -60,13 +60,11 @@ public class SingletonMedieval extends SingletonEpoque {
 	public ArrayList<Bateau> generateFleet() {
 		ArrayList<Bateau> list = new ArrayList<>();
 
-		ArrayList<Point> testSpecial=new ArrayList<Point>();
-		testSpecial.add(new Point(0,1));
-		list.add(new Bateau(this,0, , ,1,testSpecial));
-		list.add(new Bateau(this,1, , ,2,null));
-		list.add(new Bateau(this,2, , ,3,null));
-		list.add(new Bateau(this,3, , ,3,null));
-		list.add(new Bateau(this,4, , ,4,null));
+		list.add(new Bateau(this,0, 1, 100,1, null));
+		list.add(new Bateau(this,1, 1, 100,2,null));
+		list.add(new Bateau(this,2, 2, 100,3,null));
+		list.add(new Bateau(this,3, 3, 100,3,null));
+		list.add(new Bateau(this,4, 4, 100,4,null));
 		return list;
 	}
 

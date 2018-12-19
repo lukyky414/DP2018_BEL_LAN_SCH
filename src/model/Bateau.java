@@ -6,6 +6,7 @@ import textureFactory.WrongEpoqueException;
 import javax.swing.*;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bateau {
 
@@ -22,9 +23,9 @@ public class Bateau {
 	private int direction;
 	private Point position;
 	private int taille;
-	private ArrayList<Point> zoneSup;
+	private List<Point> zoneSup;
 
-    public Bateau(SingletonEpoque epoque, int id, int munitions, int vie, int taille, ArrayList<Point> zoneSup) {
+    public Bateau(SingletonEpoque epoque, int id, int munitions, int vie, int taille, List<Point> zoneSup) {
     	this.id = id;
     	this.direction=Bateau.DROITE;
     	this.factory = epoque;
