@@ -41,6 +41,13 @@ public class VueJeu extends JPanel implements Observer  {
     }
 
     public void update(){
+        if (this.terrainJoueur != null) {
+            this.terrainJoueur.deleteObservers();
+        }
+        if (this.terrainAdversaire != null) {
+            this.terrainAdversaire.deleteObservers();
+        }
+
     	Jeu game = Jeu.getInstance();
     	this.terrainJoueur = game.getTerrainJ1();
     	this.terrainAdversaire = game.getTerrainJ2();
@@ -56,6 +63,13 @@ public class VueJeu extends JPanel implements Observer  {
 	}
 
     public void ajouterBateauxEtEpoque(SingletonEpoque se) {
+        if (this.terrainJoueur != null) {
+            this.terrainJoueur.deleteObservers();
+        }
+        if (this.terrainAdversaire != null) {
+            this.terrainAdversaire.deleteObservers();
+        }
+        
         this.epoque=se;
         ArrayList<Bateau> bateauJoueur=this.epoque.generateFleet();
         ArrayList<Bateau> bateauAdvesaire=this.epoque.generateFleet();
