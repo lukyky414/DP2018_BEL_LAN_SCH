@@ -3,6 +3,7 @@ package textureFactory;
 import model.Bateau;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -58,11 +59,24 @@ public class SingletonMedieval extends SingletonEpoque {
 	public ArrayList<Bateau> generateFleet() {
 		ArrayList<Bateau> list = new ArrayList<>();
 
-		list.add(new Bateau(this,0, 1, 100, 1, null));
-		list.add(new Bateau(this,1, 1, 100, 2,null));
+		list.add(new Bateau(this,0, 1, 30, 1,null));
+		list.add(new Bateau(this,1, 1, 50, 2,null));
 		list.add(new Bateau(this,2, 2, 100, 3,null));
-		list.add(new Bateau(this,3, 3, 100, 3,null));
-		list.add(new Bateau(this,4, 4, 100, 4,null));
+
+		// xox
+		java.util.List<Point> tmp = new ArrayList<>();
+		tmp.add(new Point(0,1));
+		tmp.add(new Point(0,-1));
+		list.add(new Bateau(this,3, 3, 5, 3,null));
+
+		// xx o xx
+		tmp = new ArrayList<>();
+		tmp.add(new Point(0,2));
+		tmp.add(new Point(0,-2));
+		tmp.add(new Point(0,3));
+		tmp.add(new Point(0,-3));
+		list.add(new Bateau(this,4, 4, 3, 4,null));
+
 		return list;
 	}
 

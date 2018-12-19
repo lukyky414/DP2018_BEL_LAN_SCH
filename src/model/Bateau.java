@@ -23,9 +23,9 @@ public class Bateau {
 	private int direction;
 	private Point position;
 	private int taille;
-	private List<Point> zoneSup;
+	private ArrayList<Point> zoneSup;
 
-    public Bateau(SingletonEpoque epoque, int id, int vie, int munitions, int taille, List<Point> zoneSup) {
+    public Bateau(SingletonEpoque epoque, int id, int vie, int munitions, int taille, ArrayList<Point> zoneSup) {
     	this.id = id;
     	this.direction=Bateau.DROITE;
     	this.factory = epoque;
