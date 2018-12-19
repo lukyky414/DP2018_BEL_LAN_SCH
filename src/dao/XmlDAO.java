@@ -43,9 +43,15 @@ public class XmlDAO implements DAO {
 				final Element terrain = document.createElement("terrain");
 				joueur.appendChild(terrain);
 
-				terrain.appendChild(document.createTextNode((i==0?jeu.getTerrainJ1() : jeu.getTerrainJ2()).getChampTir().toString()));
+				Terrain _terrain;
+				if(i==0)
+					_terrain = jeu.getTerrainJ1();
+				else
+					_terrain = jeu.getTerrainJ2();
+				
+				terrain.appendChild(document.createTextNode(_terrain.getChampTir().toString()));
 
-				for(Bateau b : (i==0?jeu.getTerrainJ1() : jeu.getTerrainJ2()).getBateaux()){
+				for(Bateau b : _terrain.getBateaux()){
 					final Element bateau = document.createElement("bateau");
 					joueur.appendChild(bateau);
 
@@ -148,8 +154,6 @@ public class XmlDAO implements DAO {
 					Bateau bateau = transformBateau(bateaux, id, mun, posX, posY, dir);
 
 					//System.out.println(bateau);
-
-					terrain.ajouterBateau(bateau);
 					Coup c = new Coup(new Point(posX, posY), bateau);
 					if(!terrain.verificationPlacer(c))
 						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
