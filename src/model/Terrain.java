@@ -105,7 +105,7 @@ public class Terrain extends Observable {
     public boolean tirer(Coup c){
         Point ptCentral=c.getPos();
 		Bateau b=c.getBateau();
-		if (b.estMort() || !b.aMunitions()) {
+		if (!verificationTirer(c)) {
 			return false;
 		} else {
 			if (!champTir.estTouche(c.getPos())) {
