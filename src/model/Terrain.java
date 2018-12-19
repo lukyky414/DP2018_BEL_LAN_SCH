@@ -108,9 +108,10 @@ public class Terrain extends Observable {
 		if (!verificationTirer(c)) {
 			return false;
 		} else {
+			boolean peutTirer = false;
 			if (!champTir.estTouche(c.getPos())) {
+				peutTirer = true;
 				this.tirer(c.getPos());
-				b.utiliserMunition();
 			}
 
 			ArrayList<Point>alp=b.getZoneSup();
@@ -118,12 +119,15 @@ public class Terrain extends Observable {
                 Point ptDecalage=alp.get(i);
                 Point ptNouveau=new Point((int)(ptCentral.getX()+ptDecalage.getX()),(int)(ptCentral.getY()+ptDecalage.getY()));
 				if (!champTir.estTouche(ptNouveau)) {
+					peutTirer = true;
 					this.tirer(ptNouveau);
                     setChanged();
                     notifyObservers();
 				}
 			}
-			return true;
+			if(peutTirer)
+				b.utiliserMunition();
+			return peutTirer;
 		}
 	}
 
