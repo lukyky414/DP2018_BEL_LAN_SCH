@@ -2,7 +2,6 @@ package model;
 
 import textureFactory.SingletonEpoque;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -77,7 +76,6 @@ public class Jeu extends Observable {
             }
 
         }
-
     }
 
     public void setTerrainJ1(Terrain terrainJ1){
@@ -86,7 +84,7 @@ public class Jeu extends Observable {
 
 	public void setTerrainJ2(Terrain terrainJ2){
         this.terrainJ2 = terrainJ2;
-        IA.setTerrain(this.terrainJ2);
+        IA.setTerrain(this.terrainJ2,this.terrainJ1);
         IA.difficulte=IA.FACILE;
 	}
 

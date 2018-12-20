@@ -1,10 +1,8 @@
 package model;
 
 import textureFactory.SingletonEpoque;
-import textureFactory.SingletonMedieval;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,7 +14,10 @@ public class IA {
     public static final int HARDCORE = 2;
 
     public static int difficulte;
-    private static Terrain terrain;
+
+    private static Terrain terrainJoueur;
+    private static Terrain terrainAdverse;
+
     //degueu mais necessaire pour des tests
     private static SingletonEpoque epoque;
 
@@ -43,8 +44,8 @@ public class IA {
                p.y = r.nextInt(10);
                c.getBateau().setPosition(p);
                c.setXY(p.x,p.y);
-           }while(!terrain.verificationPlacer(c));
-            terrain.placer(c);
+           }while(!terrainJoueur.verificationPlacer(c));
+            terrainJoueur.placer(c);
 
             Bateau ba=c.getBateau();
             int x=(int)(ba.getPosition().getX());
@@ -52,7 +53,7 @@ public class IA {
             /*System.out.println("id="+ba.getId()+"x="+x+" y="+y);
             System.out.println(ba.hashCode());*/
         }
-        return terrain.getBateaux();
+        return terrainJoueur.getBateaux();
     }
 
 
@@ -60,13 +61,13 @@ public class IA {
     public static boolean tirerFacile(){
         Random r = new Random();
         Point p = new Point(r.nextInt(10), r.nextInt(10));
-        Coup c = new Coup(p,terrain.getBateaux().get(r.nextInt(5)));
+        Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
 
-        while(!(terrain.tirer(c))){
+        while(!(terrainAdverse.tirer(c))){
 
             //Si le bateau ne peut pas tirer, on change le bateau
             if(!c.getBateau().peutTirer())
-                c.setBateau(terrain.getBateaux().get(r.nextInt(5)));
+                c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
             else{
                 //On change le point qu'on vise
                 p.x = r.nextInt(10);
@@ -82,9 +83,10 @@ public class IA {
        return true;
     }
 
-    public static Terrain getTerrain(){return terrain;}
+    public static Terrain getTerrainJoueur(){return terrainJoueur;}
 
-    public static void setTerrain(Terrain terrain) {
-        IA.terrain = terrain;
+    public static void setTerrain(Terrain terrainJoueur, Terrain terrainAdverse) {
+        IA.terrainJoueur = terrainJoueur;
+        IA.terrainAdverse=terrainAdverse;
     }
 }

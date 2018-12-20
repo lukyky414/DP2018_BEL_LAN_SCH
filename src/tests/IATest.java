@@ -2,13 +2,7 @@ package tests;
 
 import model.Bateau;
 import model.IA;
-import model.Jeu;
-import model.Terrain;
-import org.easymock.EasyMock;
-import org.junit.Before;
 import org.junit.Test;
-import textureFactory.SingletonEpoque;
-import textureFactory.SingletonMedieval;
 
 import java.util.ArrayList;
 
@@ -26,7 +20,7 @@ public class IATest {
     @Test
     public void placerBateaux() {
         assertNotNull(IA.placerBateaux());
-        ArrayList<Bateau> bateaux = IA.getTerrain().getBateaux();
+        ArrayList<Bateau> bateaux = IA.getTerrainJoueur().getBateaux();
         for(Bateau b : bateaux){
             System.out.println(b.toString());
         }

@@ -1,9 +1,6 @@
 package controller;
 
-import model.Bateau;
-import model.Coup;
-import model.Disposition;
-import model.Terrain;
+import model.*;
 import view.CustomJButton;
 import view.VueGrille;
 
@@ -65,6 +62,8 @@ public class TirerListener implements MouseListener {
             } else {
                 if (terrainAdverse.verificationTirer(this.coup)) {
                     terrainAdverse.tirer(this.coup);
+                    IA.tirerFacile();
+                    Jeu.getInstance().checkerConditionVictoireDefaite();
                     updateInfos(bateauSelectionne);
                 }
             }
