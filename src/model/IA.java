@@ -86,7 +86,7 @@ public class IA {
     public static Terrain getTerrainJoueur(){return terrainJoueur;}
 
     public static void setTerrain(Terrain terrainJoueur, Terrain terrainAdverse) {
-        IA.terrainJoueur = terrainJoueur;
+        IA.terrainJoueur=terrainJoueur;
         IA.terrainAdverse=terrainAdverse;
     }
 }

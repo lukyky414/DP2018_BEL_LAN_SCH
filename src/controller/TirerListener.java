@@ -23,6 +23,7 @@ public class TirerListener implements MouseListener {
     private int x;
     private int y;
     private boolean terrainAdverseSelectionne;
+    private boolean fini=false;
 
     public TirerListener(VueGrille vueGrilleJoueur, VueGrille vueGrilleAdverse, Terrain terrainJoueur, Terrain terrainAdverse) {
         this.terrainAdverseSelectionne=false;
@@ -60,11 +61,18 @@ public class TirerListener implements MouseListener {
             if (bateauSelectionne == null) {
                 return;
             } else {
-                if (terrainAdverse.verificationTirer(this.coup)) {
-                    terrainAdverse.tirer(this.coup);
-                    IA.tirerFacile();
-                    Jeu.getInstance().checkerConditionVictoireDefaite();
-                    updateInfos(bateauSelectionne);
+                if (!fini) {
+                    if (terrainAdverse.verificationTirer(this.coup)) {
+                        terrainAdverse.tirer(this.coup);
+                        updateInfos(bateauSelectionne);
+                        fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
+                        if (!fini) {
+                            IA.tirerFacile();
+                            updateInfos(bateauSelectionne);
+                            fini=Jeu.getInstance().checkerConditionVictoireDefaite(false);
+                        }
+
+                    }
                 }
             }
             //Si on clique sur notre grille

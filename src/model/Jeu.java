@@ -2,6 +2,7 @@ package model;
 
 import textureFactory.SingletonEpoque;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -48,34 +49,61 @@ public class Jeu extends Observable {
     }
 
 
-    public void checkerConditionVictoireDefaite() {
-        ArrayList<Bateau> bateaux = terrainJ1.getBateaux();
-        boolean aPerdu = true;
+    /**
+     * Vérifie si la partie est finie et indique le gagnant
+     * @param joueur Le joueur qui vient de tirer (true pour j1)
+     * @return true si la partie est finie
+     */
+    public boolean checkerConditionVictoireDefaite(boolean joueur) {
+        //Si J1 vient de tirer
+        if (joueur) {
+            //Si J2 mort
+            if (joueurEstMort(false)) {
+                JOptionPane.showMessageDialog(null, "Vous avez gagné.");
+                return true;
+            }
+
+            //Si J1 mort
+            if (joueurEstMort(true)) {
+                JOptionPane.showMessageDialog(null, "Vous avez perdu.");
+                return true;
+            }
+        //Si J2 vient de tirer
+        } else  {
+            //Si J1 mort
+            if (joueurEstMort(true)) {
+                JOptionPane.showMessageDialog(null, "Vous avez perdu.");
+                return true;
+            }
+
+            //Si J2 mort
+            if (joueurEstMort(false)) {
+                JOptionPane.showMessageDialog(null, "Vous avez gagné.");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Vérifie si un joueur est mort
+     * @param joueur Le joueur que l'on veut vérifier (true pour j1)
+     * @return true Si le joueur est mort
+     */
+    private boolean joueurEstMort(boolean joueur) {
+        ArrayList<Bateau> bateaux;
+        if (joueur) {
+            bateaux=terrainJ1.getBateaux();
+        } else {
+            bateaux=terrainJ2.getBateaux();
+        }
         for(Bateau b : bateaux){
-            if(b.getMunitions() > 0 && (!b.estMort()))
-                aPerdu = false;
-        }
-
-        //J1 perd
-        if (aPerdu) {
-            enCours = false;
-            System.out.println("Vous avez perdu");
-        }
-
-        //J2 ou IA perd
-        else{
-            ArrayList<Bateau> bateauxJ2 = terrainJ2.getBateaux();
-            boolean J2Perdu = true;
-            for(Bateau b : bateauxJ2){
-                if(b.getMunitions() > 0 && (!b.estMort()))
-                    J2Perdu = false;
+            if(b.getMunitions() > 0 && (!b.estMort())) {
+                return false;
             }
-            if(J2Perdu) {
-                enCours = false;
-                System.out.println("Vous avez gagné !");
-            }
-
         }
+        return true;
     }
 
     public void setTerrainJ1(Terrain terrainJ1){
