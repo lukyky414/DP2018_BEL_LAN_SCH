@@ -71,13 +71,16 @@ public class VueJeu extends JPanel implements Observer  {
         }
 
         this.epoque=se;
+
+        Jeu jeu=Jeu.getInstance();
+
+        jeu.setSe(this.epoque);
         ArrayList<Bateau> bateauJoueur=this.epoque.generateFleet();
         ArrayList<Bateau> bateauAdvesaire=this.epoque.generateFleet();
 
         this.terrainJoueur=new Terrain();
         this.terrainAdversaire=new Terrain();
 
-        Jeu jeu=Jeu.getInstance();
 
         jeu.setTerrainJ1(terrainJoueur);
         jeu.setTerrainJ2(terrainAdversaire);

@@ -17,16 +17,16 @@ import static org.junit.Assert.*;
 public class IATest {
 
 
-    SingletonEpoque singleton = SingletonMedieval.getInstance();
+    /*SingletonEpoque singleton = SingletonMedieval.getInstance();
     Jeu j = Jeu.getInstance();
     Terrain t = new Terrain();
-        IA ia = new IA(0, t);
+        IA ia = new IA(0, t);*/
 
 
     @Test
     public void placerBateaux() {
-        assertNotNull(ia.placerBateaux());
-        ArrayList<Bateau> bateaux = ia.getTerrain().getBateaux();
+        assertNotNull(IA.placerBateaux());
+        ArrayList<Bateau> bateaux = IA.getTerrain().getBateaux();
         for(Bateau b : bateaux){
             System.out.println(b.toString());
         }

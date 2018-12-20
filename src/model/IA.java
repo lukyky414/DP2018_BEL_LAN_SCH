@@ -14,16 +14,12 @@ public class IA {
     public static final int FACILE = 0;
     public static final int NORMAL = 1;
     public static final int HARDCORE = 2;
-    private int difficulte;
-    private Terrain terrain;
-    //degueu mais necessaire pour des tests
-    private SingletonEpoque epoque;
 
-    public IA(int diff, Terrain terr){
-        terrain = terr;
-        difficulte = diff;
-        epoque = SingletonMedieval.getInstance();
-    }
+    public static int difficulte;
+    private static Terrain terrain;
+    //degueu mais necessaire pour des tests
+    private static SingletonEpoque epoque;
+
 
     /** methode placer Bateau pour l'IA.
      * Genere la meme flotte que le joueur humain
@@ -33,7 +29,7 @@ public class IA {
      * Si oui on passe au suivant, sinon on essaye de replacer le bateau avec une nouvel direction
      * et une nouvelle pos
      */
-    public ArrayList<Bateau> placerBateaux(){
+    public static ArrayList<Bateau> placerBateaux(){
         ArrayList<Bateau> bateaux = Jeu.getInstance().getEpoque().generateFleet();
         //ArrayList<Bateau> bateaux = epoque.generateFleet();
         Point p = new Point(1,1);
@@ -46,14 +42,22 @@ public class IA {
                p.x = r.nextInt(10);
                p.y = r.nextInt(10);
                c.getBateau().setPosition(p);
-           }while(!terrain.getDisposition().peutEtrePlace(c));
+               c.setXY(p.x,p.y);
+           }while(!terrain.verificationPlacer(c));
             terrain.placer(c);
+
+            Bateau ba=c.getBateau();
+            int x=(int)(ba.getPosition().getX());
+            int y=(int)(ba.getPosition().getY());
+            /*System.out.println("id="+ba.getId()+"x="+x+" y="+y);
+            System.out.println(ba.hashCode());*/
         }
         return terrain.getBateaux();
     }
 
 
-    public boolean tirerFacile(){
+
+    public static boolean tirerFacile(){
         Random r = new Random();
         Point p = new Point(r.nextInt(10), r.nextInt(10));
         Coup c = new Coup(p,terrain.getBateaux().get(r.nextInt(5)));
@@ -74,10 +78,13 @@ public class IA {
         return true;
     }
 
-    public boolean tirMoyen(){
+    public static boolean tirMoyen(){
        return true;
     }
 
-    public Terrain getTerrain(){return this.terrain;}
+    public static Terrain getTerrain(){return terrain;}
 
+    public static void setTerrain(Terrain terrain) {
+        IA.terrain = terrain;
+    }
 }

@@ -148,6 +148,8 @@ public class Bateau {
 
 	public void setPosition(Point position) {
 		this.position = position;
+		int x=this.getPosition().x;
+		int y=this.getPosition().x;
 	}
 
 	public void setPv(int p){

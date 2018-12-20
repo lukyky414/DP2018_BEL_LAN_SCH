@@ -10,10 +10,15 @@ public class Jeu extends Observable {
 
     private static Jeu instance;
 
+    /** -1 Humain, 0 1 2 IA (difficultés)**/
+    private int typeIA;
     private boolean enCours;
 
     private Terrain terrainJ1;
     private Terrain terrainJ2;
+
+    private IA ia;
+    private SingletonEpoque se;
 
     private Jeu () {
         enCours=true;
@@ -24,6 +29,18 @@ public class Jeu extends Observable {
             instance=new Jeu();
         }
         return instance;
+    }
+
+    public void setSe(SingletonEpoque se) {
+        this.se = se;
+    }
+
+    public SingletonEpoque getSe() {
+        return se;
+    }
+
+    public IA getIa() {
+        return ia;
     }
 
     //TODO Modifier diagramme
@@ -68,11 +85,13 @@ public class Jeu extends Observable {
 	}
 
 	public void setTerrainJ2(Terrain terrainJ2){
-		this.terrainJ2 = terrainJ2;
+        this.terrainJ2 = terrainJ2;
+        IA.setTerrain(this.terrainJ2);
+        IA.difficulte=IA.FACILE;
 	}
 
 	public SingletonEpoque getEpoque(){
-    	return this.terrainJ1.getBateaux().get(0).getFactory();
+    	return this.getSe();
 	}
 
 	public Terrain getTerrainJ1(){ return this.terrainJ1;}
