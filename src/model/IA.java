@@ -1,21 +1,28 @@
 package model;
 
+import textureFactory.SingletonEpoque;
+import textureFactory.SingletonMedieval;
+
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class IA {
 
 
-    private static final int FACILE = 0;
-    private static final int NORMAL = 1;
-    private static final int HARDCORE = 2;
+    public static final int FACILE = 0;
+    public static final int NORMAL = 1;
+    public static final int HARDCORE = 2;
     private int difficulte;
     private Terrain terrain;
+    //degueu mais necessaire pour des tests
+    private SingletonEpoque epoque;
 
     public IA(int diff, Terrain terr){
         terrain = terr;
         difficulte = diff;
+        epoque = SingletonMedieval.getInstance();
     }
 
     /** methode placer Bateau pour l'IA.
@@ -26,8 +33,9 @@ public class IA {
      * Si oui on passe au suivant, sinon on essaye de replacer le bateau avec une nouvel direction
      * et une nouvelle pos
      */
-    public void placerBateaux(){
+    public ArrayList<Bateau> placerBateaux(){
         ArrayList<Bateau> bateaux = Jeu.getInstance().getEpoque().generateFleet();
+        //ArrayList<Bateau> bateaux = epoque.generateFleet();
         Point p = new Point(1,1);
         Coup c = new Coup(p, bateaux.get(0));
         Random r = new Random();
@@ -41,6 +49,7 @@ public class IA {
            }while(!terrain.getDisposition().peutEtrePlace(c));
             terrain.placer(c);
         }
+        return terrain.getBateaux();
     }
 
 
@@ -68,5 +77,7 @@ public class IA {
     public boolean tirMoyen(){
        return true;
     }
+
+    public Terrain getTerrain(){return this.terrain;}
 
 }
