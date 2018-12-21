@@ -5,6 +5,7 @@ import dao.XmlDAO;
 import main.Main;
 import textureFactory.*;
 import view.VueJeu;
+import view.VueMenuBar;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,14 +17,16 @@ import java.nio.file.Paths;
 public class EnregistrerChargerListener implements ActionListener {
 
     private JFrame fenetre;
+    private VueMenuBar vmb;
     private VueJeu vj;
 
     private JFileChooser chooser;
     private XmlDAO xmlDao;
 
-    public EnregistrerChargerListener(JFrame fenetre, VueJeu vj) {
+    public EnregistrerChargerListener(JFrame fenetre, VueJeu vj, VueMenuBar vmb) {
         this.fenetre=fenetre;
         this.vj=vj;
+        this.vmb=vmb;
         this.chooser = new JFileChooser();
         this.chooser.setFileFilter(new FileNameExtensionFilter("XML File","xml"));
         this.chooser.setSelectedFile(new File("sauvegarde.xml"));
@@ -65,6 +68,7 @@ public class EnregistrerChargerListener implements ActionListener {
         VueJeu.setEnabled(vj,true);
         vj.update();
         vj.ajouterTirerListener();
+        vmb.peutSauvegarder(true);
     }
 
     public File selectFile(boolean load) {

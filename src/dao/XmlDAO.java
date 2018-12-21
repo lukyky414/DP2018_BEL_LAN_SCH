@@ -120,7 +120,7 @@ public class XmlDAO implements DAO {
 			//System.out.println(NomEpoque + "=" + epoque.toString());
 
 			Jeu game = Jeu.getInstance();
-
+			game.setSe(epoque);
 
 			for(int i = 0; i < 2; i++){
 				//System.out.println(System.getProperty("line.separator") + "TERRAIN:");
@@ -153,7 +153,7 @@ public class XmlDAO implements DAO {
 
 					Bateau bateau = transformBateau(bateaux, id, mun, posX, posY, dir);
 
-					System.out.println(bateau);
+					//System.out.println(bateau);
 					Coup c = new Coup(new Point(posX, posY), bateau);
 					if(!terrain.verificationPlacer(c))
 						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
@@ -169,7 +169,7 @@ public class XmlDAO implements DAO {
 					String l = lignes[k];
 					for(int j = 0; j < 10; j++){
 						if(l.charAt(j) == '1'){
-							terrain.tirer(new Point(j,k));
+							terrain.tirer(new Point(k,j));
 						}
 					}
 				}

@@ -32,7 +32,7 @@ public class VueMenuBar extends JMenuBar {
     public VueMenuBar(JFrame fenetre, VueJeu vj) {
         this.fenetre=fenetre;
         this.epoqueChooser=new EpoqueChooser(vj,this);
-        this.enregistrerChargerListener=new EnregistrerChargerListener(fenetre,vj);
+        this.enregistrerChargerListener=new EnregistrerChargerListener(fenetre,vj,this);
         this.difficulteListener=new DifficulteListener();
 
         menuFichier=new JMenu("Fichier");

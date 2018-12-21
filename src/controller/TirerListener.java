@@ -23,7 +23,7 @@ public class TirerListener implements MouseListener {
     private int x;
     private int y;
     private boolean terrainAdverseSelectionne;
-    private boolean fini=false;
+    private boolean fini;
 
     public TirerListener(VueGrille vueGrilleJoueur, VueGrille vueGrilleAdverse, Terrain terrainJoueur, Terrain terrainAdverse) {
         this.terrainAdverseSelectionne=false;
@@ -35,6 +35,8 @@ public class TirerListener implements MouseListener {
         vueGrilleJoueur.setBateauSelectionne(listeBateauxJoueur.get(0));
         this.x=0;
         this.y=0;
+        //Bug possible très rare si jamais l'IA a réussi a tuer le joueur avec sa dernière munition, le joueur sera indiqué vainqueur
+        this.fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
         this.coup = new Coup(new Point(0,0), vueGrilleJoueur.getBateauSelectionne());
         Bateau bateauSelectionne=vueGrilleJoueur.getBateauSelectionne();
         vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
