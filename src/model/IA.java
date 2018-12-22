@@ -3,6 +3,7 @@ package model;
 import textureFactory.SingletonEpoque;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ public class IA {
 
     private static Terrain terrainJoueur;
     private static Terrain terrainAdverse;
+
 
     //degueu mais necessaire pour des tests
     private static SingletonEpoque epoque;
@@ -62,8 +64,14 @@ public class IA {
         Random r = new Random();
         Point p = new Point(r.nextInt(10), r.nextInt(10));
         Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
+        ArrayList<Point> pointsAToucher = new ArrayList<Point>();
+        for (int i = 0; i<10; i++){
+            for (int j = 0; j<10; i++){
+                pointsAToucher.add(new Point(i,j));
+            }
+        }
 
-        while(!(terrainAdverse.tirer(c))){
+        while(!(terrainAdverse.tirer(c)) || (!pointsAToucher.contains(p))){
 
             //Si le bateau ne peut pas tirer, on change le bateau
             if(!c.getBateau().peutTirer())
@@ -74,13 +82,38 @@ public class IA {
                 p.y = r.nextInt(10);
                 c.setXY(p.x, p.y);
             }
+            pointsAToucher.remove(p);
 
          }
         return true;
     }
 
     public static boolean tirMoyen(){
-       return true;
+        Random r = new Random();
+        ArrayList<Point> posAutour = new ArrayList<Point>();
+        Point p = new Point(r.nextInt(10), r.nextInt(10));
+        ArrayList<Point> pointsAToucher = new ArrayList<Point>();
+        Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
+
+        for (int i = 0; i<10; i++){
+            for (int j = 0; j<10; i++){
+                pointsAToucher.add(new Point(i,j));
+            }
+        }
+        while(!c.getBateau().peutTirer() || (!pointsAToucher.contains(p))){
+            if(!c.getBateau().peutTirer())
+                c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
+            else
+                c.setXY(r.nextInt(10), r.nextInt(10));
+        }
+
+        if(posAutour.isEmpty())
+            return true;
+        else{
+            c.setXY(posAutour.get(0).x, posAutour.get(0).y);
+            posAutour.remove(c.getPos());
+            return true;
+        }
     }
 
     public static Terrain getTerrainJoueur(){return terrainJoueur;}
