@@ -146,26 +146,9 @@ public class IA {
     public static boolean LUKY_tirMoyen(){
 		Random r = new Random();
 
-		ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
-		for(Bateau b : terrainJoueur.getBateaux()){
-			if(b.peutTirer())
-				_bateauxDispo.add(b);
-		}
+		ArrayList<Bateau> _bateauxDispo = getBateauDispo();
 
-		ArrayList<Point> _posDispo = new ArrayList<>();
-		int Colonne = 0, Ligne = 0;
-		for(boolean estTouche : terrainAdverse.getChampTir()){
-			if(!estTouche)
-				_posDispo.add(new Point(Ligne, Colonne));
-
-			Colonne++;
-			if(Colonne == 10){
-				Colonne = 0;
-				Ligne++;
-			}
-		}
-
-		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
+		if(_bateauxDispo.size() == 0)
 			return false;
 
 		//Methode a faire pour vider la liste
@@ -181,9 +164,17 @@ public class IA {
 
 		Coup coupFinal;
 		if(_strategieEnCroix.size()>0) {
-			coupFinal = new Coup(_strategieEnCroix.get(0),
+			pos = _strategieEnCroix.get(0);
+			coupFinal = new Coup(pos,
 					_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
 			terrainAdverse.tirer(coupFinal);
+
+			if(terrainAdverse.getDisposition().get(coupFinal.getPos()) != null){
+				_strategieEnCroix.add(new Point(pos.x+1,pos.y));
+				_strategieEnCroix.add(new Point(pos.x-1,pos.y));
+				_strategieEnCroix.add(new Point(pos.x,pos.y+1));
+				_strategieEnCroix.add(new Point(pos.x,pos.y-1));
+			}
 		}
 		else
 			IA.tirerFacile();
