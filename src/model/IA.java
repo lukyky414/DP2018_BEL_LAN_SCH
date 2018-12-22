@@ -147,14 +147,15 @@ public class IA {
 		Random r = new Random();
 
 		ArrayList<Bateau> _bateauxDispo = getBateauDispo();
+		ArrayList<Point> _posDispo = getPointDispos();
 
-		if(_bateauxDispo.size() == 0)
+		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
 			return false;
 
 		//Methode a faire pour vider la liste
 		//en gros les truc deja tire on degage
 		Point pos;
-		for(int i = 2; i < _strategieEnCroix.size(); i++){
+		for(int i = 0; i < _strategieEnCroix.size(); i++){
 			pos = _strategieEnCroix.get(i);
 			if(terrainAdverse.getChampTir().estTouche(pos)) {
 				_strategieEnCroix.remove(i);
@@ -162,22 +163,20 @@ public class IA {
 			}
 		}
 
-		Coup coupFinal;
-		if(_strategieEnCroix.size()>0) {
+		if(_strategieEnCroix.size()>0)
 			pos = _strategieEnCroix.get(0);
-			coupFinal = new Coup(pos,
-					_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
-			terrainAdverse.tirer(coupFinal);
-
-			if(terrainAdverse.getDisposition().get(coupFinal.getPos()) != null){
-				_strategieEnCroix.add(new Point(pos.x+1,pos.y));
-				_strategieEnCroix.add(new Point(pos.x-1,pos.y));
-				_strategieEnCroix.add(new Point(pos.x,pos.y+1));
-				_strategieEnCroix.add(new Point(pos.x,pos.y-1));
-			}
-		}
 		else
-			IA.tirerFacile();
+			pos = new Point(_posDispo.get(r.nextInt(_posDispo.size())));
+
+		Coup coupFinal = new Coup(pos, _bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
+		terrainAdverse.tirer(coupFinal);
+
+		if(terrainAdverse.getDisposition().get(coupFinal.getPos()) != null){
+			_strategieEnCroix.add(new Point(pos.x+1,pos.y));
+			_strategieEnCroix.add(new Point(pos.x-1,pos.y));
+			_strategieEnCroix.add(new Point(pos.x,pos.y+1));
+			_strategieEnCroix.add(new Point(pos.x,pos.y-1));
+		}
 
 		return true;
 	}
