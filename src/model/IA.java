@@ -142,6 +142,55 @@ public class IA {
         return true;*/
     }
 
+    private static ArrayList<Point> _strategieEnCroix = new ArrayList<>();
+    public static boolean LUKY_tirMoyen(){
+		Random r = new Random();
+
+		ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
+		for(Bateau b : terrainJoueur.getBateaux()){
+			if(b.peutTirer())
+				_bateauxDispo.add(b);
+		}
+
+		ArrayList<Point> _posDispo = new ArrayList<>();
+		int Colonne = 0, Ligne = 0;
+		for(boolean estTouche : terrainAdverse.getChampTir()){
+			if(!estTouche)
+				_posDispo.add(new Point(Ligne, Colonne));
+
+			Colonne++;
+			if(Colonne == 10){
+				Colonne = 0;
+				Ligne++;
+			}
+		}
+
+		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
+			return false;
+
+		//Methode a faire pour vider la liste
+		//en gros les truc deja tire on degage
+		Point pos;
+		for(int i = 2; i < _strategieEnCroix.size(); i++){
+			pos = _strategieEnCroix.get(i);
+			if(terrainAdverse.getChampTir().estTouche(pos)) {
+				_strategieEnCroix.remove(i);
+				i--;
+			}
+		}
+
+		Coup coupFinal;
+		if(_strategieEnCroix.size()>0) {
+			coupFinal = new Coup(_strategieEnCroix.get(0),
+					_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
+			terrainAdverse.tirer(coupFinal);
+		}
+		else
+			IA.tirerFacile();
+
+		return true;
+	}
+
     public static boolean tirMoyen(){
         Random r = new Random();
         ArrayList<Point> posAutour = new ArrayList<Point>();
