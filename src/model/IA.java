@@ -113,19 +113,25 @@ public class IA {
         while(!c.getBateau().peutTirer() || (!pointsAToucher.contains(p))){
             if(!c.getBateau().peutTirer())
                 c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
-            else
-                c.setXY(r.nextInt(10), r.nextInt(10));
+            else{
+                if(posAutour.isEmpty()){
+                        c.setXY(r.nextInt(10), r.nextInt(10));
+                        posAutour.add(new Point(c.getPos().x-1, c.getPos().y));
+                        posAutour.add(new Point(c.getPos().x+1, c.getPos().y));
+                        posAutour.add(new Point(c.getPos().x, c.getPos().y-1));
+                        posAutour.add(new Point(c.getPos().x, c.getPos().y+1));
+                    }
+                    else{
+                        c.setXY(posAutour.get(0).x, posAutour.get(0).y);
+                        posAutour.remove(c.getPos());
+                    }
+                }
+                pointsAToucher.remove(c.getPos());
+
+            }
+            return true;
         }
 
-
-        if(posAutour.isEmpty())
-            return true;
-        else{
-            c.setXY(posAutour.get(0).x, posAutour.get(0).y);
-            posAutour.remove(c.getPos());
-            return true;
-        }
-    }
 
     public static boolean tirHardcore(){
 
