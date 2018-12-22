@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1017</x>
+      <y>288</y>
+      <w>306</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+&lt;&lt;singleton&gt;&gt;
+SingletonEpoque
+--
+_TAILLE=50 : int_
+_TAILLE_PRESENTATION_WIDTH=850 : int_
+_TAILLE_PRESENTATION_HEIGHT=650 : int_
+
+#textures : HashMap&lt;Integer, ArrayList&lt;ImageIcon&gt;&gt;
+#presentationEpoque : ImageIcon
+--
+_redimensionner(ImageIcon, int, int ) : ImageIcon_
+_redimensionner(ImageIcon, int) : ImageIcon_
+
++getTexture(Bateau b) : ArrayList&lt;ImageIcon&gt;
+/+generateFleet() : ArrayList&lt;Bateau&gt;/
++getPresentationEpoque() : ImageIcon
+
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>747</y>
+      <w>288</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>SingletonMedieval
+--
+_+chemin : String_
+_+instance : SingletonMedieval_
+
+--
+-SingletonMedieval()
+_getInstance : SingletonMedieval_
+
++generateFleet() : ArrayList&lt;Bateau&gt;
++toString() : String
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>927</x>
+      <y>522</y>
+      <w>234</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;190.0;10.0;190.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>792</x>
+      <y>261</y>
+      <w>765</w>
+      <h>738</h>
+    </coordinates>
+    <panel_attributes>Factory
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1134</x>
+      <y>675</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;150.0;20.0;150.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>801</x>
+      <y>441</y>
+      <w>162</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Texture Factory
+
+Bateau Factory
+bg=yellow
+fg=black
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>18</x>
+      <y>603</y>
+      <w>288</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Medieval
+--
+Textures : List&lt;Texture&gt;
+--
+getTexture(Bateau bateauEnCours) : Texture
+
+genererFlotte() : List&lt;bateau&gt;
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>135</x>
+      <y>486</y>
+      <w>234</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>261</y>
+      <w>765</w>
+      <h>486</h>
+    </coordinates>
+    <panel_attributes>Factory
+--
+bg=red
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>351</x>
+      <y>603</y>
+      <w>288</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Contemporain
+--
+Textures : List&lt;Texture&gt;
+--
+getTexture(Bateau bateauEnCours) : Texture
+
+genererFlotte() : List&lt;bateau&gt;
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>540</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;150.0;20.0;150.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>9</x>
+      <y>441</y>
+      <w>162</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Texture Factory
+
+Bateau Factory
+bg=yellow
+fg=black
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>225</x>
+      <y>333</y>
+      <w>243</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+&lt;&lt;singleton&gt;&gt;
+Epoque
+--
++instance : Epoque
+--
+_getInstance : Epoque_
+/getTexture(Bateau) : Texture/
+/getFleet() : List&lt;bateau&gt;/
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1206</x>
+      <y>738</y>
+      <w>279</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Même structure pour SingletonContemporain,
+SingletonFutur et SingletonStarWars
+bg=yellow
+fg=black
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>153</y>
+      <w>387</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>410.0;120.0;410.0;10.0;10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>711</x>
+      <y>135</y>
+      <w>144</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Après implémentation
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
