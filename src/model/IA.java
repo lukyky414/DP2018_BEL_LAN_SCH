@@ -67,6 +67,39 @@ public class IA {
         return true;
     }
 
+    public static boolean LUKY_tirerFacile(){
+		Random r = new Random();
+
+		ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
+		for(Bateau b : terrainJoueur.getBateaux()){
+			if(b.peutTirer())
+				_bateauxDispo.add(b);
+		}
+
+		ArrayList<Point> _posDispo = new ArrayList<>();
+		int Colonne = 0, Ligne = 0;
+		for(boolean estTouche : terrainAdverse.getChampTir()){
+			if(!estTouche)
+				_posDispo.add(new Point(Ligne, Colonne));
+
+			Colonne++;
+			if(Colonne == 10){
+				Colonne = 0;
+				Ligne++;
+			}
+		}
+
+		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
+			return false;
+
+		Coup coupFinal = new Coup(new Point(_posDispo.get(r.nextInt(_posDispo.size()))),
+				_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
+
+		terrainAdverse.tirer(coupFinal);
+		
+		return true;
+	}
+
 
     public static boolean tirerFacile(){
         Random r = new Random();
