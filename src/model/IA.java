@@ -67,27 +67,36 @@ public class IA {
         return true;
     }
 
+    private static ArrayList<Bateau> getBateauDispo() {
+        ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
+        for(Bateau b : terrainJoueur.getBateaux()){
+            if(b.peutTirer())
+                _bateauxDispo.add(b);
+        }
+        return _bateauxDispo;
+    }
+
+    private static ArrayList<Point> getPointDispos() {
+        ArrayList<Point> _posDispo = new ArrayList<>();
+        int Colonne = 0, Ligne = 0;
+        for(boolean estTouche : terrainAdverse.getChampTir()){
+            if(!estTouche)
+                _posDispo.add(new Point(Ligne, Colonne));
+
+            Colonne++;
+            if(Colonne == 10){
+                Colonne = 0;
+                Ligne++;
+            }
+        }
+        return _posDispo;
+    }
+
     public static boolean LUKY_tirerFacile(){
 		Random r = new Random();
 
-		ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
-		for(Bateau b : terrainJoueur.getBateaux()){
-			if(b.peutTirer())
-				_bateauxDispo.add(b);
-		}
-
-		ArrayList<Point> _posDispo = new ArrayList<>();
-		int Colonne = 0, Ligne = 0;
-		for(boolean estTouche : terrainAdverse.getChampTir()){
-			if(!estTouche)
-				_posDispo.add(new Point(Ligne, Colonne));
-
-			Colonne++;
-			if(Colonne == 10){
-				Colonne = 0;
-				Ligne++;
-			}
-		}
+        ArrayList<Bateau> _bateauxDispo=getBateauDispo();
+		ArrayList<Point> _posDispo = getPointDispos();
 
 		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
 			return false;
@@ -102,7 +111,8 @@ public class IA {
 
 
     public static boolean tirerFacile(){
-        Random r = new Random();
+        return LUKY_tirerFacile();
+        /*Random r = new Random();
         Point p = new Point(r.nextInt(10), r.nextInt(10));
         Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
         ArrayList<Point> pointsAToucher = new ArrayList<Point>();
@@ -126,7 +136,7 @@ public class IA {
             pointsAToucher.remove(p);
 
          }
-        return true;
+        return true;*/
     }
 
     public static boolean tirMoyen(){
