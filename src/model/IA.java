@@ -104,9 +104,12 @@ public class IA {
 		Coup coupFinal = new Coup(new Point(_posDispo.get(r.nextInt(_posDispo.size()))),
 				_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
 
-		terrainAdverse.tirer(coupFinal);
-		
-		return true;
+		if (terrainAdverse.verificationTirer(coupFinal)) {
+            terrainAdverse.tirer(coupFinal);
+            return true;
+        } else {
+		    return false;
+        }
 	}
 
 
