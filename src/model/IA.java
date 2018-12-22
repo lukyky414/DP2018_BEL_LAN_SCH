@@ -32,7 +32,7 @@ public class IA {
      * Si oui on passe au suivant, sinon on essaye de replacer le bateau avec une nouvel direction
      * et une nouvelle pos
      */
-    public static ArrayList<Bateau> placerBateaux(){
+    public static ArrayList<Bateau> placerBateaux() {
         ArrayList<Bateau> bateaux = Jeu.getInstance().getEpoque().generateFleet();
         //ArrayList<Bateau> bateaux = epoque.generateFleet();
         Point p = new Point(1,1);
@@ -58,6 +58,14 @@ public class IA {
         return terrainJoueur.getBateaux();
     }
 
+    public static boolean tirer() {
+        switch(IA.difficulte){
+            case IA.FACILE : IA.tirerFacile(); break;
+            case IA.NORMAL : IA.tirMoyen(); break;
+            case IA.HARDCORE : IA.tirHardcore(); break;
+        }
+        return true;
+    }
 
 
     public static boolean tirerFacile(){
@@ -100,12 +108,15 @@ public class IA {
                 pointsAToucher.add(new Point(i,j));
             }
         }
+
+        //c.getBateau().peutTirer() && pointsAToucher.contains(p)
         while(!c.getBateau().peutTirer() || (!pointsAToucher.contains(p))){
             if(!c.getBateau().peutTirer())
                 c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
             else
                 c.setXY(r.nextInt(10), r.nextInt(10));
         }
+
 
         if(posAutour.isEmpty())
             return true;

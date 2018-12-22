@@ -69,12 +69,7 @@ public class TirerListener implements MouseListener {
                         updateInfos(bateauSelectionne);
                         fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
                         if (!fini) {
-                            switch(IA.difficulte){
-                               case IA.FACILE : IA.tirerFacile(); break;
-                               case IA.NORMAL : IA.tirMoyen(); break;
-                               case IA.HARDCORE : IA.tirHardcore(); break;
-                            }
-
+                            IA.tirer();
                             updateInfos(bateauSelectionne);
                             fini=Jeu.getInstance().checkerConditionVictoireDefaite(false);
                         }
