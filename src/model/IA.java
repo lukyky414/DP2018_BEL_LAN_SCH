@@ -116,6 +116,12 @@ public class IA {
         }
     }
 
+    public static boolean tirHardcore(){
+
+
+        return true;
+    }
+
     public static Terrain getTerrainJoueur(){return terrainJoueur;}
 
     public static void setTerrain(Terrain terrainJoueur, Terrain terrainAdverse) {
