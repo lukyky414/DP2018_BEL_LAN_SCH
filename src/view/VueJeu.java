@@ -1,7 +1,9 @@
 package view;
 
 import controller.TirerListener;
+import main.RMI;
 import model.Bateau;
+import model.Coup;
 import model.Jeu;
 import model.Terrain;
 import textureFactory.SingletonEpoque;
@@ -99,7 +101,12 @@ public class VueJeu extends JPanel implements Observer  {
         TirerListener tl=new TirerListener(vueGrilleJoueur,vueGrilleAdversaire,terrainJoueur,terrainAdversaire);
         vueGrilleJoueur.ajouterTirerListener(tl);
         vueGrilleAdversaire.ajouterTirerListener(tl);
-    }
+		if(RMI.ETAT == RMI.JOIN) {
+			tl.joueurDoitAttendre();
+			Coup c = RMI.getTir();
+			Jeu.getInstance().getTerrainJ1().tirer(c);
+		}
+	}
 
     //
     public static void setEnabled(Component component, boolean enabled) {

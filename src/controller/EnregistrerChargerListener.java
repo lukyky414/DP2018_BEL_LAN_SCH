@@ -1,11 +1,11 @@
 package controller;
 
+import dao.BinaryDAO;
+import dao.DAO;
 import dao.WrongSaveException;
 import dao.XmlDAO;
-import main.Main;
 import model.IA;
 import model.Jeu;
-import textureFactory.*;
 import view.VueJeu;
 import view.VueMenuBar;
 
@@ -23,17 +23,15 @@ public class EnregistrerChargerListener implements ActionListener {
     private VueJeu vj;
 
     private JFileChooser chooser;
-    private XmlDAO xmlDao;
+    private DAO dao;
 
     public EnregistrerChargerListener(JFrame fenetre, VueJeu vj, VueMenuBar vmb) {
         this.fenetre=fenetre;
         this.vj=vj;
         this.vmb=vmb;
         this.chooser = new JFileChooser();
-        this.chooser.setFileFilter(new FileNameExtensionFilter("XML File","xml"));
-        this.chooser.setSelectedFile(new File("sauvegarde.xml"));
 		this.chooser.setCurrentDirectory(Paths.get("res/sav/").toAbsolutePath().toFile());
-        this.xmlDao = new XmlDAO();
+        this.dao = new XmlDAO();
     }
 
     @Override
@@ -54,7 +52,7 @@ public class EnregistrerChargerListener implements ActionListener {
         File f=selectFile(false);
 
         if (f != null) {
-            this.xmlDao.save(f.getPath());
+            this.dao.save(f.getPath());
         }
     }
 
@@ -62,7 +60,7 @@ public class EnregistrerChargerListener implements ActionListener {
         File f=selectFile(true);
         if (f != null) {
             try {
-                this.xmlDao.load(f.getPath());
+                this.dao.load(f.getPath());
             } catch (WrongSaveException e) {
                 e.printStackTrace();
             }
@@ -89,9 +87,6 @@ public class EnregistrerChargerListener implements ActionListener {
             returnVal=chooser.showSaveDialog(fenetre);
             if(returnVal == JFileChooser.APPROVE_OPTION) {
                 String filename = chooser.getSelectedFile().toString();
-                if (!filename .endsWith(".xml")) {
-                    filename += ".xml";
-                }
                 return new File(filename);
             } else {
                 return null;

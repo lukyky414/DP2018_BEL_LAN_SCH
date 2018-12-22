@@ -58,6 +58,8 @@ public class BinaryDAO implements DAO {
 						String res = byteToString((byte)mun);
 						//8-7 = 1
 						String toput = res.substring(1);
+						System.out.println(res);
+						System.out.println(toput);
 						strBuilder.append(toput);
 					}
 					{
@@ -78,8 +80,8 @@ public class BinaryDAO implements DAO {
 						//direction: 4 -> 2bits
 						int dir = b.getDirection();
 						String res = byteToString((byte)dir);
-						//8-4 = 4
-						String toput = res.substring(4);
+						//8-2 = 6
+						String toput = res.substring(6);
 						strBuilder.append(toput);
 					}
 				}
@@ -103,7 +105,7 @@ public class BinaryDAO implements DAO {
 		try{
 			byte[] bytes = readSmallBinaryFile(path);
 			String str = bytesToString(bytes);
-			int begin = 0;
+			int begin = 1;
 
 			Jeu jeu = Jeu.getInstance();
 			SingletonEpoque epoque;
@@ -151,10 +153,9 @@ public class BinaryDAO implements DAO {
 					begin+=2;
 
 					Bateau b = XmlDAO.transformBateau(bateaux, id,mun,posX,posY,dir);
-					terrain.ajouterBateau(b);
 					Coup c = new Coup(new Point(posX, posY), b);
 					if(!terrain.verificationPlacer(c))
-						throw new WrongSaveException("Position impossible du bateau (id:"+id+")");
+						throw new WrongSaveException("Position impossible du " + b);
 					terrain.placer(c);
 				}
 
@@ -187,10 +188,9 @@ public class BinaryDAO implements DAO {
 
 	public static byte[] stringToBytes(String str){
 
-		//de base y'a le while() str += "0"; IntelliJ conseille ca pour eviter de reconstruire un String a chaque iteration de la boucle.
 		StringBuilder strBuilder = new StringBuilder(str);
 		while(strBuilder.length() % 8 != 0)
-			strBuilder.append("0");
+			strBuilder.insert(0, "0");
 		str = strBuilder.toString();
 
 		ArrayList<Byte> _bytes = new ArrayList<>();
@@ -203,7 +203,6 @@ public class BinaryDAO implements DAO {
 					b+=1<<(7-j);
 			}
 			_bytes.add(b);
-			System.out.println(b);
 		}
 
 		bytes = new byte[_bytes.size()];
@@ -233,19 +232,7 @@ public class BinaryDAO implements DAO {
 	}
 
 	public static String byteToString(byte octet){
-		String str = "";
-		StringBuilder strBuilder = new StringBuilder(str);
-
-		for(int i = 0; i < 8; i++){
-			if((octet & (1<<(7-i))) > 0)
-				strBuilder.append("1");
-			else
-				strBuilder.append("0");
-		}
-
-		str = strBuilder.toString();
-
-		return str;
+		return bytesToString(new byte[]{octet});
 	}
 
 	public static byte[] readSmallBinaryFile(String fileName) throws IOException {

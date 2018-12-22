@@ -24,6 +24,5 @@ public class DifficulteListener implements ActionListener {
                 break;
             default:
         }
-        System.out.println(IA.difficulte);
     }
 }

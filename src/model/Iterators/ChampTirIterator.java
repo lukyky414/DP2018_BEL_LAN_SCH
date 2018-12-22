@@ -17,7 +17,7 @@ public class ChampTirIterator implements Iterator<Boolean> {
 
 	@Override
 	public boolean hasNext() {
-		return y <= 10;
+		return y < 10;
 	}
 
 	@Override

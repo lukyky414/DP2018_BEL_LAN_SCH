@@ -30,6 +30,7 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
     private int y;
 
     public PlacementListener(VueJeu vj, VueGrille vg, Terrain t, ArrayList<Bateau> listeBateaux, JButton[] tableauBoutonsBateaux) {
+    	RMI.connect();
         this.vj=vj;
         this.vueGrille=vg;
         this.tableauBoutonsBateaux=tableauBoutonsBateaux;

@@ -3,6 +3,7 @@ package view;
 import controller.DifficulteListener;
 import controller.EnregistrerChargerListener;
 import controller.EpoqueChooser;
+import controller.ReseauListener;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ public class VueMenuBar extends JMenuBar {
     private EpoqueChooser epoqueChooser;
     private EnregistrerChargerListener enregistrerChargerListener;
     private DifficulteListener difficulteListener;
+    private ReseauListener reseauListener;
 
     private JMenu menuFichier;
         private JMenu menuDemarrer;
@@ -24,16 +26,21 @@ public class VueMenuBar extends JMenuBar {
         private JMenuItem menuItemSauvegarder;
         private JMenuItem menuItemCharger;
         private JMenuItem menuItemQuitter;
+	private JMenu menuReseau;
+		private JRadioButtonMenuItem menuItemLocal;
+		private JRadioButtonMenuItem menuItemHost;
+		private JRadioButtonMenuItem menuItemJoin;
     private JMenu menuIA;
-    private JRadioButtonMenuItem menuItemFacile;
-    private JRadioButtonMenuItem menuItemNormal;
-    private JRadioButtonMenuItem menuItemHardcore;
+		private JRadioButtonMenuItem menuItemFacile;
+		private JRadioButtonMenuItem menuItemNormal;
+		private JRadioButtonMenuItem menuItemHardcore;
 
     public VueMenuBar(JFrame fenetre, VueJeu vj) {
         this.fenetre=fenetre;
         this.epoqueChooser=new EpoqueChooser(vj,this);
         this.enregistrerChargerListener=new EnregistrerChargerListener(fenetre,vj,this);
         this.difficulteListener=new DifficulteListener();
+        this.reseauListener=new ReseauListener();
 
         menuFichier=new JMenu("Fichier");
             menuDemarrer=new JMenu("Démarrer");
@@ -48,6 +55,10 @@ public class VueMenuBar extends JMenuBar {
             menuItemFacile=new JRadioButtonMenuItem("Facile");
             menuItemNormal=new JRadioButtonMenuItem("Normal");
             menuItemHardcore=new JRadioButtonMenuItem("Hardcore");
+		menuReseau=new JMenu("Reseau");
+			menuItemLocal=new JRadioButtonMenuItem("Local");
+			menuItemHost=new JRadioButtonMenuItem("Host");
+			menuItemJoin=new JRadioButtonMenuItem("Join");
 
 
         menuItemQuitter.addActionListener(new ActionListener() {
@@ -68,6 +79,10 @@ public class VueMenuBar extends JMenuBar {
         menuItemNormal.addActionListener(this.difficulteListener);
         menuItemHardcore.addActionListener(this.difficulteListener);
 
+        menuItemLocal.addActionListener(this.reseauListener);
+        menuItemHost.addActionListener(this.reseauListener);
+        menuItemJoin.addActionListener(this.reseauListener);
+
         menuDemarrer.add(menuItemContemporain);
                     menuDemarrer.add(menuItemFutur);
                     menuDemarrer.add(menuItemMedieval);
@@ -76,6 +91,7 @@ public class VueMenuBar extends JMenuBar {
             menuFichier.add(menuItemSauvegarder);
             menuFichier.add(menuItemCharger);
             menuFichier.add(menuItemQuitter);
+
         menuIA.add(menuItemFacile);
         menuIA.add(menuItemNormal);
         menuIA.add(menuItemHardcore);
@@ -86,9 +102,21 @@ public class VueMenuBar extends JMenuBar {
         buttonGroup.add(menuItemHardcore);
         menuItemFacile.setSelected(true);
 
-        peutSauvegarder(false);
+		menuReseau.add(menuItemLocal);
+		menuReseau.add(menuItemHost);
+		menuReseau.add(menuItemJoin);
+
+		ButtonGroup buttonGroup2 = new ButtonGroup();
+		buttonGroup2.add(menuItemLocal);
+		buttonGroup2.add(menuItemHost);
+		buttonGroup2.add(menuItemJoin);
+		menuItemLocal.setSelected(true);
+
+		peutSauvegarder(false);
+
         this.add(menuFichier);
         this.add(menuIA);
+        this.add(menuReseau);
     }
 
     public void peutSauvegarder(boolean enable) {

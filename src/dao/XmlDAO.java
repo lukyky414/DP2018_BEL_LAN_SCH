@@ -200,10 +200,10 @@ public class XmlDAO implements DAO {
 				bateau = b;
 		}
 		if(bateau == null)
-			throw new WrongSaveException("ID du bateau ne correspond a aucun bateau de l'epoque (id:"+id+")" );
+			throw new WrongSaveException("ID du bateau ne correspond a aucun bateau de l'epoque " + bateau );
 
 		if(munitions > bateau.getMunitions())
-			throw new WrongSaveException("Munitions impossible pour le bateau de l'epoque (id:"+id+")" );
+			throw new WrongSaveException("Munitions impossible pour le bateau de l'epoque " + bateau );
 		while(munitions < bateau.getMunitions())
 			bateau.utiliserMunition();
 
