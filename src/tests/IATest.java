@@ -20,7 +20,7 @@ public class IATest {
     @Test
     public void placerBateaux() {
         assertNotNull(IA.placerBateaux());
-        ArrayList<Bateau> bateaux = IA.getTerrainJoueur().getBateaux();
+        ArrayList<Bateau> bateaux = IA.jeu.getTerrainJ1().getBateaux();
         for(Bateau b : bateaux){
             System.out.println(b.toString());
         }

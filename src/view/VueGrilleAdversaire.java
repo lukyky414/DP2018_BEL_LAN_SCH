@@ -35,6 +35,5 @@ public class VueGrilleAdversaire extends VueGrille {
     @Override
     public void ajouterBateau(ArrayList<Bateau> listeBateaux) {
         super.ajouterBateau(listeBateaux);
-        IA.placerBateaux();
     }
 }

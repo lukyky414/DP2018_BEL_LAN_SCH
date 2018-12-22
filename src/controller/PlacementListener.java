@@ -1,7 +1,9 @@
 package controller;
 
+import main.RMI;
 import model.Bateau;
 import model.Coup;
+import model.Jeu;
 import model.Terrain;
 import view.CustomJButton;
 import view.VueGrille;
@@ -72,6 +74,10 @@ public class PlacementListener implements MouseListener, MouseWheelListener, Act
                     setBateauEnCours(this.listeBateaux.get(0));
                 } else {
                     setBateauEnCours(null);
+                    //Fin du placement, donc envoie du terrain a l'adversaire et recuperation du sien:
+					RMI.setPlacement(Jeu.getInstance().getTerrainJ1());
+					Jeu.getInstance().setTerrainJ2(RMI.getPlacement());
+					vj.update();
                     vj.ajouterTirerListener();
                 }
             }

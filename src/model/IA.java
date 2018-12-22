@@ -14,14 +14,9 @@ public class IA {
     public static final int NORMAL = 1;
     public static final int HARDCORE = 2;
 
-    public static int difficulte;
+    public static int difficulte = FACILE;
 
-    private static Terrain terrainJoueur;
-    private static Terrain terrainAdverse;
-
-
-    //degueu mais necessaire pour des tests
-    private static SingletonEpoque epoque;
+	public static Jeu jeu = Jeu.newInstance();
 
 
     /** methode placer Bateau pour l'IA.
@@ -32,12 +27,13 @@ public class IA {
      * Si oui on passe au suivant, sinon on essaye de replacer le bateau avec une nouvel direction
      * et une nouvelle pos
      */
-    public static ArrayList<Bateau> placerBateaux() {
-        ArrayList<Bateau> bateaux = Jeu.getInstance().getEpoque().generateFleet();
+    public static Terrain placerBateaux() {
+        ArrayList<Bateau> bateaux = jeu.getEpoque().generateFleet();
         //ArrayList<Bateau> bateaux = epoque.generateFleet();
         Point p = new Point(1,1);
         Coup c = new Coup(p, bateaux.get(0));
         Random r = new Random();
+        jeu.setTerrainJ1(new Terrain());
         for(Bateau b : bateaux){
             c.setBateau(b);
            do{
@@ -46,8 +42,8 @@ public class IA {
                p.y = r.nextInt(10);
                c.getBateau().setPosition(p);
                c.setXY(p.x,p.y);
-           }while(!terrainJoueur.verificationPlacer(c));
-            terrainJoueur.placer(c);
+           }while(!jeu.getTerrainJ1().verificationPlacer(c));
+			jeu.getTerrainJ1().placer(c);
 
             Bateau ba=c.getBateau();
             int x=(int)(ba.getPosition().getX());
@@ -55,21 +51,22 @@ public class IA {
             /*System.out.println("id="+ba.getId()+"x="+x+" y="+y);
             System.out.println(ba.hashCode());*/
         }
-        return terrainJoueur.getBateaux();
+        return jeu.getTerrainJ1();
     }
 
-    public static boolean tirer() {
+    public static Coup tirer() {
+    	Coup c = null;
         switch(IA.difficulte){
-            case IA.FACILE : IA.tirerFacile(); break;
-            case IA.NORMAL : IA.tirMoyen(); break;
-            case IA.HARDCORE : IA.tirHardcore(); break;
+            case IA.FACILE : c = IA.tirerFacile(); break;
+            case IA.NORMAL : c = IA.tirMoyen(); break;
+            case IA.HARDCORE : c = IA.tirHardcore(); break;
         }
-        return true;
+        return c;
     }
 
     private static ArrayList<Bateau> getBateauDispo() {
         ArrayList<Bateau> _bateauxDispo = new ArrayList<>();
-        for(Bateau b : terrainJoueur.getBateaux()){
+        for(Bateau b : jeu.getTerrainJ1().getBateaux()){
             if(b.peutTirer())
                 _bateauxDispo.add(b);
         }
@@ -79,7 +76,7 @@ public class IA {
     private static ArrayList<Point> getPointDispos() {
         ArrayList<Point> _posDispo = new ArrayList<>();
         int Colonne = 0, Ligne = 0;
-        for(boolean estTouche : terrainAdverse.getChampTir()){
+        for(boolean estTouche : jeu.getTerrainJ2().getChampTir()){
             if(!estTouche)
                 _posDispo.add(new Point(Ligne, Colonne));
 
@@ -92,72 +89,47 @@ public class IA {
         return _posDispo;
     }
 
-    public static boolean LUKY_tirerFacile(){
+    public static Coup tirerFacile(){
 		Random r = new Random();
 
         ArrayList<Bateau> _bateauxDispo=getBateauDispo();
 		ArrayList<Point> _posDispo = getPointDispos();
 
 		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
-			return false;
+			return null;
 
 		Coup coupFinal = new Coup(new Point(_posDispo.get(r.nextInt(_posDispo.size()))),
 				_bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
 
-		if (terrainAdverse.verificationTirer(coupFinal)) {
-            terrainAdverse.tirer(coupFinal);
+		/*if (jeu.getTerrainJ2().verificationTirer(coupFinal)) {
+            jeu.getTerrainJ2().tirer(coupFinal);
             return true;
         } else {
 		    return false;
         }
+        NON -> la selection fait en sorte que le coup SOIT valide!
+        Le bateau PEUT tirer, et la case visee n'est pas touchee!
+        */
+		jeu.getTerrainJ2().tirer(coupFinal);
+		return coupFinal;
 	}
 
-
-    public static boolean tirerFacile(){
-        return LUKY_tirerFacile();
-        /*Random r = new Random();
-        Point p = new Point(r.nextInt(10), r.nextInt(10));
-        Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
-        ArrayList<Point> pointsAToucher = new ArrayList<Point>();
-        for (int i = 0; i<10; i++){
-            for (int j = 0; j<10; i++){
-                pointsAToucher.add(new Point(i,j));
-            }
-        }
-
-        while(!(terrainAdverse.tirer(c)) || (!pointsAToucher.contains(p))){
-
-            //Si le bateau ne peut pas tirer, on change le bateau
-            if(!c.getBateau().peutTirer())
-                c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
-            else{
-                //On change le point qu'on vise
-                p.x = r.nextInt(10);
-                p.y = r.nextInt(10);
-                c.setXY(p.x, p.y);
-            }
-            pointsAToucher.remove(p);
-
-         }
-        return true;*/
-    }
-
     private static ArrayList<Point> _strategieEnCroix = new ArrayList<>();
-    public static boolean LUKY_tirMoyen(){
+    public static Coup tirMoyen(){
 		Random r = new Random();
 
 		ArrayList<Bateau> _bateauxDispo = getBateauDispo();
 		ArrayList<Point> _posDispo = getPointDispos();
 
 		if(_bateauxDispo.size() == 0 || _posDispo.size() == 0)
-			return false;
+			return null;
 
 		//Methode a faire pour vider la liste
 		//en gros les truc deja tire on degage
 		Point pos;
 		for(int i = 0; i < _strategieEnCroix.size(); i++){
 			pos = _strategieEnCroix.get(i);
-			if(terrainAdverse.getChampTir().estTouche(pos)) {
+			if(jeu.getTerrainJ2().getChampTir().estTouche(pos)) {
 				_strategieEnCroix.remove(i);
 				i--;
 			}
@@ -169,65 +141,24 @@ public class IA {
 			pos = new Point(_posDispo.get(r.nextInt(_posDispo.size())));
 
 		Coup coupFinal = new Coup(pos, _bateauxDispo.get(r.nextInt(_bateauxDispo.size())));
-		terrainAdverse.tirer(coupFinal);
+		jeu.getTerrainJ2().tirer(coupFinal);
 
-		if(terrainAdverse.getDisposition().get(coupFinal.getPos()) != null){
+		if(jeu.getTerrainJ2().getDisposition().get(coupFinal.getPos()) != null){
 			_strategieEnCroix.add(new Point(pos.x+1,pos.y));
 			_strategieEnCroix.add(new Point(pos.x-1,pos.y));
 			_strategieEnCroix.add(new Point(pos.x,pos.y+1));
 			_strategieEnCroix.add(new Point(pos.x,pos.y-1));
 		}
 
-		return true;
+		return coupFinal;
 	}
 
-    public static boolean tirMoyen(){
-        Random r = new Random();
-        ArrayList<Point> posAutour = new ArrayList<Point>();
-        Point p = new Point(r.nextInt(10), r.nextInt(10));
-        ArrayList<Point> pointsAToucher = new ArrayList<Point>();
-        Coup c = new Coup(p, terrainJoueur.getBateaux().get(r.nextInt(5)));
 
-        for (int i = 0; i<10; i++){
-            for (int j = 0; j<10; i++){
-                pointsAToucher.add(new Point(i,j));
-            }
-        }
-
-        //c.getBateau().peutTirer() && pointsAToucher.contains(p)
-        while(!c.getBateau().peutTirer() || (!pointsAToucher.contains(p))){
-            if(!c.getBateau().peutTirer())
-                c.setBateau(terrainJoueur.getBateaux().get(r.nextInt(5)));
-            else{
-                if(posAutour.isEmpty()){
-                        c.setXY(r.nextInt(10), r.nextInt(10));
-                        posAutour.add(new Point(c.getPos().x-1, c.getPos().y));
-                        posAutour.add(new Point(c.getPos().x+1, c.getPos().y));
-                        posAutour.add(new Point(c.getPos().x, c.getPos().y-1));
-                        posAutour.add(new Point(c.getPos().x, c.getPos().y+1));
-                    }
-                    else{
-                        c.setXY(posAutour.get(0).x, posAutour.get(0).y);
-                        posAutour.remove(c.getPos());
-                    }
-                }
-                pointsAToucher.remove(c.getPos());
-
-            }
-            return true;
-        }
+    public static Coup tirHardcore(){
 
 
-    public static boolean tirHardcore(){
-
-
-        return true;
+        return null;
     }
 
-    public static Terrain getTerrainJoueur(){return terrainJoueur;}
-
-    public static void setTerrain(Terrain terrainJoueur, Terrain terrainAdverse) {
-        IA.terrainJoueur=terrainJoueur;
-        IA.terrainAdverse=terrainAdverse;
-    }
+    public static Terrain getTerrain(){return jeu.getTerrainJ1();}
 }

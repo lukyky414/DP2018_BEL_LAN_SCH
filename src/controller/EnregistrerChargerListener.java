@@ -3,6 +3,8 @@ package controller;
 import dao.WrongSaveException;
 import dao.XmlDAO;
 import main.Main;
+import model.IA;
+import model.Jeu;
 import textureFactory.*;
 import view.VueJeu;
 import view.VueMenuBar;
@@ -69,6 +71,9 @@ public class EnregistrerChargerListener implements ActionListener {
         vj.update();
         vj.ajouterTirerListener();
         vmb.peutSauvegarder(true);
+
+        IA.jeu.setTerrainJ1(Jeu.getInstance().getTerrainJ2());
+		IA.jeu.setTerrainJ2(Jeu.getInstance().getTerrainJ1());
     }
 
     public File selectFile(boolean load) {

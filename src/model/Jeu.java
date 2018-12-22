@@ -31,6 +31,10 @@ public class Jeu extends Observable {
         return instance;
     }
 
+    public static Jeu newInstance() {
+    	return new Jeu();
+	}
+
     public void setSe(SingletonEpoque se) {
         this.se = se;
     }
@@ -103,6 +107,12 @@ public class Jeu extends Observable {
                 return false;
             }
         }
+        //Le joueur est donc mort ici.
+		//Il faut ensuite tuer ses bateaux pour qu'ils s'affichent.
+		for(Bateau b : bateaux){
+			while(!b.estMort())
+				b.diminuerVie();
+		}
         return true;
     }
 
@@ -112,8 +122,6 @@ public class Jeu extends Observable {
 
 	public void setTerrainJ2(Terrain terrainJ2){
         this.terrainJ2 = terrainJ2;
-        IA.setTerrain(this.terrainJ2,this.terrainJ1);
-        IA.difficulte=IA.FACILE;
 	}
 
 	public SingletonEpoque getEpoque(){

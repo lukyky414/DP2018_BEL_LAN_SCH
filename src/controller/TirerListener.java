@@ -1,5 +1,6 @@
 package controller;
 
+import main.RMI;
 import model.*;
 import view.CustomJButton;
 import view.VueGrille;
@@ -71,28 +72,32 @@ public class TirerListener implements MouseListener {
         setXYFromMouseEvent(e);
         //Si on clique chez l'adversaire
         if (this.terrainAdverseSelectionne) {
-            Bateau bateauSelectionne=vueGrilleJoueur.getBateauSelectionne();
-            if (bateauSelectionne == null) {
-                return;
-            } else {
-                if (!fini && this.joueurPeutTirer) {
-                    if (terrainAdverse.verificationTirer(this.coup)) {
-                        terrainAdverse.tirer(this.coup);
-                        updateInfos(bateauSelectionne);
-                        fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
-                        joueurDoitAttendre();
-                        if (!fini) {
-                            IA.tirer();
-                            updateInfos(bateauSelectionne);
-                            fini=Jeu.getInstance().checkerConditionVictoireDefaite(false);
-                            if (!fini) {
-                                joueurPeutTirer();
-                            }
-                        }
-
-                    }
-                }
-            }
+        	if(joueurPeutTirer) {
+        		joueurDoitAttendre();
+				Bateau bateauSelectionne = vueGrilleJoueur.getBateauSelectionne();
+				if (bateauSelectionne == null) {
+					joueurPeutTirer();
+					return;
+				} else {
+					if (!fini) {
+						if (terrainAdverse.verificationTirer(this.coup)) {
+							terrainAdverse.tirer(this.coup);
+							RMI.setTir(coup);
+							updateInfos(bateauSelectionne);
+							fini = Jeu.getInstance().checkerConditionVictoireDefaite(true);
+							vueGrilleAdverse.update(null,null);//<- affichage post victoire
+							if (!fini) {
+								Coup c = RMI.getTir();
+								Jeu.getInstance().getTerrainJ1().tirer(c);
+								updateInfos(bateauSelectionne);
+								fini = Jeu.getInstance().checkerConditionVictoireDefaite(false);
+								vueGrilleAdverse.update(null,null);//<- affichage post victoire
+							}
+						}
+						joueurPeutTirer();
+					}
+				}
+			}
             //Si on clique sur notre grille
         } else {
             Disposition dispoJoueur=terrainJoueur.getDisposition();
