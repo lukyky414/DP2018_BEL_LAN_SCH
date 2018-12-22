@@ -3,8 +3,8 @@ package controller;
 import model.*;
 import view.CustomJButton;
 import view.VueGrille;
+import view.VueJeu;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -24,6 +24,7 @@ public class TirerListener implements MouseListener {
     private int y;
     private boolean terrainAdverseSelectionne;
     private boolean fini;
+    private boolean joueurPeutTirer;
 
     public TirerListener(VueGrille vueGrilleJoueur, VueGrille vueGrilleAdverse, Terrain terrainJoueur, Terrain terrainAdverse) {
         this.terrainAdverseSelectionne=false;
@@ -37,10 +38,21 @@ public class TirerListener implements MouseListener {
         this.y=0;
         //Bug possible très rare si jamais l'IA a réussi a tuer le joueur avec sa dernière munition, le joueur sera indiqué vainqueur
         this.fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
+        this.joueurPeutTirer =true;
         this.coup = new Coup(new Point(0,0), vueGrilleJoueur.getBateauSelectionne());
         Bateau bateauSelectionne=vueGrilleJoueur.getBateauSelectionne();
         vueGrilleJoueur.afficherBordJButtonBateauDansUneDirection(bateauSelectionne,Color.yellow);
         updateInfos(bateauSelectionne);
+    }
+
+    public void joueurDoitAttendre() {
+        this.joueurPeutTirer =false;
+        VueJeu.setEnabled(vueGrilleAdverse,false);
+    }
+
+    public void joueurPeutTirer() {
+        this.joueurPeutTirer = true ;
+        VueJeu.setEnabled(vueGrilleAdverse,true);
     }
 
 
@@ -63,15 +75,19 @@ public class TirerListener implements MouseListener {
             if (bateauSelectionne == null) {
                 return;
             } else {
-                if (!fini) {
+                if (!fini && this.joueurPeutTirer) {
                     if (terrainAdverse.verificationTirer(this.coup)) {
                         terrainAdverse.tirer(this.coup);
                         updateInfos(bateauSelectionne);
                         fini=Jeu.getInstance().checkerConditionVictoireDefaite(true);
+                        joueurDoitAttendre();
                         if (!fini) {
                             IA.tirer();
                             updateInfos(bateauSelectionne);
                             fini=Jeu.getInstance().checkerConditionVictoireDefaite(false);
+                            if (!fini) {
+                                joueurPeutTirer();
+                            }
                         }
 
                     }
