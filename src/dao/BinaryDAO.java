@@ -58,8 +58,6 @@ public class BinaryDAO implements DAO {
 						String res = byteToString((byte)mun);
 						//8-7 = 1
 						String toput = res.substring(1);
-						System.out.println(res);
-						System.out.println(toput);
 						strBuilder.append(toput);
 					}
 					{
@@ -187,7 +185,6 @@ public class BinaryDAO implements DAO {
 	}
 
 	public static byte[] stringToBytes(String str){
-
 		StringBuilder strBuilder = new StringBuilder(str);
 		while(strBuilder.length() % 8 != 0)
 			strBuilder.insert(0, "0");

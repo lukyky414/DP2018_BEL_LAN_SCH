@@ -103,7 +103,6 @@ public class XmlDAO implements DAO {
 		}
 	}
 
-	//TODO effacer sout
 	@Override
 	public void load(String path) throws WrongSaveException {
 		try {
@@ -200,7 +199,7 @@ public class XmlDAO implements DAO {
 				bateau = b;
 		}
 		if(bateau == null)
-			throw new WrongSaveException("ID du bateau ne correspond a aucun bateau de l'epoque " + bateau );
+			throw new WrongSaveException("ID du bateau ne correspond a aucun bateau de l'epoque " + id );
 
 		if(munitions > bateau.getMunitions())
 			throw new WrongSaveException("Munitions impossible pour le bateau de l'epoque " + bateau );

@@ -31,7 +31,6 @@ public class EnregistrerChargerListener implements ActionListener {
         this.vmb=vmb;
         this.chooser = new JFileChooser();
 		this.chooser.setCurrentDirectory(Paths.get("res/sav/").toAbsolutePath().toFile());
-        this.dao = new XmlDAO();
     }
 
     @Override
@@ -52,15 +51,25 @@ public class EnregistrerChargerListener implements ActionListener {
         File f=selectFile(false);
 
         if (f != null) {
-            this.dao.save(f.getPath());
+			String path = f.getPath();
+			if(path.substring(path.length()-4).equals(".sav"))
+				dao = new BinaryDAO();
+			else
+				dao = new XmlDAO();
+            this.dao.save(path);
         }
     }
 
     private void charger() {
         File f=selectFile(true);
         if (f != null) {
+        	String path = f.getPath();
+        	if(path.substring(path.length()-4).equals(".sav"))
+        		dao = new BinaryDAO();
+        	else
+        		dao = new XmlDAO();
             try {
-                this.dao.load(f.getPath());
+                dao.load(path);
             } catch (WrongSaveException e) {
                 e.printStackTrace();
             }
