@@ -1,5 +1,7 @@
 # Projet Master
 
+![](https://raw.githubusercontent.com/lukyky414/DP2018_Team_Rocket/master/res/img/README/FinPartie.png)
+
 ## Developpeurs:
 
 * BELLANGER Clément
