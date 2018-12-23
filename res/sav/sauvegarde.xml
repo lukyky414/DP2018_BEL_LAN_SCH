@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jeu>
+  <epoque>StarWars</epoque>
+  <joueur1>
+    <terrainJoueur>0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+</terrainJoueur>
+    <bateau>
+      <id>0</id>
+      <munitions>0</munitions>
+      <position>
+        <x>3</x>
+        <y>4</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>1</id>
+      <munitions>2</munitions>
+      <position>
+        <x>1</x>
+        <y>3</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>2</id>
+      <munitions>1</munitions>
+      <position>
+        <x>1</x>
+        <y>1</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>3</id>
+      <munitions>1</munitions>
+      <position>
+        <x>6</x>
+        <y>1</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>4</id>
+      <munitions>1</munitions>
+      <position>
+        <x>7</x>
+        <y>6</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+  </joueur1>
+  <joueur2>
+    <terrainJoueur>0010001000&#13;
+0001010000&#13;
+0010101000&#13;
+0001010000&#13;
+0010101000&#13;
+0001010000&#13;
+0010001000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+</terrainJoueur>
+    <bateau>
+      <id>0</id>
+      <munitions>2</munitions>
+      <position>
+        <x>0</x>
+        <y>0</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+  </joueur2>
+</jeu>

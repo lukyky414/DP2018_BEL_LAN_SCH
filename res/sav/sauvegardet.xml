@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jeu>
+  <epoque>Mediévale</epoque>
+  <joueur1>
+    <terrainJoueur>0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+0000000000&#13;
+</terrainJoueur>
+    <bateau>
+      <id>0</id>
+      <munitions>28</munitions>
+      <position>
+        <x>0</x>
+        <y>0</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>1</id>
+      <munitions>46</munitions>
+      <position>
+        <x>0</x>
+        <y>1</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>2</id>
+      <munitions>93</munitions>
+      <position>
+        <x>8</x>
+        <y>6</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>3</id>
+      <munitions>0</munitions>
+      <position>
+        <x>5</x>
+        <y>6</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+    <bateau>
+      <id>4</id>
+      <munitions>0</munitions>
+      <position>
+        <x>3</x>
+        <y>6</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+  </joueur1>
+  <joueur2>
+    <terrainJoueur>1101000000&#13;
+0101100000&#13;
+0001000000&#13;
+0011101110&#13;
+0001001110&#13;
+0001001110&#13;
+0011111110&#13;
+0011010110&#13;
+0011010110&#13;
+0011010110&#13;
+</terrainJoueur>
+    <bateau>
+      <id>0</id>
+      <munitions>30</munitions>
+      <position>
+        <x>0</x>
+        <y>0</y>
+      </position>
+      <direction>1</direction>
+    </bateau>
+  </joueur2>
+</jeu>
